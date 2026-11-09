@@ -1,0 +1,2277 @@
+{
+ "url": "http://127.0.0.1:3037",
+ "at": "2026-11-09T17:43:50.723Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 5,
+   "filled": [
+    0.97,
+    0.34,
+    0.7,
+    0.56,
+    0.45
+   ],
+   "motion": {
+    "elements": 0,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 3672,
+     "screens": 4.1,
+     "words": 514,
+     "img": 48,
+     "video": 0,
+     "canvas": 0,
+     "svg": 3,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 22,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "Ichwal.webp",
+      "Aan%20Ms.webp",
+      "Andi%20Ahsan%20Ashuri.webp",
+      "Andi%20Rifqi%20Aunur%20Rahman%201.webp",
+      "Farah.webp",
+      "Fatwa.webp",
+      "Firly.webp",
+      "Ikhlas.webp"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "DEVELOPER BY ICLABS",
+     "words": 3,
+     "chars": 19,
+     "lines": 2,
+     "size": 54,
+     "vw": 3.8,
+     "font": "-apple-system",
+     "weight": 950,
+     "tracking": 0.056,
+     "leading": 1.05,
+     "upper": true,
+     "italic": false,
+     "mono": false,
+     "align": "center",
+     "position": "center",
+     "widthRatio": 0.44,
+     "top": 678,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "DEVELOPER BY ICLABS",
+     "words": 3,
+     "lines": 2,
+     "size": 54,
+     "font": "-apple-system"
+    },
+    "headings": [
+     {
+      "text": "DEVELOPER BY ICLABS",
+      "words": 3,
+      "chars": 19,
+      "lines": 2,
+      "size": 54,
+      "vw": 3.8,
+      "font": "-apple-system",
+      "weight": 950,
+      "tracking": 0.056,
+      "leading": 1.05,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.44,
+      "top": 678,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Satu ekosistem. Semua terhubung.",
+      "words": 4,
+      "chars": 32,
+      "lines": 2,
+      "size": 42,
+      "vw": 2.9,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.15,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.53,
+      "top": 1017,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Built by us.",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 44,
+      "vw": 3.1,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.36,
+      "top": 1732,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "12",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.35,
+      "top": 2948,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "Satu Ekosistem untuk Seluruh Laboratorium.",
+      "words": 5,
+      "chars": 42,
+      "lines": 2,
+      "size": 34,
+      "vw": 2.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.49,
+      "top": 2993,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "22",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.35,
+      "top": 3053,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "100%",
+      "words": 1,
+      "chars": 4,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.35,
+      "top": 3159,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "Developed by Iclabs.",
+      "words": 3,
+      "chars": 20,
+      "lines": 1,
+      "size": 68,
+      "vw": 4.7,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.97,
+      "top": 3480,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 8,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 1,
+     "medianWords": 3,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      18,
+      22,
+      24,
+      28,
+      34,
+      42,
+      44,
+      54,
+      68
+     ],
+     "sizeCount": 16,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 15,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 7.4
+     },
+     "measureChars": 95,
+     "max": {
+      "size": 68,
+      "vw": 4.7,
+      "font": "-apple-system",
+      "text": "Developed by ."
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 6,
+     "microLabelShare": 0.053,
+     "microSamples": [
+      "PILIH SISTEM:",
+      "INTEGRATED COMPUTER LABORATORY SYSTEM",
+      "MANY MINDS · ONE ECOSYSTEM · CONNECTED B",
+      "IN FOCUS [1/22]",
+      "DETAIL ARSITEKTUR SISTEM",
+      "22 PERSPEKTIF · 1 TIM"
+     ],
+     "upperShare": 0.27,
+     "centerShare": 0.28,
+     "smallText": 60
+    },
+    "eyebrows": [
+     {
+      "text": "INTEGRATED COMPUTER LABORATORY SYSTEM",
+      "above": "DEVELOPER BY ICLABS",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 11,
+      "top": 650
+     },
+     {
+      "text": "DETAIL ARSITEKTUR SISTEM",
+      "above": "Satu ekosistem. Semua terhubung.",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 11,
+      "top": 987
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#060a0d",
+     "bodyBgHsl": {
+      "h": 206,
+      "s": 0.37,
+      "l": 0.04
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#0c131a",
+       "top": 2886,
+       "hsl": {
+        "h": 210,
+        "s": 0.37,
+        "l": 0.07
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#8ea1ae",
+       "share": 0.6
+      },
+      {
+       "color": "#5ce1e6",
+       "share": 0.21
+      },
+      {
+       "color": "#edf3f6",
+       "share": 0.17
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      },
+      {
+       "color": "#b7c8d2",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#0c131a",
+      "hsl": {
+       "h": 210,
+       "s": 0.37,
+       "l": 0.07
+      },
+      "fg": "#edf3f6"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 37,
+     "inHero": 15,
+     "radius": 12,
+     "height": 70,
+     "withShadow": 1,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Lewati ke detail sistem",
+      "Tentang Lab",
+      "Integration",
+      "Sumber Daya",
+      "Praktikum"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 23,
+     "shadowOverlay": 1,
+     "shadowSamples": [
+      "button.system-pill-btn.is-active → rgba(92, 225, 230, 0.35) 0px 0px 14px -3px",
+      "div.esports-player-badge → rgba(0, 0, 0, 0.7) 0px 4px 12px 0px",
+      "div.esports-player-badge → rgba(0, 0, 0, 0.7) 0px 4px 12px 0px",
+      "div.esports-player-badge → rgba(0, 0, 0, 0.7) 0px 4px 12px 0px"
+     ],
+     "gradients": 5,
+     "scrims": 2,
+     "gradientSamples": [
+      "div#arena-stage-scroll.esports-arena-stage → radial-gradient(at 50% 90%, rgb(19, 36, 47) 0%, rgb(8, 17, 23) 48%, rgb(5, 8, 11) 85%)",
+      "div.arena-backdrop-grid → linear-gradient(rgba(92, 225, 230, 0.05) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(90deg, rgba(92, 225, 230,",
+      "div.arena-spotlight-beam → radial-gradient(at 50% 20%, rgba(92, 225, 230, 0.22) 0%, rgba(0, 0, 0, 0) 65%)",
+      "div.arena-ember-glow → linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(92, 225, 230, 0.08) 100%)"
+     ],
+     "gradientText": 0,
+     "hairlines": 9,
+     "hairlineSamples": [
+      "header.site-header 1392px",
+      "div.esports-bottom-bar 1392px",
+      "section#project-detail.project-detail-section 1392px",
+      "section#team.team-section 1392px",
+      "div.spotlight-details 338px"
+     ],
+     "outlinedBoxes": 7,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 7,
+     "boxRadius": 18,
+     "squareMedia": 2,
+     "roundedMedia": 1,
+     "mediaRadius": 18,
+     "textShadow": 1,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 4,
+     "fixed": false,
+     "height": 60,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 3672,
+    "margins": {
+     "left": 24,
+     "right": 24
+    },
+    "sections": [
+     {
+      "sel": "section.esports-hero-screen",
+      "tag": "section",
+      "top": 0,
+      "height": 900,
+      "words": 80,
+      "media": 22,
+      "middle": 1371,
+      "heading": null,
+      "left": 24,
+      "right": 0,
+      "textLeft": 24,
+      "textRight": 24,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#project-detail.project-detail-section",
+      "tag": "section",
+      "top": 900,
+      "height": 751,
+      "words": 82,
+      "media": 1,
+      "middle": 290,
+      "heading": {
+       "text": "Satu ekosistem.",
+       "size": 42,
+       "tag": "h2"
+      },
+      "left": 24,
+      "right": 25,
+      "textLeft": 24,
+      "textRight": 125,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#team.team-section",
+      "tag": "section",
+      "top": 1651,
+      "height": 1173,
+      "words": 118,
+      "media": 1,
+      "middle": 12,
+      "heading": {
+       "text": "Built by us",
+       "size": 44,
+       "tag": "h2"
+      },
+      "left": 24,
+      "right": 24,
+      "textLeft": 24,
+      "textRight": 38,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": true
+     },
+     {
+      "sel": "section#about.about-section",
+      "tag": "section",
+      "top": 2825,
+      "height": 532,
+      "words": 54,
+      "media": 0,
+      "middle": 74,
+      "heading": {
+       "text": "Satu Ekosistem untuk Seluruh Laboratorium.",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 69,
+      "right": 410,
+      "textLeft": 69,
+      "textRight": 410,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 3357,
+      "height": 315,
+      "words": 27,
+      "media": 0,
+      "middle": 588,
+      "heading": {
+       "text": "Developed by",
+       "size": 68,
+       "tag": "p"
+      },
+      "left": 24,
+      "right": 24,
+      "textLeft": 24,
+      "textRight": 24,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [
+     {
+      "top": 104,
+      "height": 380
+     }
+    ],
+    "h1s": [
+     {
+      "text": "DEVELOPER BY ICLABS",
+      "size": 54,
+      "top": 678,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 24,
+      "n": 7
+     },
+     {
+      "x": 69,
+      "n": 2
+     },
+     {
+      "x": 49,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 10,
+    "bodySize": 15,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0.4,
+    "voidBox": {
+     "x": 0,
+     "y": 120,
+     "w": 1440,
+     "h": 360
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 6,
+   "filled": [
+    0.77,
+    0.44,
+    0.87,
+    0.79,
+    0.7,
+    0.6
+   ],
+   "motion": {
+    "elements": 0,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 5314,
+     "screens": 5.2,
+     "words": 508,
+     "img": 48,
+     "video": 0,
+     "canvas": 0,
+     "svg": 3,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 21,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "Ichwal.webp",
+      "Aan%20Ms.webp",
+      "Andi%20Ahsan%20Ashuri.webp",
+      "Andi%20Rifqi%20Aunur%20Rahman%201.webp",
+      "Farah.webp",
+      "Fatwa.webp",
+      "Firly.webp",
+      "Ikhlas.webp"
+     ],
+     "blendText": 0,
+     "sideScrollers": 1,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Satu ekosistem. Semua terhubung.",
+     "words": 4,
+     "chars": 32,
+     "lines": 2,
+     "size": 28,
+     "vw": 3.6,
+     "font": "-apple-system",
+     "weight": 700,
+     "tracking": -0.02,
+     "leading": 1.15,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.96,
+     "top": 874,
+     "tag": "h2",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "DEVELOPER BY ICLABS",
+     "words": 3,
+     "lines": 2,
+     "size": 26,
+     "font": "-apple-system"
+    },
+    "headings": [
+     {
+      "text": "DEVELOPER BY ICLABS",
+      "words": 3,
+      "chars": 19,
+      "lines": 2,
+      "size": 26,
+      "vw": 3.4,
+      "font": "-apple-system",
+      "weight": 950,
+      "tracking": 0.058,
+      "leading": 1.05,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "left",
+      "widthRatio": 0.43,
+      "top": 506,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Satu ekosistem. Semua terhubung.",
+      "words": 4,
+      "chars": 32,
+      "lines": 2,
+      "size": 28,
+      "vw": 3.6,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.15,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.96,
+      "top": 874,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Built by us.",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.68,
+      "top": 1880,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "12",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.82,
+      "top": 4602,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "22",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.82,
+      "top": 4707,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "100%",
+      "words": 1,
+      "chars": 4,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.82,
+      "top": 4813,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "Developed by Iclabs.",
+      "words": 3,
+      "chars": 20,
+      "lines": 1,
+      "size": 42.2,
+      "vw": 5.5,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.96,
+      "top": 5122,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 7,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 1,
+     "medianWords": 3,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      18,
+      22,
+      24,
+      26,
+      28,
+      30,
+      42
+     ],
+     "sizeCount": 14,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 15,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 7.4
+     },
+     "measureChars": 90,
+     "max": {
+      "size": 42.2,
+      "vw": 5.5,
+      "font": "-apple-system",
+      "text": "Developed by ."
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 6,
+     "microLabelShare": 0.054,
+     "microSamples": [
+      "PILIH SISTEM:",
+      "INTEGRATED COMPUTER LABORATORY SYSTEM",
+      "MANY MINDS · ONE ECOSYSTEM · CONNECTED B",
+      "IN FOCUS [1/22]",
+      "DETAIL ARSITEKTUR SISTEM",
+      "22 PERSPEKTIF · 1 TIM"
+     ],
+     "upperShare": 0.28,
+     "centerShare": 0.31,
+     "smallText": 60
+    },
+    "eyebrows": [
+     {
+      "text": "INTEGRATED COMPUTER LABORATORY SYSTEM",
+      "above": "DEVELOPER BY ICLABS",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 11,
+      "top": 467
+     },
+     {
+      "text": "DETAIL ARSITEKTUR SISTEM",
+      "above": "Satu ekosistem. Semua terhubung.",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 11,
+      "top": 844
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#060a0d",
+     "bodyBgHsl": {
+      "h": 206,
+      "s": 0.37,
+      "l": 0.04
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#0c131a",
+       "top": 1987,
+       "hsl": {
+        "h": 210,
+        "s": 0.37,
+        "l": 0.07
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#8ea1ae",
+       "share": 0.6
+      },
+      {
+       "color": "#5ce1e6",
+       "share": 0.22
+      },
+      {
+       "color": "#edf3f6",
+       "share": 0.16
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      },
+      {
+       "color": "#b7c8d2",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#0c131a",
+      "hsl": {
+       "h": 210,
+       "s": 0.37,
+       "l": 0.07
+      },
+      "fg": "#8ea1ae"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 13,
+     "inHero": 13,
+     "radius": 6,
+     "height": 33,
+     "withShadow": 1,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Lewati ke detail sistem",
+      "Integration",
+      "Sumber Daya",
+      "Praktikum",
+      "Monitoring"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 24,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "button.system-pill-btn.is-active → rgba(92, 225, 230, 0.35) 0px 0px 14px -3px",
+      "div.esports-player-badge → rgba(0, 0, 0, 0.7) 0px 4px 12px 0px",
+      "div.esports-player-badge → rgba(0, 0, 0, 0.7) 0px 4px 12px 0px",
+      "div.esports-player-badge → rgba(0, 0, 0, 0.7) 0px 4px 12px 0px"
+     ],
+     "gradients": 5,
+     "scrims": 2,
+     "gradientSamples": [
+      "div#arena-stage-scroll.esports-arena-stage → radial-gradient(at 50% 90%, rgb(19, 36, 47) 0%, rgb(8, 17, 23) 48%, rgb(5, 8, 11) 85%)",
+      "div.arena-backdrop-grid → linear-gradient(rgba(92, 225, 230, 0.05) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(90deg, rgba(92, 225, 230,",
+      "div.arena-spotlight-beam → radial-gradient(at 50% 20%, rgba(92, 225, 230, 0.22) 0%, rgba(0, 0, 0, 0) 65%)",
+      "div.arena-ember-glow → linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(92, 225, 230, 0.08) 100%)"
+     ],
+     "gradientText": 0,
+     "hairlines": 9,
+     "hairlineSamples": [
+      "header.site-header 740px",
+      "div.esports-bottom-bar 740px",
+      "section#project-detail.project-detail-section 740px",
+      "section#team.team-section 740px",
+      "div.spotlight-details 738px"
+     ],
+     "outlinedBoxes": 7,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 7,
+     "boxRadius": 18,
+     "squareMedia": 2,
+     "roundedMedia": 1,
+     "mediaRadius": 18,
+     "textShadow": 1,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 1,
+     "fixed": false,
+     "height": 54,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 5314,
+    "margins": {
+     "left": 14,
+     "right": 14
+    },
+    "sections": [
+     {
+      "sel": "section.esports-hero-screen",
+      "tag": "section",
+      "top": 0,
+      "height": 757,
+      "words": 65,
+      "media": 22,
+      "middle": 1698,
+      "heading": {
+       "text": "DEVELOPER BY ICLABS",
+       "size": 26,
+       "tag": "h1"
+      },
+      "left": 0,
+      "right": 0,
+      "textLeft": 14,
+      "textRight": 14,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#project-detail.project-detail-section",
+      "tag": "section",
+      "top": 757,
+      "height": 1041,
+      "words": 82,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Satu ekosistem.",
+       "size": 28,
+       "tag": "h2"
+      },
+      "left": 14,
+      "right": 15,
+      "textLeft": 14,
+      "textRight": 219,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#team.team-section",
+      "tag": "section",
+      "top": 1799,
+      "height": 2522,
+      "words": 118,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Built by us",
+       "size": 30,
+       "tag": "h2"
+      },
+      "left": 14,
+      "right": 14,
+      "textLeft": 14,
+      "textRight": 28,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#about.about-section",
+      "tag": "section",
+      "top": 4320,
+      "height": 678,
+      "words": 54,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "12",
+       "size": 28,
+       "tag": "strong"
+      },
+      "left": 47,
+      "right": 69,
+      "textLeft": 47,
+      "textRight": 69,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 4998,
+      "height": 315,
+      "words": 27,
+      "media": 0,
+      "middle": 255,
+      "heading": {
+       "text": "Developed by",
+       "size": 42,
+       "tag": "p"
+      },
+      "left": 14,
+      "right": 14,
+      "textLeft": 14,
+      "textRight": 14,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "DEVELOPER BY ICLABS",
+      "size": 26,
+      "top": 506,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [
+     {
+      "text": "PILIH SISTEM:",
+      "side": "left",
+      "px": 14
+     },
+     {
+      "text": "Rekrutmen",
+      "side": "right",
+      "px": 14
+     },
+     {
+      "text": "DETAIL ARSITEKTUR SISTEM",
+      "side": "left",
+      "px": 14
+     },
+     {
+      "text": "Satu ekosistem.",
+      "side": "left",
+      "px": 14
+     },
+     {
+      "text": "Semua terhubung.",
+      "side": "left",
+      "px": 14
+     },
+     {
+      "text": "Kategori:",
+      "side": "left",
+      "px": 14
+     },
+     {
+      "text": "API pusat yang menghubungkan identitas, data, dan ",
+      "side": "left",
+      "px": 14
+     },
+     {
+      "text": "Fitur & Arsitektur Utama",
+      "side": "left",
+      "px": 14
+     }
+    ],
+    "edges": [
+     {
+      "x": 14,
+      "n": 7
+     },
+     {
+      "x": 39,
+      "n": 3
+     }
+    ],
+    "leftBlocks": 10,
+    "bodySize": 15,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 7,
+   "filled": [
+    0.71,
+    0.6,
+    0.63,
+    0.79,
+    0.79,
+    0.79,
+    0.56
+   ],
+   "motion": {
+    "elements": 0,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 5550,
+     "screens": 6.6,
+     "words": 508,
+     "img": 48,
+     "video": 0,
+     "canvas": 0,
+     "svg": 3,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 21,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "Ichwal.webp",
+      "Aan%20Ms.webp",
+      "Andi%20Ahsan%20Ashuri.webp",
+      "Andi%20Rifqi%20Aunur%20Rahman%201.webp",
+      "Farah.webp",
+      "Fatwa.webp",
+      "Firly.webp",
+      "Ikhlas.webp"
+     ],
+     "blendText": 0,
+     "sideScrollers": 1,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "DEVELOPER BY ICLABS",
+     "words": 3,
+     "chars": 19,
+     "lines": 2,
+     "size": 26,
+     "vw": 6.7,
+     "font": "-apple-system",
+     "weight": 950,
+     "tracking": 0.058,
+     "leading": 1.05,
+     "upper": true,
+     "italic": false,
+     "mono": false,
+     "align": "center",
+     "position": "left",
+     "widthRatio": 0.45,
+     "top": 488,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "DEVELOPER BY ICLABS",
+     "words": 3,
+     "lines": 2,
+     "size": 26,
+     "font": "-apple-system"
+    },
+    "headings": [
+     {
+      "text": "DEVELOPER BY ICLABS",
+      "words": 3,
+      "chars": 19,
+      "lines": 2,
+      "size": 26,
+      "vw": 6.7,
+      "font": "-apple-system",
+      "weight": 950,
+      "tracking": 0.058,
+      "leading": 1.05,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "left",
+      "widthRatio": 0.45,
+      "top": 488,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Satu ekosistem. Semua terhubung.",
+      "words": 4,
+      "chars": 32,
+      "lines": 2,
+      "size": 28,
+      "vw": 7.2,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.15,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.93,
+      "top": 874,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "ICLabs Fikom",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.8,
+      "top": 1641,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Built by us.",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 30,
+      "vw": 7.7,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.64,
+      "top": 1900,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Ichwal",
+      "words": 1,
+      "chars": 6,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.6,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.8,
+      "top": 2327,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Satu Ekosistem untuk Seluruh Laboratorium.",
+      "words": 5,
+      "chars": 42,
+      "lines": 2,
+      "size": 24,
+      "vw": 6.2,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.76,
+      "top": 4483,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "12",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.65,
+      "top": 4802,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "22",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.65,
+      "top": 4908,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "100%",
+      "words": 1,
+      "chars": 4,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.65,
+      "top": 5014,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "Developed by Iclabs.",
+      "words": 3,
+      "chars": 20,
+      "lines": 1,
+      "size": 32,
+      "vw": 8.2,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.93,
+      "top": 5369,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 10,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 2,
+     "centered": 1,
+     "medianWords": 2,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      18,
+      22,
+      24,
+      26,
+      28,
+      30,
+      32
+     ],
+     "sizeCount": 14,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 15,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 7.4
+     },
+     "measureChars": 39,
+     "max": {
+      "size": 32,
+      "vw": 8.2,
+      "font": "-apple-system",
+      "text": "Developed by ."
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 6,
+     "microLabelShare": 0.054,
+     "microSamples": [
+      "PILIH SISTEM:",
+      "INTEGRATED COMPUTER LABORATORY SYSTEM",
+      "MANY MINDS · ONE ECOSYSTEM · CONNECTED B",
+      "IN FOCUS [1/22]",
+      "DETAIL ARSITEKTUR SISTEM",
+      "22 PERSPEKTIF · 1 TIM"
+     ],
+     "upperShare": 0.28,
+     "centerShare": 0.31,
+     "smallText": 60
+    },
+    "eyebrows": [
+     {
+      "text": "INTEGRATED COMPUTER LABORATORY SYSTEM",
+      "above": "DEVELOPER BY ICLABS",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 11,
+      "top": 414
+     },
+     {
+      "text": "DETAIL ARSITEKTUR SISTEM",
+      "above": "Satu ekosistem. Semua terhubung.",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 11,
+      "top": 844
+     },
+     {
+      "text": "Pusat operasional laboratorium",
+      "above": "ICLabs Fikom",
+      "upper": false,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 11,
+      "top": 1617
+     },
+     {
+      "text": "Profil asisten terpilih",
+      "above": "Ichwal",
+      "upper": false,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 11,
+      "top": 2301
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#060a0d",
+     "bodyBgHsl": {
+      "h": 206,
+      "s": 0.37,
+      "l": 0.04
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#0c131a",
+       "top": 1457,
+       "hsl": {
+        "h": 210,
+        "s": 0.37,
+        "l": 0.07
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#8ea1ae",
+       "share": 0.6
+      },
+      {
+       "color": "#5ce1e6",
+       "share": 0.22
+      },
+      {
+       "color": "#edf3f6",
+       "share": 0.16
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      },
+      {
+       "color": "#b7c8d2",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#0c131a",
+      "hsl": {
+       "h": 210,
+       "s": 0.37,
+       "l": 0.07
+      },
+      "fg": "#edf3f6"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 36,
+     "inHero": 14,
+     "radius": 12,
+     "height": 70,
+     "withShadow": 1,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Lewati ke detail sistem",
+      "Integration",
+      "Sumber Daya",
+      "Praktikum",
+      "Monitoring"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 24,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "button.system-pill-btn.is-active → rgba(92, 225, 230, 0.35) 0px 0px 14px -3px",
+      "div.esports-player-badge → rgba(0, 0, 0, 0.7) 0px 4px 12px 0px",
+      "div.esports-player-badge → rgba(0, 0, 0, 0.7) 0px 4px 12px 0px",
+      "div.esports-player-badge → rgba(0, 0, 0, 0.7) 0px 4px 12px 0px"
+     ],
+     "gradients": 5,
+     "scrims": 2,
+     "gradientSamples": [
+      "div#arena-stage-scroll.esports-arena-stage → radial-gradient(at 50% 90%, rgb(19, 36, 47) 0%, rgb(8, 17, 23) 48%, rgb(5, 8, 11) 85%)",
+      "div.arena-backdrop-grid → linear-gradient(rgba(92, 225, 230, 0.05) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(90deg, rgba(92, 225, 230,",
+      "div.arena-spotlight-beam → radial-gradient(at 50% 20%, rgba(92, 225, 230, 0.22) 0%, rgba(0, 0, 0, 0) 65%)",
+      "div.arena-ember-glow → linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(92, 225, 230, 0.08) 100%)"
+     ],
+     "gradientText": 0,
+     "hairlines": 9,
+     "hairlineSamples": [
+      "header.site-header 362px",
+      "div.esports-bottom-bar 362px",
+      "section#project-detail.project-detail-section 362px",
+      "section#team.team-section 362px",
+      "div.spotlight-details 360px"
+     ],
+     "outlinedBoxes": 7,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 7,
+     "boxRadius": 18,
+     "squareMedia": 2,
+     "roundedMedia": 1,
+     "mediaRadius": 18,
+     "textShadow": 1,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.18
+     },
+     {
+      "type": "img",
+      "ratio": 0.16
+     },
+     {
+      "type": "img",
+      "ratio": 0.14
+     },
+     {
+      "type": "img",
+      "ratio": 0.09
+     }
+    ],
+    "nav": {
+     "links": 1,
+     "fixed": false,
+     "height": 54,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 5550,
+    "margins": {
+     "left": 14,
+     "right": 14
+    },
+    "sections": [
+     {
+      "sel": "section.esports-hero-screen",
+      "tag": "section",
+      "top": 0,
+      "height": 757,
+      "words": 32,
+      "media": 22,
+      "middle": 2076,
+      "heading": null,
+      "left": 0,
+      "right": 0,
+      "textLeft": 14,
+      "textRight": 14,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#project-detail.project-detail-section",
+      "tag": "section",
+      "top": 757,
+      "height": 1062,
+      "words": 82,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Satu ekosistem.",
+       "size": 28,
+       "tag": "h2"
+      },
+      "left": 14,
+      "right": 15,
+      "textLeft": 14,
+      "textRight": 33,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#team.team-section",
+      "tag": "section",
+      "top": 1819,
+      "height": 2570,
+      "words": 118,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Built by us",
+       "size": 30,
+       "tag": "h2"
+      },
+      "left": 14,
+      "right": 14,
+      "textLeft": 14,
+      "textRight": 28,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#about.about-section",
+      "tag": "section",
+      "top": 4389,
+      "height": 810,
+      "words": 54,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "12",
+       "size": 28,
+       "tag": "strong"
+      },
+      "left": 47,
+      "right": 50,
+      "textLeft": 47,
+      "textRight": 50,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 5199,
+      "height": 351,
+      "words": 27,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Developed by",
+       "size": 32,
+       "tag": "p"
+      },
+      "left": 14,
+      "right": 30,
+      "textLeft": 14,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "DEVELOPER BY ICLABS",
+      "size": 26,
+      "top": 488,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [
+     {
+      "text": "PILIH SISTEM:",
+      "side": "left",
+      "px": 14
+     },
+     {
+      "text": "Praktikum",
+      "side": "right",
+      "px": 14
+     },
+     {
+      "text": "DETAIL ARSITEKTUR SISTEM",
+      "side": "left",
+      "px": 14
+     },
+     {
+      "text": "Satu ekosistem.",
+      "side": "left",
+      "px": 14
+     },
+     {
+      "text": "Semua terhubung.",
+      "side": "left",
+      "px": 14
+     },
+     {
+      "text": "Kategori:",
+      "side": "left",
+      "px": 14
+     },
+     {
+      "text": "API pusat yang menghubungkan identitas, data, dan ",
+      "side": "left",
+      "px": 14
+     },
+     {
+      "text": "Fitur & Arsitektur Utama",
+      "side": "left",
+      "px": 14
+     }
+    ],
+    "edges": [
+     {
+      "x": 14,
+      "n": 7
+     },
+     {
+      "x": 39,
+      "n": 3
+     }
+    ],
+    "leftBlocks": 10,
+    "bodySize": 15,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "FAIL",
+   "id": "eyebrow",
+   "width": 1440,
+   "message": "2 eyebrow/kicker label(s) above headings: \"INTEGRATED COMPUTER LABORATORY SYSTEM\" above \"DEVELOPER BY ICLABS\"; \"DETAIL ARSITEKTUR SISTEM\" above \"Satu ekosistem. Semua terhubung.\"",
+   "fix": "Delete them. If the label carried real information, fold it into the headline or the supporting sentence.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "micro-label",
+   "width": 1440,
+   "message": "6 tiny uppercase letter-spaced labels (e.g. \"PILIH SISTEM:\", \"INTEGRATED COMPUTER LABORATORY SYSTEM\", \"MANY MINDS · ONE ECOSYSTEM · CONNECTED B\", \"IN FOCUS [1/22]\").",
+   "fix": "Use sentence-case text at a readable size, or delete the label.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "gradient",
+   "width": 1440,
+   "message": "5 gradient fill(s): div#arena-stage-scroll.esports-arena-stage → radial-gradient(at 50% 90%, rgb(19, 36, 47) 0%, rgb(8, 17, 23) 48%, rgb(5, 8, 11) 85%) | div.arena-backdrop-grid → linear-gradient(rgba(92, 225, 230, 0.05) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(90deg, rgba(92, 225, 230, | div.arena-spotlight-beam → radial-gradient(at 50% 20%, rgba(92, 225, 230, 0.22) 0%, rgba(0, 0, 0, 0) 65%)",
+   "fix": "Use a flat colour or a real image. The only gradient allowed by default is a neutral scrim over a photo for legibility.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "shadow",
+   "width": 1440,
+   "message": "23 box-shadow(s) on elements at rest: button.system-pill-btn.is-active → rgba(92, 225, 230, 0.35) 0px 0px 14px -3px | div.esports-player-badge → rgba(0, 0, 0, 0.7) 0px 4px 12px 0px | div.esports-player-badge → rgba(0, 0, 0, 0.7) 0px 4px 12px 0px",
+   "fix": "Remove. Separate surfaces with a tone step or space. Shadows are for things that really float (menus, dialogs, sticky bars).",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "text-shadow",
+   "width": 1440,
+   "message": "1 text-shadow(s).",
+   "fix": "Remove; fix legibility with a scrim or a different crop.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "button-fx",
+   "width": 1440,
+   "message": "Buttons with shadow/glow.",
+   "fix": "Flat fill, one colour.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "hairline",
+   "width": 1440,
+   "message": "9 thin rule(s)/divider line(s): header.site-header 1392px | div.esports-bottom-bar 1392px | section#project-detail.project-detail-section 1392px | section#team.team-section 1392px",
+   "fix": "Delete. Separate with space, a tone change, or scale. Lines are only for real tables and form fields.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "outlined-box",
+   "width": 1440,
+   "message": "7 boxes drawn with a 1px outline.",
+   "fix": "Define a surface by its fill (one tone step from the page) or leave the content unboxed.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "size-count",
+   "width": 1440,
+   "message": "16 different font sizes (10, 11, 12, 13, 14, 15, 16, 18, 22, 24, 28, 34, 42, 44, 54, 68).",
+   "fix": "A page needs about five: display, heading, lead, body, small.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "body-size",
+   "width": 1440,
+   "message": "Body text is 15px.",
+   "fix": "Body copy 16–20px.",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "measure",
+   "width": 1440,
+   "message": "Longest paragraph runs about 95 characters per line.",
+   "fix": "Cap paragraphs at 45–75 characters (max-width: 60ch).",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "small-text",
+   "width": 1440,
+   "message": "60 text blocks under 13px.",
+   "fix": "Nothing meant to be read goes below 13px.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "focal-point",
+   "width": 1440,
+   "message": "The first screen has no dominant element: the largest type is 54px (3.8vw) and no single picture holds a third of the viewport.",
+   "fix": "Make one thing lead: the headline at display size, or one large picture. A grid of many small pictures is not one thing; in blind tests jurors marked a first screen without a headline down every time. On the strongest studied sites the largest type has a median of 8.4vw.",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "blank-gap",
+   "width": 1440,
+   "message": "A 380px stretch at 104px holds nothing.",
+   "fix": "Check that it is a deliberate rest (once per page at most); otherwise close it to the normal section gap."
+  },
+  {
+   "level": "WARN",
+   "id": "name-only-title",
+   "width": 1440,
+   "message": "The h1 is a bare name (\"DEVELOPER BY ICLABS\") and nothing else on the first screen says what this is.",
+   "fix": "Keep the name if it leads, and give the line under it (18px or more) the plain words: what it is, for whom, where or when. In the study of 97 Sites of the Day, first screens that named nothing lost usability and content points.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "hero-void",
+   "width": 1440,
+   "message": "40% of the first screen is one empty block (1440×360px at 0,120).",
+   "fix": "Place the void on purpose or fill it: move the picture, the film or one fact into it, grow the headline to meet it, or shrink the screen to its content. A void reads as placed only when something closes it on the far side and it is the screen's one rest."
+  },
+  {
+   "level": "FAIL",
+   "id": "covered-text",
+   "width": 1440,
+   "message": "Large text lies under another element at some scroll position: \"DEVELOPER BY ICLABS\" (screen 1, 75% hidden)",
+   "fix": "Nothing may sit on top of a headline or statement. Move the picture, shorten the pinned run, or raise the text above it (z-index) and give it a ground."
+  },
+  {
+   "level": "FAIL",
+   "id": "still-page",
+   "width": 1440,
+   "message": "Only 0 element(s) moved while the page loaded and scrolled.",
+   "fix": "Build the motion layer (SKILL.md step 9, references/motion.md): the signature move, an entrance for the parts of every section, feedback on every control, and one moving picture. Transform and opacity only, with a reduced-motion fallback."
+  },
+  {
+   "level": "WARN",
+   "id": "side-scroll",
+   "width": 768,
+   "message": "1 row(s) scroll sideways with content past their edge.",
+   "fix": "Jurors and most visitors read a row cut at the edge as clipped, not as scrollable. Wrap it onto more lines, or end it inside the grid.",
+   "alsoAt": [
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "small-title",
+   "width": 768,
+   "message": "The h1 is 26px (\"DEVELOPER BY ICLABS\").",
+   "fix": "Set the title at display size, or make the large text of the first screen the h1."
+  },
+  {
+   "level": "FAIL",
+   "id": "edge-text",
+   "width": 768,
+   "message": "8 text block(s) sit within 16px of the screen edge: \"PILIH SISTEM:\" (14px from the left); \"Rekrutmen\" (14px from the right); \"DETAIL ARSITEKTUR SISTEM\" (14px from the left); \"Satu ekosistem.\" (14px from the left)",
+   "fix": "Keep text inside the page margin (16–32px or more). Only display type deliberately bled past the edge may touch it."
+  },
+  {
+   "level": "WARN",
+   "id": "edge-text",
+   "width": 390,
+   "message": "8 text block(s) sit 12–15px from the phone's edge: \"PILIH SISTEM:\" (14px); \"Praktikum\" (14px); \"DETAIL ARSITEKTUR SISTEM\" (14px)",
+   "fix": "The page margin is 16–20px on a phone; the header and the corner labels sit on it too."
+  },
+  {
+   "level": "FAIL",
+   "id": "reduced-hidden",
+   "width": 1440,
+   "message": "With reduced motion requested, 21 text block(s) on the first screen stay invisible: \"AAN MS\", \"ANDI AHSAN ASHURI\", \"ANDI RIFQI AUNUR RAHMAN 1\", \"FARAH\"",
+   "fix": "Put every hidden starting state inside @media (prefers-reduced-motion: no-preference); the reduced page is the finished page (references/motion.md §8)."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "/home/ichwal/db-integration-iclabs/developer/.taste-skill/reference-match/desktop-fold.jpg",
+   "pages": [
+    "/home/ichwal/db-integration-iclabs/developer/.taste-skill/reference-match/desktop-page-01.jpg",
+    "/home/ichwal/db-integration-iclabs/developer/.taste-skill/reference-match/desktop-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "/home/ichwal/db-integration-iclabs/developer/.taste-skill/reference-match/tablet-fold.jpg",
+   "pages": [
+    "/home/ichwal/db-integration-iclabs/developer/.taste-skill/reference-match/tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "/home/ichwal/db-integration-iclabs/developer/.taste-skill/reference-match/mobile-fold.jpg",
+   "pages": [
+    "/home/ichwal/db-integration-iclabs/developer/.taste-skill/reference-match/mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

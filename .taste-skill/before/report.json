@@ -1,0 +1,2126 @@
+{
+ "url": "http://127.0.0.1:3030",
+ "at": "2026-11-09T17:12:47.180Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 4,
+   "filled": [
+    0.79,
+    0.15,
+    0.24,
+    0.29
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 1,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 2933,
+     "screens": 3.3,
+     "words": 329,
+     "img": 25,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 24,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "Ichwal.webp",
+      "Aan%20Ms.webp",
+      "Andi%20Ahsan%20Ashuri.webp",
+      "Andi%20Rifqi%20Aunur%20Rahman%201.webp",
+      "Farah.webp",
+      "Fatwa.webp",
+      "Firly.webp",
+      "Ikhlas.webp"
+     ],
+     "blendText": 0,
+     "sideScrollers": 1,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "The people. The collective.",
+     "words": 4,
+     "chars": 27,
+     "lines": 1,
+     "size": 41.8,
+     "vw": 2.9,
+     "font": "Arial",
+     "weight": 500,
+     "tracking": -0.038,
+     "leading": 0.99,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.32,
+     "top": 84,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "The people. The collective.",
+     "words": 4,
+     "lines": 1,
+     "size": 41.8,
+     "font": "Arial"
+    },
+    "headings": [
+     {
+      "text": "The people. The collective.",
+      "words": 4,
+      "chars": 27,
+      "lines": 1,
+      "size": 41.8,
+      "vw": 2.9,
+      "font": "Arial",
+      "weight": 500,
+      "tracking": -0.038,
+      "leading": 0.99,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.32,
+      "top": 84,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Satu ekosistem. Semua terhubung.",
+      "words": 4,
+      "chars": 32,
+      "lines": 2,
+      "size": 50,
+      "vw": 3.5,
+      "font": "Arial",
+      "weight": 500,
+      "tracking": -0.04,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.44,
+      "top": 1025,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "ICLabs Fakultas Ilmu Komputer",
+      "words": 4,
+      "chars": 29,
+      "lines": 2,
+      "size": 35,
+      "vw": 2.4,
+      "font": "Arial",
+      "weight": 500,
+      "tracking": 0,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.11,
+      "top": 1271,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Built by us.",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 50,
+      "vw": 3.5,
+      "font": "Arial",
+      "weight": 500,
+      "tracking": -0.04,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.15,
+      "top": 1603,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Developed by Iclabs.",
+      "words": 3,
+      "chars": 20,
+      "lines": 1,
+      "size": 86,
+      "vw": 6,
+      "font": "Arial",
+      "weight": 500,
+      "tracking": -0.035,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 2714,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 5,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 2,
+     "centered": 0,
+     "medianWords": 4,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Arial",
+       "share": 0.75,
+       "mono": false
+      },
+      {
+       "family": "monospace",
+       "share": 0.25,
+       "mono": true
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      16,
+      19,
+      20,
+      22,
+      35,
+      42,
+      50,
+      86
+     ],
+     "sizeCount": 15,
+     "notLoaded": [],
+     "body": {
+      "font": "Arial",
+      "size": 11,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 7.6
+     },
+     "measureChars": 61,
+     "max": {
+      "size": 86,
+      "vw": 6,
+      "font": "Arial",
+      "text": "Developed by"
+     },
+     "monoShare": 0.25,
+     "monoProseShare": 0.25,
+     "monoFamilies": [
+      "monospace"
+     ],
+     "monoSamples": [
+      "DEVELOPER COLLECTIVE",
+      "01",
+      "02",
+      "03",
+      "04",
+      "05"
+     ],
+     "microLabels": 8,
+     "microLabelShare": 0.08,
+     "microSamples": [
+      "THE PEOPLE / ICLABS",
+      "22 PERSPECTIVES. ONE TEAM.",
+      "01 — THE COLLECTIVE",
+      "IN FOCUS",
+      "01 / THE CONNECTED CORE",
+      "THE PLACE WE BUILD FOR"
+     ],
+     "upperShare": 0.1,
+     "centerShare": 0.1,
+     "smallText": 59
+    },
+    "eyebrows": [
+     {
+      "text": "01 / THE CONNECTED CORE",
+      "above": "Satu ekosistem. Semua terhubung.",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 10,
+      "top": 990
+     },
+     {
+      "text": "THE PLACE WE BUILD FOR",
+      "above": "ICLabs Fakultas Ilmu Komputer",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 9,
+      "top": 1244
+     },
+     {
+      "text": "02 / THE PEOPLE",
+      "above": "Built by us.",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 10,
+      "top": 1568
+     }
+    ],
+    "numbered": [
+     {
+      "text": "01",
+      "size": 9,
+      "top": 161
+     },
+     {
+      "text": "02",
+      "size": 9,
+      "top": 161
+     },
+     {
+      "text": "03",
+      "size": 9,
+      "top": 161
+     },
+     {
+      "text": "04",
+      "size": 9,
+      "top": 161
+     },
+     {
+      "text": "05",
+      "size": 9,
+      "top": 161
+     },
+     {
+      "text": "06",
+      "size": 9,
+      "top": 161
+     },
+     {
+      "text": "07",
+      "size": 9,
+      "top": 161
+     },
+     {
+      "text": "08",
+      "size": 9,
+      "top": 161
+     },
+     {
+      "text": "09",
+      "size": 9,
+      "top": 161
+     },
+     {
+      "text": "01 — THE COLLECTIVE",
+      "size": 9,
+      "top": 826
+     },
+     {
+      "text": "01 / THE CONNECTED CORE",
+      "size": 10,
+      "top": 990
+     },
+     {
+      "text": "02 / THE PEOPLE",
+      "size": 10,
+      "top": 1568
+     }
+    ],
+    "color": {
+     "bodyBg": "#080c10",
+     "bodyBgHsl": {
+      "h": 210,
+      "s": 0.33,
+      "l": 0.05
+     },
+     "dark": true,
+     "sectionBgs": [],
+     "textColors": [
+      {
+       "color": "#94a3ad",
+       "share": 0.56
+      },
+      {
+       "color": "#e9eef1",
+       "share": 0.3
+      },
+      {
+       "color": "#66dce4",
+       "share": 0.07
+      },
+      {
+       "color": "#82949e",
+       "share": 0.03
+      },
+      {
+       "color": "#7d959d",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#12272c",
+      "hsl": {
+       "h": 192,
+       "s": 0.42,
+       "l": 0.12
+      },
+      "fg": "#66dce4"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 1,
+     "radius": 0,
+     "height": 42,
+     "withShadow": 1,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "01Integration↗"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 3,
+     "scrims": 1,
+     "gradientSamples": [
+      "section.stage → radial-gradient(at 50% 60%, rgb(22, 54, 62) 0%, rgb(13, 23, 29) 43%, rgb(8, 12, 16) 80%)",
+      "div.stage-grid → linear-gradient(rgba(63, 115, 129, 0.08) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(90deg, rgba(63, 115, 129,",
+      "div.profile → radial-gradient(rgb(27, 60, 68), rgb(14, 23, 29))"
+     ],
+     "gradientText": 0,
+     "hairlines": 27,
+     "hairlineSamples": [
+      "header.site-header.flex 1325px",
+      "nav.project-nav 1325px",
+      "div.selected-person 1325px",
+      "section#team.team-section 1325px",
+      "button 413px"
+     ],
+     "outlinedBoxes": 1,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 1,
+     "boxRadius": 50,
+     "squareMedia": 24,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.14
+     },
+     {
+      "type": "img",
+      "ratio": 0.14
+     },
+     {
+      "type": "img",
+      "ratio": 0.14
+     },
+     {
+      "type": "img",
+      "ratio": 0.14
+     }
+    ],
+    "nav": {
+     "links": 2,
+     "fixed": false,
+     "height": 66,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 2933,
+    "margins": {
+     "left": 58,
+     "right": 58
+    },
+    "sections": [
+     {
+      "sel": "div.hero-screen",
+      "tag": "div",
+      "top": 0,
+      "height": 900,
+      "words": 70,
+      "media": 7,
+      "middle": 0,
+      "heading": {
+       "text": "The people.",
+       "size": 42,
+       "tag": "h1"
+      },
+      "left": 0,
+      "right": 0,
+      "textLeft": 58,
+      "textRight": 58,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#project-detail.project-detail",
+      "tag": "section",
+      "top": 900,
+      "height": 607,
+      "words": 64,
+      "media": 1,
+      "middle": 268,
+      "heading": {
+       "text": "Satu ekosistem.",
+       "size": 50,
+       "tag": "h2"
+      },
+      "left": 58,
+      "right": 58,
+      "textLeft": 58,
+      "textRight": 497,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#team.team-section",
+      "tag": "section",
+      "top": 1507,
+      "height": 1116,
+      "words": 127,
+      "media": 1,
+      "middle": 50,
+      "heading": {
+       "text": "Built by us",
+       "size": 50,
+       "tag": "h2"
+      },
+      "left": 58,
+      "right": 58,
+      "textLeft": 58,
+      "textRight": 58,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": true
+     },
+     {
+      "sel": "footer",
+      "tag": "footer",
+      "top": 2623,
+      "height": 310,
+      "words": 19,
+      "media": 0,
+      "middle": 483,
+      "heading": {
+       "text": "Developed by",
+       "size": 86,
+       "tag": "p"
+      },
+      "left": 58,
+      "right": 58,
+      "textLeft": 58,
+      "textRight": 58,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "The people. The collective.",
+      "size": 42,
+      "top": 84,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 58,
+      "n": 5
+     },
+     {
+      "x": 82,
+      "n": 1
+     },
+     {
+      "x": 270,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 7,
+    "bodySize": 11,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 4,
+   "filled": [
+    0.82,
+    0.29,
+    0.21,
+    0.25
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 1,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 3687,
+     "screens": 3.6,
+     "words": 315,
+     "img": 25,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 24,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "Ichwal.webp",
+      "Aan%20Ms.webp",
+      "Andi%20Ahsan%20Ashuri.webp",
+      "Andi%20Rifqi%20Aunur%20Rahman%201.webp",
+      "Farah.webp",
+      "Fatwa.webp",
+      "Firly.webp",
+      "Ikhlas.webp"
+     ],
+     "blendText": 0,
+     "sideScrollers": 1,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "The people. The collective.",
+     "words": 4,
+     "chars": 27,
+     "lines": 1,
+     "size": 26,
+     "vw": 3.4,
+     "font": "Arial",
+     "weight": 500,
+     "tracking": -0.062,
+     "leading": 0.99,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.35,
+     "top": 84,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "The people. The collective.",
+     "words": 4,
+     "lines": 1,
+     "size": 26,
+     "font": "Arial"
+    },
+    "headings": [
+     {
+      "text": "The people. The collective.",
+      "words": 4,
+      "chars": 27,
+      "lines": 1,
+      "size": 26,
+      "vw": 3.4,
+      "font": "Arial",
+      "weight": 500,
+      "tracking": -0.062,
+      "leading": 0.99,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.35,
+      "top": 84,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Satu ekosistem. Semua terhubung.",
+      "words": 4,
+      "chars": 32,
+      "lines": 2,
+      "size": 32,
+      "vw": 4.2,
+      "font": "Arial",
+      "weight": 500,
+      "tracking": -0.062,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.44,
+      "top": 1109,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "ICLabs Fakultas Ilmu Komputer",
+      "words": 4,
+      "chars": 29,
+      "lines": 2,
+      "size": 35,
+      "vw": 4.6,
+      "font": "Arial",
+      "weight": 500,
+      "tracking": 0,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.21,
+      "top": 1315,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Built by us.",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 32,
+      "vw": 4.2,
+      "font": "Arial",
+      "weight": 500,
+      "tracking": -0.062,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.17,
+      "top": 1607,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Developed by Iclabs.",
+      "words": 3,
+      "chars": 20,
+      "lines": 1,
+      "size": 49.2,
+      "vw": 6.4,
+      "font": "Arial",
+      "weight": 500,
+      "tracking": -0.061,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 3523,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 5,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 2,
+     "centered": 0,
+     "medianWords": 4,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Arial",
+       "share": 0.75,
+       "mono": false
+      },
+      {
+       "family": "monospace",
+       "share": 0.25,
+       "mono": true
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      16,
+      19,
+      20,
+      22,
+      26,
+      32,
+      35,
+      49
+     ],
+     "sizeCount": 15,
+     "notLoaded": [],
+     "body": {
+      "font": "Arial",
+      "size": 14,
+      "leading": 1.9,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 7.6
+     },
+     "measureChars": 49,
+     "max": {
+      "size": 49.2,
+      "vw": 6.4,
+      "font": "Arial",
+      "text": "Developed by"
+     },
+     "monoShare": 0.25,
+     "monoProseShare": 0.25,
+     "monoFamilies": [
+      "monospace"
+     ],
+     "monoSamples": [
+      "DEVELOPER COLLECTIVE",
+      "01",
+      "02",
+      "03",
+      "04",
+      "05"
+     ],
+     "microLabels": 7,
+     "microLabelShare": 0.071,
+     "microSamples": [
+      "THE PEOPLE / ICLABS",
+      "01 — THE COLLECTIVE",
+      "IN FOCUS",
+      "01 / THE CONNECTED CORE",
+      "THE PLACE WE BUILD FOR",
+      "02 / THE PEOPLE"
+     ],
+     "upperShare": 0.09,
+     "centerShare": 0.11,
+     "smallText": 57
+    },
+    "eyebrows": [
+     {
+      "text": "01 / THE CONNECTED CORE",
+      "above": "Satu ekosistem. Semua terhubung.",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 10,
+      "top": 1074
+     },
+     {
+      "text": "THE PLACE WE BUILD FOR",
+      "above": "ICLabs Fakultas Ilmu Komputer",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 9,
+      "top": 1288
+     }
+    ],
+    "numbered": [
+     {
+      "text": "01",
+      "size": 9,
+      "top": 146
+     },
+     {
+      "text": "02",
+      "size": 9,
+      "top": 146
+     },
+     {
+      "text": "03",
+      "size": 9,
+      "top": 146
+     },
+     {
+      "text": "04",
+      "size": 9,
+      "top": 146
+     },
+     {
+      "text": "05",
+      "size": 9,
+      "top": 146
+     },
+     {
+      "text": "06",
+      "size": 9,
+      "top": 146
+     },
+     {
+      "text": "07",
+      "size": 9,
+      "top": 146
+     },
+     {
+      "text": "08",
+      "size": 9,
+      "top": 146
+     },
+     {
+      "text": "09",
+      "size": 9,
+      "top": 146
+     },
+     {
+      "text": "01 — THE COLLECTIVE",
+      "size": 9,
+      "top": 950
+     },
+     {
+      "text": "01 / THE CONNECTED CORE",
+      "size": 10,
+      "top": 1074
+     },
+     {
+      "text": "02 / THE PEOPLE",
+      "size": 10,
+      "top": 1572
+     }
+    ],
+    "color": {
+     "bodyBg": "#080c10",
+     "bodyBgHsl": {
+      "h": 210,
+      "s": 0.33,
+      "l": 0.05
+     },
+     "dark": true,
+     "sectionBgs": [],
+     "textColors": [
+      {
+       "color": "#94a3ad",
+       "share": 0.55
+      },
+      {
+       "color": "#e9eef1",
+       "share": 0.32
+      },
+      {
+       "color": "#66dce4",
+       "share": 0.07
+      },
+      {
+       "color": "#82949e",
+       "share": 0.03
+      },
+      {
+       "color": "#a7bec7",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#12272c",
+      "hsl": {
+       "h": 192,
+       "s": 0.42,
+       "l": 0.12
+      },
+      "fg": "#66dce4"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 1,
+     "radius": 0,
+     "height": 42,
+     "withShadow": 1,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "01Integration↗"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 3,
+     "scrims": 1,
+     "gradientSamples": [
+      "section.stage → radial-gradient(at 50% 60%, rgb(22, 54, 62) 0%, rgb(13, 23, 29) 43%, rgb(8, 12, 16) 80%)",
+      "div.stage-grid → linear-gradient(rgba(63, 115, 129, 0.08) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(90deg, rgba(63, 115, 129,",
+      "div.profile → radial-gradient(rgb(27, 60, 68), rgb(14, 23, 29))"
+     ],
+     "gradientText": 0,
+     "hairlines": 27,
+     "hairlineSamples": [
+      "header.site-header.flex 707px",
+      "nav.project-nav 707px",
+      "div.selected-person 707px",
+      "section#team.team-section 707px",
+      "button 412px"
+     ],
+     "outlinedBoxes": 1,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 1,
+     "boxRadius": 50,
+     "squareMedia": 3,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.16
+     },
+     {
+      "type": "img",
+      "ratio": 0.16
+     },
+     {
+      "type": "img",
+      "ratio": 0.16
+     },
+     {
+      "type": "img",
+      "ratio": 0.16
+     }
+    ],
+    "nav": {
+     "links": 2,
+     "fixed": false,
+     "height": 66,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 3687,
+    "margins": {
+     "left": 31,
+     "right": 31
+    },
+    "sections": [
+     {
+      "sel": "div.hero-screen",
+      "tag": "div",
+      "top": 0,
+      "height": 1024,
+      "words": 42,
+      "media": 7,
+      "middle": 638,
+      "heading": {
+       "text": "The people.",
+       "size": 26,
+       "tag": "h1"
+      },
+      "left": 0,
+      "right": 0,
+      "textLeft": 31,
+      "textRight": 31,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#project-detail.project-detail",
+      "tag": "section",
+      "top": 1024,
+      "height": 487,
+      "words": 64,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "ICLabs",
+       "size": 35,
+       "tag": "strong"
+      },
+      "left": 31,
+      "right": 31,
+      "textLeft": 31,
+      "textRight": 183,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#team.team-section",
+      "tag": "section",
+      "top": 1511,
+      "height": 1921,
+      "words": 127,
+      "media": 1,
+      "middle": 20,
+      "heading": {
+       "text": "Built by us",
+       "size": 32,
+       "tag": "h2"
+      },
+      "left": 31,
+      "right": 31,
+      "textLeft": 31,
+      "textRight": 31,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer",
+      "tag": "footer",
+      "top": 3432,
+      "height": 255,
+      "words": 19,
+      "media": 0,
+      "middle": 197,
+      "heading": {
+       "text": "Developed by",
+       "size": 49,
+       "tag": "p"
+      },
+      "left": 31,
+      "right": 31,
+      "textLeft": 31,
+      "textRight": 31,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "The people. The collective.",
+      "size": 26,
+      "top": 84,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 31,
+      "n": 5
+     },
+     {
+      "x": 55,
+      "n": 1
+     },
+     {
+      "x": 156,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 7,
+    "bodySize": 14,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 4,
+   "filled": [
+    0.92,
+    0.18,
+    0.46,
+    0.24
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 1,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 3213,
+     "screens": 3.8,
+     "words": 293,
+     "img": 25,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 24,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "Ichwal.webp",
+      "Aan%20Ms.webp",
+      "Andi%20Ahsan%20Ashuri.webp",
+      "Andi%20Rifqi%20Aunur%20Rahman%201.webp",
+      "Farah.webp",
+      "Fatwa.webp",
+      "Firly.webp",
+      "Ikhlas.webp"
+     ],
+     "blendText": 0,
+     "sideScrollers": 1,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "The people. The collective.",
+     "words": 4,
+     "chars": 27,
+     "lines": 1,
+     "size": 26,
+     "vw": 6.7,
+     "font": "Arial",
+     "weight": 500,
+     "tracking": -0.038,
+     "leading": 0.99,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.73,
+     "top": 76,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "The people. The collective.",
+     "words": 4,
+     "lines": 1,
+     "size": 26,
+     "font": "Arial"
+    },
+    "headings": [
+     {
+      "text": "The people. The collective.",
+      "words": 4,
+      "chars": 27,
+      "lines": 1,
+      "size": 26,
+      "vw": 6.7,
+      "font": "Arial",
+      "weight": 500,
+      "tracking": -0.038,
+      "leading": 0.99,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.73,
+      "top": 76,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Satu ekosistem. Semua terhubung.",
+      "words": 4,
+      "chars": 32,
+      "lines": 2,
+      "size": 32,
+      "vw": 8.2,
+      "font": "Arial",
+      "weight": 500,
+      "tracking": -0.062,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 929,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "ICLabs Fakultas Ilmu Komputer",
+      "words": 4,
+      "chars": 29,
+      "lines": 2,
+      "size": 35,
+      "vw": 9,
+      "font": "Arial",
+      "weight": 500,
+      "tracking": 0,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.42,
+      "top": 1430,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Built by us.",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 32,
+      "vw": 8.2,
+      "font": "Arial",
+      "weight": 500,
+      "tracking": -0.062,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 1741,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Ichwal",
+      "words": 1,
+      "chars": 6,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Arial",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.52,
+      "top": 1939,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Developed by Iclabs.",
+      "words": 3,
+      "chars": 20,
+      "lines": 1,
+      "size": 32,
+      "vw": 8.2,
+      "font": "Arial",
+      "weight": 500,
+      "tracking": -0.047,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 3075,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 6,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 2,
+     "centered": 0,
+     "medianWords": 3,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Arial",
+       "share": 0.74,
+       "mono": false
+      },
+      {
+       "family": "monospace",
+       "share": 0.26,
+       "mono": true
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      16,
+      19,
+      20,
+      22,
+      26,
+      32,
+      35
+     ],
+     "sizeCount": 15,
+     "notLoaded": [],
+     "body": {
+      "font": "Arial",
+      "size": 14,
+      "leading": 1.9,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 7.6
+     },
+     "measureChars": 51,
+     "max": {
+      "size": 35,
+      "vw": 9,
+      "font": "Arial",
+      "text": "ICLabs"
+     },
+     "monoShare": 0.26,
+     "monoProseShare": 0.26,
+     "monoFamilies": [
+      "monospace"
+     ],
+     "monoSamples": [
+      "DEVELOPER COLLECTIVE",
+      "01",
+      "02",
+      "03",
+      "04",
+      "05"
+     ],
+     "microLabels": 7,
+     "microLabelShare": 0.072,
+     "microSamples": [
+      "THE PEOPLE / ICLABS",
+      "01 — THE COLLECTIVE",
+      "IN FOCUS",
+      "01 / THE CONNECTED CORE",
+      "THE PLACE WE BUILD FOR",
+      "02 / THE PEOPLE"
+     ],
+     "upperShare": 0.09,
+     "centerShare": 0.12,
+     "smallText": 57
+    },
+    "eyebrows": [
+     {
+      "text": "01 / THE CONNECTED CORE",
+      "above": "Satu ekosistem. Semua terhubung.",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 10,
+      "top": 894
+     },
+     {
+      "text": "THE PLACE WE BUILD FOR",
+      "above": "ICLabs Fakultas Ilmu Komputer",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 9,
+      "top": 1403
+     },
+     {
+      "text": "02 / THE PEOPLE",
+      "above": "Built by us.",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 10,
+      "top": 1706
+     }
+    ],
+    "numbered": [
+     {
+      "text": "01",
+      "size": 9,
+      "top": 137
+     },
+     {
+      "text": "02",
+      "size": 9,
+      "top": 137
+     },
+     {
+      "text": "03",
+      "size": 9,
+      "top": 137
+     },
+     {
+      "text": "04",
+      "size": 9,
+      "top": 137
+     },
+     {
+      "text": "05",
+      "size": 9,
+      "top": 137
+     },
+     {
+      "text": "06",
+      "size": 9,
+      "top": 137
+     },
+     {
+      "text": "07",
+      "size": 9,
+      "top": 137
+     },
+     {
+      "text": "08",
+      "size": 9,
+      "top": 137
+     },
+     {
+      "text": "09",
+      "size": 9,
+      "top": 137
+     },
+     {
+      "text": "01 — THE COLLECTIVE",
+      "size": 7,
+      "top": 766
+     },
+     {
+      "text": "01 / THE CONNECTED CORE",
+      "size": 10,
+      "top": 894
+     },
+     {
+      "text": "02 / THE PEOPLE",
+      "size": 10,
+      "top": 1706
+     }
+    ],
+    "color": {
+     "bodyBg": "#080c10",
+     "bodyBgHsl": {
+      "h": 210,
+      "s": 0.33,
+      "l": 0.05
+     },
+     "dark": true,
+     "sectionBgs": [],
+     "textColors": [
+      {
+       "color": "#94a3ad",
+       "share": 0.56
+      },
+      {
+       "color": "#e9eef1",
+       "share": 0.33
+      },
+      {
+       "color": "#66dce4",
+       "share": 0.06
+      },
+      {
+       "color": "#82949e",
+       "share": 0.03
+      },
+      {
+       "color": "#a7bec7",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#12272c",
+      "hsl": {
+       "h": 192,
+       "s": 0.42,
+       "l": 0.12
+      },
+      "fg": "#66dce4"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 1,
+     "radius": 0,
+     "height": 44,
+     "withShadow": 1,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "01Integration↗"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 3,
+     "scrims": 1,
+     "gradientSamples": [
+      "section.stage → radial-gradient(at 50% 60%, rgb(22, 54, 62) 0%, rgb(13, 23, 29) 43%, rgb(8, 12, 16) 80%)",
+      "div.stage-grid → linear-gradient(rgba(63, 115, 129, 0.08) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(90deg, rgba(63, 115, 129,",
+      "div.profile → radial-gradient(rgb(27, 60, 68), rgb(14, 23, 29))"
+     ],
+     "gradientText": 0,
+     "hairlines": 5,
+     "hairlineSamples": [
+      "header.site-header.flex 359px",
+      "nav.project-nav 359px",
+      "div.selected-person 359px",
+      "section#team.team-section 359px",
+      "footer 359px"
+     ],
+     "outlinedBoxes": 1,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 1,
+     "boxRadius": 50,
+     "squareMedia": 1,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.13
+     },
+     {
+      "type": "img",
+      "ratio": 0.13
+     },
+     {
+      "type": "img",
+      "ratio": 0.13
+     },
+     {
+      "type": "img",
+      "ratio": 0.13
+     }
+    ],
+    "nav": {
+     "links": 2,
+     "fixed": false,
+     "height": 60,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 3213,
+    "margins": {
+     "left": 16,
+     "right": 16
+    },
+    "sections": [
+     {
+      "sel": "div.hero-screen",
+      "tag": "div",
+      "top": 0,
+      "height": 844,
+      "words": 35,
+      "media": 20,
+      "middle": 1111,
+      "heading": {
+       "text": "The people.",
+       "size": 26,
+       "tag": "h1"
+      },
+      "left": 0,
+      "right": 0,
+      "textLeft": 16,
+      "textRight": 21,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#project-detail.project-detail",
+      "tag": "section",
+      "top": 844,
+      "height": 801,
+      "words": 64,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Satu ekosistem.",
+       "size": 32,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 29,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#team.team-section",
+      "tag": "section",
+      "top": 1645,
+      "height": 1339,
+      "words": 127,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Built by us",
+       "size": 32,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 32,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer",
+      "tag": "footer",
+      "top": 2984,
+      "height": 229,
+      "words": 19,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Developed by",
+       "size": 32,
+       "tag": "p"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 16,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "The people. The collective.",
+      "size": 26,
+      "top": 76,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [
+     {
+      "text": "Lewati ke detail sistem",
+      "side": "left",
+      "px": 16
+     },
+     {
+      "text": "The people.",
+      "side": "left",
+      "px": 16
+     },
+     {
+      "text": "THE PEOPLE / ICLABS",
+      "side": "left",
+      "px": 16
+     },
+     {
+      "text": "01 — THE COLLECTIVE",
+      "side": "left",
+      "px": 16
+     },
+     {
+      "text": "Satu ekosistem.",
+      "side": "left",
+      "px": 16
+     },
+     {
+      "text": "Semua terhubung.",
+      "side": "left",
+      "px": 16
+     },
+     {
+      "text": "API pusat yang menghubungkan identitas, data, dan ",
+      "side": "left",
+      "px": 16
+     },
+     {
+      "text": "02 / THE PEOPLE",
+      "side": "left",
+      "px": 16
+     }
+    ],
+    "edges": [
+     {
+      "x": 16,
+      "n": 5
+     },
+     {
+      "x": 148,
+      "n": 2
+     }
+    ],
+    "leftBlocks": 7,
+    "bodySize": 14,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "FAIL",
+   "id": "eyebrow",
+   "width": 1440,
+   "message": "3 eyebrow/kicker label(s) above headings: \"01 / THE CONNECTED CORE\" above \"Satu ekosistem. Semua terhubung.\"; \"THE PLACE WE BUILD FOR\" above \"ICLabs Fakultas Ilmu Komputer\"; \"02 / THE PEOPLE\" above \"Built by us.\"",
+   "fix": "Delete them. If the label carried real information, fold it into the headline or the supporting sentence.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "mono",
+   "width": 1440,
+   "message": "Monospace type outside code: monospace — e.g. \"DEVELOPER COLLECTIVE\", \"01\", \"02\", \"03\"",
+   "fix": "Set it in the text face. Monospace is for literal code inside <pre>/<code> only.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "numbering",
+   "width": 1440,
+   "message": "Decorative index numbers: \"01\", \"02\", \"03\", \"04\", \"05\", \"06\"",
+   "fix": "Remove them. If order truly matters, write it into the words (\"First, …\") or use a real <ol>.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "micro-label",
+   "width": 1440,
+   "message": "8 tiny uppercase letter-spaced labels (e.g. \"THE PEOPLE / ICLABS\", \"22 PERSPECTIVES. ONE TEAM.\", \"01 — THE COLLECTIVE\", \"IN FOCUS\").",
+   "fix": "Use sentence-case text at a readable size, or delete the label.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "gradient",
+   "width": 1440,
+   "message": "3 gradient fill(s): section.stage → radial-gradient(at 50% 60%, rgb(22, 54, 62) 0%, rgb(13, 23, 29) 43%, rgb(8, 12, 16) 80%) | div.stage-grid → linear-gradient(rgba(63, 115, 129, 0.08) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(90deg, rgba(63, 115, 129, | div.profile → radial-gradient(rgb(27, 60, 68), rgb(14, 23, 29))",
+   "fix": "Use a flat colour or a real image. The only gradient allowed by default is a neutral scrim over a photo for legibility.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "button-fx",
+   "width": 1440,
+   "message": "Buttons with shadow/glow.",
+   "fix": "Flat fill, one colour.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "hairline",
+   "width": 1440,
+   "message": "27 thin rule(s)/divider line(s): header.site-header.flex 1325px | nav.project-nav 1325px | div.selected-person 1325px | section#team.team-section 1325px",
+   "fix": "Delete. Separate with space, a tone change, or scale. Lines are only for real tables and form fields.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "outlined-box",
+   "width": 1440,
+   "message": "1 box(es) drawn with a 1px outline.",
+   "fix": "Prefer a filled surface or no box.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "size-count",
+   "width": 1440,
+   "message": "15 different font sizes (8, 9, 10, 11, 12, 13, 14, 16, 19, 20, 22, 35, 42, 50, 86).",
+   "fix": "A page needs about five: display, heading, lead, body, small.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "body-size",
+   "width": 1440,
+   "message": "Body text is 11px (the size most of the running text is set in).",
+   "fix": "Body copy 16–20px. Map small sizes from blueprints onto your body step.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "side-scroll",
+   "width": 1440,
+   "message": "1 row(s) scroll sideways with content past their edge.",
+   "fix": "Jurors and most visitors read a row cut at the edge as clipped, not as scrollable. Wrap it onto more lines, or end it inside the grid.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "small-text",
+   "width": 1440,
+   "message": "59 text blocks under 13px.",
+   "fix": "Nothing meant to be read goes below 13px.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "focal-point",
+   "width": 1440,
+   "message": "The first screen has no dominant element: the largest type is 41.8px (2.9vw) and no single picture holds a third of the viewport.",
+   "fix": "Make one thing lead: the headline at display size, or one large picture. A grid of many small pictures is not one thing; in blind tests jurors marked a first screen without a headline down every time. On the strongest studied sites the largest type has a median of 8.4vw.",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "still-page",
+   "width": 1440,
+   "message": "Only 1 element(s) moved while the page loaded and scrolled.",
+   "fix": "Build the motion layer (SKILL.md step 9, references/motion.md): the signature move, an entrance for the parts of every section, feedback on every control, and one moving picture. Transform and opacity only, with a reduced-motion fallback."
+  },
+  {
+   "level": "WARN",
+   "id": "small-title",
+   "width": 768,
+   "message": "The h1 is 26px (\"The people. The collective.\").",
+   "fix": "Set the title at display size, or make the large text of the first screen the h1."
+  },
+  {
+   "level": "WARN",
+   "id": "edge-text",
+   "width": 390,
+   "message": "8 text block(s) sit 12–15px from the phone's edge: \"Lewati ke detail sistem\" (16px); \"The people.\" (16px); \"THE PEOPLE / ICLABS\" (16px)",
+   "fix": "The page margin is 16–20px on a phone; the header and the corner labels sit on it too."
+  },
+  {
+   "level": "FAIL",
+   "id": "reduced-hidden",
+   "width": 1440,
+   "message": "With reduced motion requested, 22 text block(s) on the first screen stay invisible: \"Ichwal\", \"Aan Ms\", \"Andi Ahsan Ashuri\", \"Andi Rifqi Aunur Rahman 1\"",
+   "fix": "Put every hidden starting state inside @media (prefers-reduced-motion: no-preference); the reduced page is the finished page (references/motion.md §8)."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "/home/ichwal/db-integration-iclabs/developer/.taste-skill/before/desktop-fold.jpg",
+   "pages": [
+    "/home/ichwal/db-integration-iclabs/developer/.taste-skill/before/desktop-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "/home/ichwal/db-integration-iclabs/developer/.taste-skill/before/tablet-fold.jpg",
+   "pages": [
+    "/home/ichwal/db-integration-iclabs/developer/.taste-skill/before/tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "/home/ichwal/db-integration-iclabs/developer/.taste-skill/before/mobile-fold.jpg",
+   "pages": [
+    "/home/ichwal/db-integration-iclabs/developer/.taste-skill/before/mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

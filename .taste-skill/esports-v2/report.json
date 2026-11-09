@@ -1,0 +1,2079 @@
+{
+ "url": "http://127.0.0.1:3035",
+ "at": "2026-11-09T17:37:34.661Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 5,
+   "filled": [
+    0.93,
+    0.38,
+    0.74,
+    0.48,
+    0.45
+   ],
+   "motion": {
+    "elements": 0,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 3639,
+     "screens": 4,
+     "words": 387,
+     "img": 47,
+     "video": 0,
+     "canvas": 0,
+     "svg": 3,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 22,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "Ichwal.webp",
+      "Aan%20Ms.webp",
+      "Andi%20Ahsan%20Ashuri.webp",
+      "Andi%20Rifqi%20Aunur%20Rahman%201.webp",
+      "Farah.webp",
+      "Fatwa.webp",
+      "Firly.webp",
+      "Ikhlas.webp"
+     ],
+     "blendText": 0,
+     "sideScrollers": 1,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "The people. The collective.",
+     "words": 4,
+     "chars": 27,
+     "lines": 1,
+     "size": 44,
+     "vw": 3.1,
+     "font": "-apple-system",
+     "weight": 800,
+     "tracking": -0.025,
+     "leading": 1.1,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.37,
+     "top": 140,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "The people. The collective.",
+     "words": 4,
+     "lines": 1,
+     "size": 44,
+     "font": "-apple-system"
+    },
+    "headings": [
+     {
+      "text": "The people. The collective.",
+      "words": 4,
+      "chars": 27,
+      "lines": 1,
+      "size": 44,
+      "vw": 3.1,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.37,
+      "top": 140,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Satu ekosistem. Semua terhubung.",
+      "words": 4,
+      "chars": 32,
+      "lines": 2,
+      "size": 42,
+      "vw": 2.9,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.15,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.53,
+      "top": 981,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Built by us.",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 44,
+      "vw": 3.1,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.36,
+      "top": 1700,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "12",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.35,
+      "top": 2916,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "Satu Ekosistem untuk Seluruh Laboratorium.",
+      "words": 5,
+      "chars": 42,
+      "lines": 2,
+      "size": 34,
+      "vw": 2.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.49,
+      "top": 2960,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "22",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.35,
+      "top": 3021,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "100%",
+      "words": 1,
+      "chars": 4,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.35,
+      "top": 3127,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "Developed by Iclabs.",
+      "words": 3,
+      "chars": 20,
+      "lines": 1,
+      "size": 68,
+      "vw": 4.7,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.96,
+      "top": 3448,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 8,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 3,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      9,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      22,
+      24,
+      28,
+      34,
+      42,
+      44,
+      68
+     ],
+     "sizeCount": 16,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 15,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 7.3
+     },
+     "measureChars": 94,
+     "max": {
+      "size": 68,
+      "vw": 4.7,
+      "font": "-apple-system",
+      "text": "Developed by ."
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.02,
+     "centerShare": 0.13,
+     "smallText": 42
+    },
+    "eyebrows": [
+     {
+      "text": "Pilih sistem terintegrasi:",
+      "above": "The people. The collective.",
+      "upper": false,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 85
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#070b0e",
+     "bodyBgHsl": {
+      "h": 206,
+      "s": 0.33,
+      "l": 0.04
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#0e161d",
+       "top": 2854,
+       "hsl": {
+        "h": 208,
+        "s": 0.35,
+        "l": 0.08
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#8fa0ad",
+       "share": 0.61
+      },
+      {
+       "color": "#edf2f5",
+       "share": 0.26
+      },
+      {
+       "color": "#5ce1e6",
+       "share": 0.12
+      },
+      {
+       "color": "#b7c8d2",
+       "share": 0.01
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#0e161d",
+      "hsl": {
+       "h": 208,
+       "s": 0.35,
+       "l": 0.08
+      },
+      "fg": "#edf2f5"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 37,
+     "inHero": 15,
+     "radius": 12,
+     "height": 70,
+     "withShadow": 1,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Lewati ke detail sistem",
+      "Tentang Lab",
+      "Integration",
+      "Sumber Daya",
+      "Praktikum"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 9,
+     "shadowOverlay": 1,
+     "shadowSamples": [
+      "button.system-pill-btn.is-active → rgba(92, 225, 230, 0.28) 0px 0px 14px -3px",
+      "div.arena-podium-ring → rgba(92, 225, 230, 0.18) 0px 0px 40px 0px, rgba(92, 225, 230, 0.12) 0px 0px 30px",
+      "div.figure-tag → rgba(0, 0, 0, 0.6) 0px 4px 12px 0px",
+      "div.figure-tag → rgba(0, 0, 0, 0.6) 0px 4px 12px 0px"
+     ],
+     "gradients": 4,
+     "scrims": 0,
+     "gradientSamples": [
+      "div#arena-stage-scroll.esports-arena-stage → radial-gradient(at 50% 88%, rgb(20, 39, 51) 0%, rgb(10, 19, 26) 44%, rgb(7, 11, 14) 82%)",
+      "div.arena-backdrop-grid → linear-gradient(rgba(92, 225, 230, 0.05) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(90deg, rgba(92, 225, 230,",
+      "div.arena-spotlight-beam → radial-gradient(at 50% 20%, rgba(92, 225, 230, 0.18) 0%, rgba(0, 0, 0, 0) 65%)",
+      "div.spotlight-photo-frame → radial-gradient(at 50% 60%, rgb(23, 40, 52) 0%, rgb(12, 20, 26) 100%)"
+     ],
+     "gradientText": 0,
+     "hairlines": 9,
+     "hairlineSamples": [
+      "header.site-header 1384px",
+      "div.esports-bottom-hud 1384px",
+      "section#project-detail.project-detail-section 1384px",
+      "section#team.team-section 1384px",
+      "div.spotlight-details 338px"
+     ],
+     "outlinedBoxes": 7,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 8,
+     "boxRadius": 18,
+     "squareMedia": 1,
+     "roundedMedia": 1,
+     "mediaRadius": 18,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 4,
+     "fixed": false,
+     "height": 64,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 3639,
+    "margins": {
+     "left": 28,
+     "right": 28
+    },
+    "sections": [
+     {
+      "sel": "section.esports-hero-screen",
+      "tag": "section",
+      "top": 0,
+      "height": 900,
+      "words": 73,
+      "media": 22,
+      "middle": 65,
+      "heading": {
+       "text": "The people.",
+       "size": 44,
+       "tag": "h1"
+      },
+      "left": 0,
+      "right": 0,
+      "textLeft": 28,
+      "textRight": 28,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#project-detail.project-detail-section",
+      "tag": "section",
+      "top": 900,
+      "height": 719,
+      "words": 79,
+      "media": 1,
+      "middle": 285,
+      "heading": {
+       "text": "Satu ekosistem.",
+       "size": 42,
+       "tag": "h2"
+      },
+      "left": 28,
+      "right": 29,
+      "textLeft": 28,
+      "textRight": 125,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#team.team-section",
+      "tag": "section",
+      "top": 1619,
+      "height": 1173,
+      "words": 116,
+      "media": 1,
+      "middle": 12,
+      "heading": {
+       "text": "Built by us",
+       "size": 44,
+       "tag": "h2"
+      },
+      "left": 28,
+      "right": 28,
+      "textLeft": 28,
+      "textRight": 42,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": true
+     },
+     {
+      "sel": "section#about.about-section",
+      "tag": "section",
+      "top": 2793,
+      "height": 532,
+      "words": 54,
+      "media": 0,
+      "middle": 70,
+      "heading": {
+       "text": "Satu Ekosistem untuk Seluruh Laboratorium.",
+       "size": 34,
+       "tag": "h2"
+      },
+      "left": 73,
+      "right": 410,
+      "textLeft": 73,
+      "textRight": 410,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 3324,
+      "height": 315,
+      "words": 27,
+      "media": 0,
+      "middle": 580,
+      "heading": {
+       "text": "Developed by",
+       "size": 68,
+       "tag": "p"
+      },
+      "left": 28,
+      "right": 28,
+      "textLeft": 28,
+      "textRight": 28,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [
+     {
+      "top": 216,
+      "height": 284
+     }
+    ],
+    "h1s": [
+     {
+      "text": "The people. The collective.",
+      "size": 44,
+      "top": 140,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 28,
+      "n": 7
+     },
+     {
+      "x": 53,
+      "n": 3
+     },
+     {
+      "x": 73,
+      "n": 2
+     },
+     {
+      "x": 301,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 13,
+    "bodySize": 15,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0.27,
+    "voidBox": {
+     "x": 0,
+     "y": 240,
+     "w": 1440,
+     "h": 240
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 6,
+   "filled": [
+    0.59,
+    0.54,
+    0.82,
+    0.83,
+    0.64,
+    0.57
+   ],
+   "motion": {
+    "elements": 0,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 5265,
+     "screens": 5.1,
+     "words": 383,
+     "img": 47,
+     "video": 0,
+     "canvas": 0,
+     "svg": 3,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 21,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "Ichwal.webp",
+      "Aan%20Ms.webp",
+      "Andi%20Ahsan%20Ashuri.webp",
+      "Andi%20Rifqi%20Aunur%20Rahman%201.webp",
+      "Farah.webp",
+      "Fatwa.webp",
+      "Firly.webp",
+      "Ikhlas.webp"
+     ],
+     "blendText": 0,
+     "sideScrollers": 2,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Satu ekosistem. Semua terhubung.",
+     "words": 4,
+     "chars": 32,
+     "lines": 2,
+     "size": 28,
+     "vw": 3.6,
+     "font": "-apple-system",
+     "weight": 700,
+     "tracking": -0.02,
+     "leading": 1.15,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.96,
+     "top": 821,
+     "tag": "h2",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "The people. The collective.",
+     "words": 4,
+     "lines": 1,
+     "size": 28,
+     "font": "-apple-system"
+    },
+    "headings": [
+     {
+      "text": "The people. The collective.",
+      "words": 4,
+      "chars": 27,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.66,
+      "top": 132,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Satu ekosistem. Semua terhubung.",
+      "words": 4,
+      "chars": 32,
+      "lines": 2,
+      "size": 28,
+      "vw": 3.6,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.15,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.96,
+      "top": 821,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Built by us.",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.68,
+      "top": 1830,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "12",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.82,
+      "top": 4554,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "22",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.82,
+      "top": 4659,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "100%",
+      "words": 1,
+      "chars": 4,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.82,
+      "top": 4765,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "Developed by Iclabs.",
+      "words": 3,
+      "chars": 20,
+      "lines": 1,
+      "size": 42.2,
+      "vw": 5.5,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.96,
+      "top": 5074,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 7,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 3,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      9,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      22,
+      24,
+      28,
+      30,
+      42
+     ],
+     "sizeCount": 14,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 15,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 7.3
+     },
+     "measureChars": 89,
+     "max": {
+      "size": 42.2,
+      "vw": 5.5,
+      "font": "-apple-system",
+      "text": "Developed by ."
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.02,
+     "centerShare": 0.15,
+     "smallText": 41
+    },
+    "eyebrows": [
+     {
+      "text": "Pilih sistem terintegrasi:",
+      "above": "The people. The collective.",
+      "upper": false,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 77
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#070b0e",
+     "bodyBgHsl": {
+      "h": 206,
+      "s": 0.33,
+      "l": 0.04
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#0e161d",
+       "top": 1937,
+       "hsl": {
+        "h": 208,
+        "s": 0.35,
+        "l": 0.08
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#8fa0ad",
+       "share": 0.6
+      },
+      {
+       "color": "#edf2f5",
+       "share": 0.26
+      },
+      {
+       "color": "#5ce1e6",
+       "share": 0.12
+      },
+      {
+       "color": "#b7c8d2",
+       "share": 0.01
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#0e161d",
+      "hsl": {
+       "h": 208,
+       "s": 0.35,
+       "l": 0.08
+      },
+      "fg": "#edf2f5"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 36,
+     "inHero": 14,
+     "radius": 12,
+     "height": 70,
+     "withShadow": 1,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Lewati ke detail sistem",
+      "Integration",
+      "Sumber Daya",
+      "Praktikum",
+      "Monitoring"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 10,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "button.system-pill-btn.is-active → rgba(92, 225, 230, 0.28) 0px 0px 14px -3px",
+      "div.arena-podium-ring → rgba(92, 225, 230, 0.18) 0px 0px 40px 0px, rgba(92, 225, 230, 0.12) 0px 0px 30px",
+      "div.figure-tag → rgba(0, 0, 0, 0.6) 0px 4px 12px 0px",
+      "div.figure-tag → rgba(0, 0, 0, 0.6) 0px 4px 12px 0px"
+     ],
+     "gradients": 4,
+     "scrims": 0,
+     "gradientSamples": [
+      "div#arena-stage-scroll.esports-arena-stage → radial-gradient(at 50% 88%, rgb(20, 39, 51) 0%, rgb(10, 19, 26) 44%, rgb(7, 11, 14) 82%)",
+      "div.arena-backdrop-grid → linear-gradient(rgba(92, 225, 230, 0.05) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(90deg, rgba(92, 225, 230,",
+      "div.arena-spotlight-beam → radial-gradient(at 50% 20%, rgba(92, 225, 230, 0.18) 0%, rgba(0, 0, 0, 0) 65%)",
+      "div.spotlight-photo-frame → radial-gradient(at 50% 60%, rgb(23, 40, 52) 0%, rgb(12, 20, 26) 100%)"
+     ],
+     "gradientText": 0,
+     "hairlines": 9,
+     "hairlineSamples": [
+      "header.site-header 736px",
+      "div.esports-bottom-hud 736px",
+      "section#project-detail.project-detail-section 736px",
+      "section#team.team-section 736px",
+      "div.spotlight-details 734px"
+     ],
+     "outlinedBoxes": 7,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 8,
+     "boxRadius": 18,
+     "squareMedia": 1,
+     "roundedMedia": 1,
+     "mediaRadius": 18,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 1,
+     "fixed": false,
+     "height": 56,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 5265,
+    "margins": {
+     "left": 16,
+     "right": 16
+    },
+    "sections": [
+     {
+      "sel": "section.esports-hero-screen",
+      "tag": "section",
+      "top": 0,
+      "height": 740,
+      "words": 60,
+      "media": 22,
+      "middle": 725,
+      "heading": {
+       "text": "The people.",
+       "size": 28,
+       "tag": "h1"
+      },
+      "left": 0,
+      "right": 0,
+      "textLeft": 16,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#project-detail.project-detail-section",
+      "tag": "section",
+      "top": 740,
+      "height": 1009,
+      "words": 79,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Satu ekosistem.",
+       "size": 28,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 17,
+      "textLeft": 16,
+      "textRight": 217,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#team.team-section",
+      "tag": "section",
+      "top": 1749,
+      "height": 2523,
+      "words": 116,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Built by us",
+       "size": 30,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#about.about-section",
+      "tag": "section",
+      "top": 4272,
+      "height": 678,
+      "words": 54,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "12",
+       "size": 28,
+       "tag": "strong"
+      },
+      "left": 49,
+      "right": 67,
+      "textLeft": 49,
+      "textRight": 67,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 4950,
+      "height": 315,
+      "words": 27,
+      "media": 0,
+      "middle": 251,
+      "heading": {
+       "text": "Developed by",
+       "size": 42,
+       "tag": "p"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 16,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "The people. The collective.",
+      "size": 28,
+      "top": 132,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 16,
+      "n": 9
+     },
+     {
+      "x": 41,
+      "n": 3
+     },
+     {
+      "x": 64,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 13,
+    "bodySize": 15,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 7,
+   "filled": [
+    0.74,
+    0.5,
+    0.55,
+    0.79,
+    0.73,
+    0.79,
+    0.55
+   ],
+   "motion": {
+    "elements": 0,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 5502,
+     "screens": 6.5,
+     "words": 383,
+     "img": 47,
+     "video": 0,
+     "canvas": 0,
+     "svg": 3,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 21,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "Ichwal.webp",
+      "Aan%20Ms.webp",
+      "Andi%20Ahsan%20Ashuri.webp",
+      "Andi%20Rifqi%20Aunur%20Rahman%201.webp",
+      "Farah.webp",
+      "Fatwa.webp",
+      "Firly.webp",
+      "Ikhlas.webp"
+     ],
+     "blendText": 0,
+     "sideScrollers": 2,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "The people. The collective.",
+     "words": 4,
+     "chars": 27,
+     "lines": 2,
+     "size": 28,
+     "vw": 7.2,
+     "font": "-apple-system",
+     "weight": 800,
+     "tracking": -0.025,
+     "leading": 1.1,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.84,
+     "top": 132,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "The people. The collective.",
+     "words": 4,
+     "lines": 2,
+     "size": 28,
+     "font": "-apple-system"
+    },
+    "headings": [
+     {
+      "text": "The people. The collective.",
+      "words": 4,
+      "chars": 27,
+      "lines": 2,
+      "size": 28,
+      "vw": 7.2,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.84,
+      "top": 132,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Satu ekosistem. Semua terhubung.",
+      "words": 4,
+      "chars": 32,
+      "lines": 2,
+      "size": 28,
+      "vw": 7.2,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.15,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 821,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "ICLabs Fikom",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 1591,
+      "tag": "strong",
+      "kind": "statement"
+     },
+     {
+      "text": "Built by us.",
+      "words": 3,
+      "chars": 12,
+      "lines": 1,
+      "size": 30,
+      "vw": 7.7,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.67,
+      "top": 1851,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Ichwal",
+      "words": 1,
+      "chars": 6,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.6,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 2279,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Satu Ekosistem untuk Seluruh Laboratorium.",
+      "words": 5,
+      "chars": 42,
+      "lines": 2,
+      "size": 24,
+      "vw": 6.2,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.75,
+      "top": 4435,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "12",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.64,
+      "top": 4754,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "22",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.64,
+      "top": 4860,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "100%",
+      "words": 1,
+      "chars": 4,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "-apple-system",
+      "weight": 800,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.64,
+      "top": 4966,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "Developed by Iclabs.",
+      "words": 3,
+      "chars": 20,
+      "lines": 1,
+      "size": 32,
+      "vw": 8.2,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 5321,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 10,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 2,
+     "centered": 0,
+     "medianWords": 2,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      9,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      22,
+      24,
+      28,
+      30,
+      32
+     ],
+     "sizeCount": 14,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 15,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 7.3
+     },
+     "measureChars": 39,
+     "max": {
+      "size": 32,
+      "vw": 8.2,
+      "font": "-apple-system",
+      "text": "Developed by ."
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.02,
+     "centerShare": 0.15,
+     "smallText": 41
+    },
+    "eyebrows": [
+     {
+      "text": "Pilih sistem terintegrasi:",
+      "above": "The people. The collective.",
+      "upper": false,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 77
+     },
+     {
+      "text": "Pusat operasional laboratorium",
+      "above": "ICLabs Fikom",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 1566
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#070b0e",
+     "bodyBgHsl": {
+      "h": 206,
+      "s": 0.33,
+      "l": 0.04
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#0e161d",
+       "top": 1408,
+       "hsl": {
+        "h": 208,
+        "s": 0.35,
+        "l": 0.08
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#8fa0ad",
+       "share": 0.6
+      },
+      {
+       "color": "#edf2f5",
+       "share": 0.26
+      },
+      {
+       "color": "#5ce1e6",
+       "share": 0.12
+      },
+      {
+       "color": "#b7c8d2",
+       "share": 0.01
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#0e161d",
+      "hsl": {
+       "h": 208,
+       "s": 0.35,
+       "l": 0.08
+      },
+      "fg": "#edf2f5"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 36,
+     "inHero": 14,
+     "radius": 12,
+     "height": 70,
+     "withShadow": 1,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Lewati ke detail sistem",
+      "Integration",
+      "Sumber Daya",
+      "Praktikum",
+      "Monitoring"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 10,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "button.system-pill-btn.is-active → rgba(92, 225, 230, 0.28) 0px 0px 14px -3px",
+      "div.arena-podium-ring → rgba(92, 225, 230, 0.18) 0px 0px 40px 0px, rgba(92, 225, 230, 0.12) 0px 0px 30px",
+      "div.figure-tag → rgba(0, 0, 0, 0.6) 0px 4px 12px 0px",
+      "div.figure-tag → rgba(0, 0, 0, 0.6) 0px 4px 12px 0px"
+     ],
+     "gradients": 4,
+     "scrims": 0,
+     "gradientSamples": [
+      "div#arena-stage-scroll.esports-arena-stage → radial-gradient(at 50% 88%, rgb(20, 39, 51) 0%, rgb(10, 19, 26) 44%, rgb(7, 11, 14) 82%)",
+      "div.arena-backdrop-grid → linear-gradient(rgba(92, 225, 230, 0.05) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(90deg, rgba(92, 225, 230,",
+      "div.arena-spotlight-beam → radial-gradient(at 50% 20%, rgba(92, 225, 230, 0.18) 0%, rgba(0, 0, 0, 0) 65%)",
+      "div.spotlight-photo-frame → radial-gradient(at 50% 60%, rgb(23, 40, 52) 0%, rgb(12, 20, 26) 100%)"
+     ],
+     "gradientText": 0,
+     "hairlines": 9,
+     "hairlineSamples": [
+      "header.site-header 358px",
+      "div.esports-bottom-hud 358px",
+      "section#project-detail.project-detail-section 358px",
+      "section#team.team-section 358px",
+      "div.spotlight-details 356px"
+     ],
+     "outlinedBoxes": 7,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 8,
+     "boxRadius": 18,
+     "squareMedia": 1,
+     "roundedMedia": 1,
+     "mediaRadius": 18,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.16
+     },
+     {
+      "type": "img",
+      "ratio": 0.13
+     },
+     {
+      "type": "img",
+      "ratio": 0.12
+     },
+     {
+      "type": "img",
+      "ratio": 0.11
+     }
+    ],
+    "nav": {
+     "links": 1,
+     "fixed": false,
+     "height": 56,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 5502,
+    "margins": {
+     "left": 16,
+     "right": 16
+    },
+    "sections": [
+     {
+      "sel": "section.esports-hero-screen",
+      "tag": "section",
+      "top": 0,
+      "height": 740,
+      "words": 45,
+      "media": 22,
+      "middle": 1103,
+      "heading": null,
+      "left": 0,
+      "right": 0,
+      "textLeft": 16,
+      "textRight": 16,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#project-detail.project-detail-section",
+      "tag": "section",
+      "top": 740,
+      "height": 1030,
+      "words": 79,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Satu ekosistem.",
+       "size": 28,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 17,
+      "textLeft": 16,
+      "textRight": 31,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#team.team-section",
+      "tag": "section",
+      "top": 1770,
+      "height": 2571,
+      "words": 116,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Built by us",
+       "size": 30,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 42,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#about.about-section",
+      "tag": "section",
+      "top": 4341,
+      "height": 810,
+      "words": 54,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "12",
+       "size": 28,
+       "tag": "strong"
+      },
+      "left": 49,
+      "right": 71,
+      "textLeft": 49,
+      "textRight": 71,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 5151,
+      "height": 351,
+      "words": 27,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Developed by",
+       "size": 32,
+       "tag": "p"
+      },
+      "left": 16,
+      "right": 31,
+      "textLeft": 16,
+      "textRight": 31,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "The people. The collective.",
+      "size": 28,
+      "top": 132,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 16,
+      "n": 8
+     },
+     {
+      "x": 41,
+      "n": 3
+     }
+    ],
+    "leftBlocks": 11,
+    "bodySize": 15,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "FAIL",
+   "id": "eyebrow",
+   "width": 1440,
+   "message": "1 eyebrow/kicker label(s) above headings: \"Pilih sistem terintegrasi:\" above \"The people. The collective.\"",
+   "fix": "Delete them. If the label carried real information, fold it into the headline or the supporting sentence.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "gradient",
+   "width": 1440,
+   "message": "4 gradient fill(s): div#arena-stage-scroll.esports-arena-stage → radial-gradient(at 50% 88%, rgb(20, 39, 51) 0%, rgb(10, 19, 26) 44%, rgb(7, 11, 14) 82%) | div.arena-backdrop-grid → linear-gradient(rgba(92, 225, 230, 0.05) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(90deg, rgba(92, 225, 230, | div.arena-spotlight-beam → radial-gradient(at 50% 20%, rgba(92, 225, 230, 0.18) 0%, rgba(0, 0, 0, 0) 65%)",
+   "fix": "Use a flat colour or a real image. The only gradient allowed by default is a neutral scrim over a photo for legibility.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "shadow",
+   "width": 1440,
+   "message": "9 box-shadow(s) on elements at rest: button.system-pill-btn.is-active → rgba(92, 225, 230, 0.28) 0px 0px 14px -3px | div.arena-podium-ring → rgba(92, 225, 230, 0.18) 0px 0px 40px 0px, rgba(92, 225, 230, 0.12) 0px 0px 30px | div.figure-tag → rgba(0, 0, 0, 0.6) 0px 4px 12px 0px",
+   "fix": "Remove. Separate surfaces with a tone step or space. Shadows are for things that really float (menus, dialogs, sticky bars).",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "button-fx",
+   "width": 1440,
+   "message": "Buttons with shadow/glow.",
+   "fix": "Flat fill, one colour.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "hairline",
+   "width": 1440,
+   "message": "9 thin rule(s)/divider line(s): header.site-header 1384px | div.esports-bottom-hud 1384px | section#project-detail.project-detail-section 1384px | section#team.team-section 1384px",
+   "fix": "Delete. Separate with space, a tone change, or scale. Lines are only for real tables and form fields.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "outlined-box",
+   "width": 1440,
+   "message": "7 boxes drawn with a 1px outline.",
+   "fix": "Define a surface by its fill (one tone step from the page) or leave the content unboxed.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "size-count",
+   "width": 1440,
+   "message": "16 different font sizes (9, 11, 12, 13, 14, 15, 16, 17, 18, 22, 24, 28, 34, 42, 44, 68).",
+   "fix": "A page needs about five: display, heading, lead, body, small.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "body-size",
+   "width": 1440,
+   "message": "Body text is 15px.",
+   "fix": "Body copy 16–20px.",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "side-scroll",
+   "width": 1440,
+   "message": "1 row(s) scroll sideways with content past their edge.",
+   "fix": "Jurors and most visitors read a row cut at the edge as clipped, not as scrollable. Wrap it onto more lines, or end it inside the grid.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "measure",
+   "width": 1440,
+   "message": "Longest paragraph runs about 94 characters per line.",
+   "fix": "Cap paragraphs at 45–75 characters (max-width: 60ch).",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "small-text",
+   "width": 1440,
+   "message": "42 text blocks under 13px.",
+   "fix": "Nothing meant to be read goes below 13px.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "focal-point",
+   "width": 1440,
+   "message": "The first screen has no dominant element: the largest type is 44px (3.1vw) and no single picture holds a third of the viewport.",
+   "fix": "Make one thing lead: the headline at display size, or one large picture. A grid of many small pictures is not one thing; in blind tests jurors marked a first screen without a headline down every time. On the strongest studied sites the largest type has a median of 8.4vw.",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "still-page",
+   "width": 1440,
+   "message": "Only 0 element(s) moved while the page loaded and scrolled.",
+   "fix": "Build the motion layer (SKILL.md step 9, references/motion.md): the signature move, an entrance for the parts of every section, feedback on every control, and one moving picture. Transform and opacity only, with a reduced-motion fallback."
+  },
+  {
+   "level": "WARN",
+   "id": "small-title",
+   "width": 768,
+   "message": "The h1 is 28px (\"The people. The collective.\").",
+   "fix": "Set the title at display size, or make the large text of the first screen the h1."
+  },
+  {
+   "level": "FAIL",
+   "id": "reduced-hidden",
+   "width": 1440,
+   "message": "With reduced motion requested, 21 text block(s) on the first screen stay invisible: \"Aan Ms\", \"Andi Ahsan Ashuri\", \"Andi Rifqi Aunur Rahman 1\", \"Farah\"",
+   "fix": "Put every hidden starting state inside @media (prefers-reduced-motion: no-preference); the reduced page is the finished page (references/motion.md §8)."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "/home/ichwal/db-integration-iclabs/developer/.taste-skill/esports-v2/desktop-fold.jpg",
+   "pages": [
+    "/home/ichwal/db-integration-iclabs/developer/.taste-skill/esports-v2/desktop-page-01.jpg",
+    "/home/ichwal/db-integration-iclabs/developer/.taste-skill/esports-v2/desktop-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "/home/ichwal/db-integration-iclabs/developer/.taste-skill/esports-v2/tablet-fold.jpg",
+   "pages": [
+    "/home/ichwal/db-integration-iclabs/developer/.taste-skill/esports-v2/tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "/home/ichwal/db-integration-iclabs/developer/.taste-skill/esports-v2/mobile-fold.jpg",
+   "pages": [
+    "/home/ichwal/db-integration-iclabs/developer/.taste-skill/esports-v2/mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}
