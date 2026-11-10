@@ -272,8 +272,8 @@ a:focus-visible {
    ────────────────────────────────────────────────────────────────────────── */
 .esports-arena-wrapper {
   flex: 1;
-  min-height: 590px;
-  height: clamp(590px, 64vh, 720px);
+  min-height: 660px;
+  height: clamp(660px, 70vh, 800px);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -282,7 +282,7 @@ a:focus-visible {
 
 .esports-arena-stage {
   flex: 1;
-  min-height: 590px;
+  min-height: 660px;
   height: 100%;
   position: relative;
   overflow: visible;
@@ -355,7 +355,7 @@ a:focus-visible {
   width: 100%;
   max-width: 1400px;
   height: 100%;
-  min-height: 570px;
+  min-height: 640px;
   margin: 0 auto;
   overflow: visible;
   flex-shrink: 0;
@@ -2157,11 +2157,11 @@ a:focus-visible {
   }
 
   .esports-arena-stage {
-    min-height: 520px;
+    min-height: 580px;
   }
 
   .arena-lineup-container {
-    height: 520px;
+    height: 580px;
   }
 
   .detail-grid {
@@ -2244,11 +2244,11 @@ a:focus-visible {
   }
 
   .esports-arena-wrapper {
-    min-height: 500px;
+    min-height: 540px;
   }
 
   .esports-arena-stage {
-    min-height: 500px;
+    min-height: 540px;
     overflow: hidden;
   }
 
@@ -2260,7 +2260,7 @@ a:focus-visible {
   }
 
   .arena-lineup-container {
-    height: 500px;
+    height: 540px;
     width: 1280px;
     min-width: 1280px;
     padding: 0 40px;
