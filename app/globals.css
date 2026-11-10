@@ -330,14 +330,22 @@ a:focus-visible {
 .arena-scroll-viewport {
   width: 100%;
   height: 100%;
-  overflow: visible;
+  overflow-x: auto;
+  overflow-y: hidden;
   display: flex;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: flex-start;
   scrollbar-width: thin;
-  scrollbar-color: var(--border-strong) transparent;
+  scrollbar-color: rgba(92, 225, 230, 0.25) transparent;
   position: relative;
   z-index: 2;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
+  cursor: grab;
+}
+
+.arena-scroll-viewport:active {
+  cursor: grabbing;
 }
 
 /* Lineup Container: 22 Players in 3 Tiers */
@@ -358,7 +366,7 @@ a:focus-visible {
   bottom: var(--pos-bottom);
   left: calc(50% + var(--pos-x));
   height: var(--fig-height);
-  transform: translateX(-50%);
+  transform: translateX(-50%) scale(var(--fig-scale, 1));
   z-index: var(--z-index);
   padding: 0;
   margin: 0;
@@ -424,7 +432,7 @@ a:focus-visible {
 .roster-player-figure.is-focused {
   filter: brightness(1.18) drop-shadow(0 0 20px rgba(92, 225, 230, 0.65)) !important;
   opacity: 1 !important;
-  transform: translateX(-50%) translateY(-6px) scale(1.03);
+  transform: translateX(-50%) translateY(-6px) scale(calc(var(--fig-scale, 1) * 1.03));
 }
 
 /* Floating Player Name Badge (reference.png: - PLAYER -) */
@@ -465,7 +473,7 @@ a:focus-visible {
 
 .is-profile-visible .roster-player-figure.is-focused {
   filter: brightness(1.08) drop-shadow(0 0 26px rgba(92, 225, 230, 0.55)) !important;
-  transform: translateX(-50%) translateY(-28px) scale(1.16);
+  transform: translateX(-50%) translateY(-28px) scale(calc(var(--fig-scale, 1) * 1.16));
 }
 
 .stage-profile-scrim {
@@ -474,11 +482,12 @@ a:focus-visible {
   z-index: 70;
   display: grid;
   place-items: center;
-  padding: 24px;
-  background: rgba(4, 8, 11, 0.44);
-  backdrop-filter: blur(3px);
+  padding: 20px;
+  background: rgba(4, 8, 11, 0.72);
+  backdrop-filter: blur(8px);
   opacity: 0;
-  transition: opacity 180ms ease-out;
+  transition: opacity 220ms ease-out;
+  overflow-y: auto;
 }
 
 .stage-profile-scrim.is-open {
@@ -487,22 +496,24 @@ a:focus-visible {
 
 .stage-profile-scrim.is-closing {
   opacity: 0;
-  transition-duration: 240ms;
+  transition-duration: 220ms;
 }
 
 .stage-profile-card {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(150px, 0.7fr) minmax(260px, 1.3fr);
-  width: min(100%, 620px);
-  overflow: hidden;
-  background: rgba(10, 18, 24, 0.96);
+  grid-template-columns: 240px minmax(320px, 1fr);
+  width: min(100%, 720px);
+  max-height: min(92vh, 680px);
+  overflow-y: auto;
+  background: rgba(9, 15, 22, 0.98);
   border: 1px solid var(--border-accent);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55), 0 0 30px rgba(92, 225, 230, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.75), 0 0 40px rgba(92, 225, 230, 0.16);
   opacity: 0;
   transform: translate3d(var(--profile-origin-x), var(--profile-origin-y), 0) scale(0.4);
   transform-origin: center;
-  transition: opacity 180ms ease-out, transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 200ms ease-out, transform 340ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -514,24 +525,60 @@ a:focus-visible {
 .stage-profile-scrim.is-closing .stage-profile-card {
   opacity: 0;
   transform: translate3d(var(--profile-origin-x), var(--profile-origin-y), 0) scale(0.4);
-  transition-duration: 240ms;
+  transition-duration: 220ms;
+}
+
+.stage-profile-photo-column {
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at 50% 30%, #153742, #070e14 80%);
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+
+.stage-profile-photo-frame {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  padding: 20px 14px 0;
 }
 
 .stage-profile-photo {
-  width: 100%;
-  height: 100%;
-  min-height: 290px;
+  max-height: 380px;
+  width: auto;
+  max-width: 100%;
   object-fit: contain;
   object-position: center bottom;
-  background: radial-gradient(circle at 50% 25%, #1a4750, #081117 72%);
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.7));
+}
+
+.stage-profile-formation-tag {
+  padding: 8px 12px;
+  background: rgba(4, 7, 10, 0.9);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--muted);
 }
 
 .stage-profile-content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 34px;
+  padding: 28px 26px;
+  overflow-y: auto;
+}
+
+.stage-profile-header-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 12px;
+  margin-bottom: 6px;
 }
 
 .stage-profile-index {
@@ -541,55 +588,164 @@ a:focus-visible {
   letter-spacing: 1.4px;
 }
 
-.stage-profile-content h2 {
-  margin: 9px 0 0;
-  font-size: clamp(30px, 4vw, 44px);
-  line-height: 1;
+.stage-profile-lead-badge {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--muted);
 }
 
-.stage-profile-content > p {
-  margin: 8px 0 18px;
+.stage-profile-lead-badge.is-lead {
+  background: rgba(92, 225, 230, 0.15);
+  border-color: var(--accent);
   color: var(--accent);
-  font-size: 14px;
 }
 
-.stage-profile-jobs {
+.stage-profile-name {
+  margin: 4px 0 0;
+  font-size: clamp(24px, 3.2vw, 32px);
+  line-height: 1.15;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+.stage-profile-role {
+  margin: 6px 0 16px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.stage-profile-meta-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.stage-profile-meta-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  gap: 12px;
+}
+
+.stage-profile-meta-item .meta-label {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stage-profile-meta-item .meta-value {
+  color: #fff;
+  font-weight: 600;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.stage-profile-meta-item .meta-link {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.stage-profile-jobs-wrap {
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.stage-profile-jobs-wrap .meta-label,
+.stage-profile-socials-wrap .meta-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.stage-profile-jobs-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  padding: 0;
-  margin: 0 0 22px;
-  list-style: none;
 }
 
-.stage-profile-jobs li {
-  padding: 5px 8px;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  font-size: 11px;
+.stage-profile-socials-wrap {
+  margin-bottom: 20px;
+  width: 100%;
 }
 
-.stage-profile-content a {
+.stage-profile-social-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.stage-profile-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  width: 100%;
+}
+
+.stage-profile-roster-link {
   color: var(--accent);
   font-size: 12px;
   font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: opacity 0.2s;
+}
+
+.stage-profile-roster-link:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
+.social-btn-website {
+  background: rgba(92, 225, 230, 0.12) !important;
+  border-color: var(--border-accent) !important;
+  color: var(--accent) !important;
+}
+
+.social-btn-website:hover {
+  background: rgba(92, 225, 230, 0.24) !important;
+  color: #fff !important;
 }
 
 .stage-profile-close {
   position: absolute;
   top: 10px;
   right: 10px;
-  z-index: 1;
+  z-index: 10;
   display: grid;
   width: 34px;
   height: 34px;
   place-items: center;
   color: var(--fg);
-  background: rgba(6, 10, 13, 0.75);
+  background: rgba(6, 10, 13, 0.85);
   border: 1px solid var(--border-strong);
   border-radius: 50%;
   font-size: 22px;
   line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
 }
 
 .stage-profile-close:hover {
@@ -889,6 +1045,31 @@ a:focus-visible {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+.tech-badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.tech-badge-item {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s;
+}
+
+.tech-badge-item:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.15) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.tech-badge-image {
+  height: 26px;
+  width: auto;
+  border-radius: 4px;
+  display: block;
 }
 
 .tech-chip {
@@ -1499,6 +1680,14 @@ a:focus-visible {
   margin-top: 16px;
 }
 
+.stack-badge-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 16px;
+}
+
 .stack-chip-list span {
   padding: 5px 8px;
   border: 1px solid var(--border-strong);
@@ -2058,17 +2247,25 @@ a:focus-visible {
 
   .esports-arena-stage {
     min-height: 460px;
-    overflow-x: clip;
-    overflow-y: visible;
+    overflow: hidden;
+  }
+
+  .arena-scroll-viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y;
   }
 
   .arena-lineup-container {
     height: 460px;
-    width: 1100px; /* Forces smooth horizontal scrolling on touch */
+    width: 1280px;
+    min-width: 1280px;
+    padding: 0 40px;
   }
 
   .roster-player-figure {
-    transform: translateX(-50%) scale(0.85);
+    transform: translateX(-50%) scale(calc(var(--fig-scale, 1) * 0.85));
     transform-origin: center bottom;
   }
 
@@ -2106,23 +2303,35 @@ a:focus-visible {
   }
 
   .stage-profile-scrim {
-    padding: 16px;
+    padding: 12px;
   }
 
   .stage-profile-card {
-    grid-template-columns: 120px minmax(0, 1fr);
+    grid-template-columns: 1fr;
+    max-height: 88vh;
+    width: 100%;
+  }
+
+  .stage-profile-photo-column {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stage-profile-photo-frame {
+    height: 220px;
+    padding: 16px 16px 0;
   }
 
   .stage-profile-photo {
-    min-height: 230px;
+    max-height: 200px;
   }
 
   .stage-profile-content {
-    padding: 22px 18px;
+    padding: 20px 16px;
   }
 
-  .stage-profile-content h2 {
-    font-size: 28px;
+  .stage-profile-name {
+    font-size: 24px;
   }
 
   .architecture-section {
