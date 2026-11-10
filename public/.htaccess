@@ -1,0 +1,25 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /dev/
+
+  # Jika request mengarah ke file atau folder fisik yang ada, layani langsung
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Jika route mengarah ke direktori (misal /dev/kontak/), cari index.html di direktori tersebut
+  RewriteCond %{DOCUMENT_ROOT}/dev/$1/index.html -f
+  RewriteRule ^(.*)/$ $1/index.html [L]
+
+  # Halaman 404 kustom
+  ErrorDocument 404 /dev/404.html
+</IfModule>
+
+# MIME Types
+<IfModule mod_mime.c>
+  AddType application/javascript .js
+  AddType text/css .css
+  AddType image/webp .webp
+  AddType image/png .png
+  AddType image/svg+xml .svg
+</IfModule>

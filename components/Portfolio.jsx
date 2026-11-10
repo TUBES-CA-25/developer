@@ -29,6 +29,19 @@ import {
   stackGroups,
 } from "../lib/architecture";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const getAssetUrl = (path) => {
+  if (!path) return "";
+  if (path.startsWith("http://") || path.startsWith("https://") || path.startsWith("data:")) {
+    return path;
+  }
+  if (basePath && path.startsWith(basePath)) {
+    return path;
+  }
+  const cleanPath = path.startsWith("/") ? path : `/${path}`;
+  return `${basePath}${cleanPath}`;
+};
+
 const architectureLayerIcons = {
   clients: UsersThree,
   portals: Browser,
@@ -263,7 +276,7 @@ export default function Portfolio() {
         <header className="site-header">
           <a className="brand" href="#top" aria-label="ICLabs Developer Collective - Beranda">
             <img
-              src="/images/iclabs-logo.png"
+              src={getAssetUrl("/images/iclabs-logo.png")}
               alt="Logo ICLabs"
               width="36"
               height="36"
@@ -375,7 +388,7 @@ export default function Portfolio() {
                     >
                       <div className="figure-photo-wrap">
                         <img
-                          src={encodeURI(member.image)}
+                          src={encodeURI(getAssetUrl(member.image))}
                           alt={`Foto ${member.name}`}
                           loading={layout.row <= 2 ? "eager" : "lazy"}
                           className="figure-photo"
@@ -420,7 +433,7 @@ export default function Portfolio() {
                     ×
                   </button>
                   <img
-                    src={encodeURI(selectedMember.image)}
+                    src={encodeURI(getAssetUrl(selectedMember.image))}
                     alt=""
                     className="stage-profile-photo"
                   />
@@ -607,7 +620,7 @@ export default function Portfolio() {
           <div className="detail-visual-column">
             <figure className="detail-figure">
               <img
-                src="/images/gedung-fikom-malam.webp"
+                src={getAssetUrl("/images/gedung-fikom-malam.webp")}
                 alt="Gedung Fakultas Ilmu Komputer pada malam hari"
                 loading="lazy"
                 className="figure-image"
@@ -840,7 +853,7 @@ export default function Portfolio() {
           <div className="member-spotlight-card" aria-live="polite">
             <div className="spotlight-photo-frame">
               <img
-                src={encodeURI(selectedMember.image)}
+                src={encodeURI(getAssetUrl(selectedMember.image))}
                 alt={`Foto resmi ${selectedMember.name}`}
                 loading="lazy"
                 className="spotlight-photo"
@@ -968,7 +981,7 @@ export default function Portfolio() {
                 >
                   <div className="roster-thumb-wrap">
                     <img
-                      src={encodeURI(member.image)}
+                      src={encodeURI(getAssetUrl(member.image))}
                       alt=""
                       loading="lazy"
                       className="roster-thumb"
