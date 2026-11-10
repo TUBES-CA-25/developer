@@ -155,7 +155,111 @@ function getMockupRosterLayout(memberId) {
   }
 }
 
+/**
+ * Esports Cyber Skeleton Loader:
+ * Displayed on initial load until all 22 personnel figures and assets are fully cached & rendered in memory.
+ */
+function HeroSkeleton({ progress, isFadingOut }) {
+  return (
+    <div
+      className={`site-skeleton-overlay ${isFadingOut ? "is-fading-out" : ""}`}
+      aria-busy="true"
+      aria-live="polite"
+      aria-label="Memuat seluruh data dan personel ICLabs"
+    >
+      <div className="skeleton-container">
+        {/* Skeleton Header */}
+        <header className="skeleton-header">
+          <div className="skeleton-brand">
+            <div className="skeleton-shimmer skeleton-logo-box" />
+            <div className="skeleton-text-group">
+              <div className="skeleton-shimmer skeleton-title-bar" />
+              <div className="skeleton-shimmer skeleton-subtitle-bar" />
+            </div>
+          </div>
+          <div className="skeleton-nav">
+            <div className="skeleton-shimmer skeleton-nav-pill" />
+            <div className="skeleton-shimmer skeleton-nav-pill" />
+            <div className="skeleton-shimmer skeleton-nav-pill" />
+          </div>
+        </header>
+
+        {/* Skeleton Systems Tabs */}
+        <div className="skeleton-tabs-bar">
+          <div className="skeleton-shimmer skeleton-tab-card" />
+          <div className="skeleton-shimmer skeleton-tab-card" />
+          <div className="skeleton-shimmer skeleton-tab-card is-center" />
+          <div className="skeleton-shimmer skeleton-tab-card" />
+          <div className="skeleton-shimmer skeleton-tab-card" />
+        </div>
+
+        {/* Skeleton Stage Arena with 3-tier Silhouettes */}
+        <div className="skeleton-arena-stage">
+          <div className="skeleton-lineup">
+            {/* Row 3 (7 Silhouettes) */}
+            <div className="skeleton-tier skeleton-tier-3">
+              {[...Array(7)].map((_, i) => (
+                <div key={`sk-r3-${i}`} className="skeleton-shimmer skeleton-silhouette silhouette-r3" />
+              ))}
+            </div>
+            {/* Row 2 (8 Silhouettes) */}
+            <div className="skeleton-tier skeleton-tier-2">
+              {[...Array(8)].map((_, i) => (
+                <div key={`sk-r2-${i}`} className="skeleton-shimmer skeleton-silhouette silhouette-r2" />
+              ))}
+            </div>
+            {/* Row 1 (7 Silhouettes) */}
+            <div className="skeleton-tier skeleton-tier-1">
+              {[...Array(7)].map((_, i) => (
+                <div
+                  key={`sk-r1-${i}`}
+                  className={`skeleton-shimmer skeleton-silhouette silhouette-r1 ${i === 3 ? "is-lead" : ""}`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* High-Tech Cyber HUD Loader */}
+          <div className="skeleton-hud-card">
+            <div className="hud-radar-pulse">
+              <div className="hud-ring" />
+              <div className="hud-core-dot" />
+            </div>
+            <div className="hud-content">
+              <span className="hud-badge">INITIALIZING SYSTEM CORE</span>
+              <p className="hud-title">Menyiapkan Data & 22 Personel ICLabs</p>
+            </div>
+            <div className="hud-progress-track">
+              <div className="hud-progress-fill" style={{ width: `${progress}%` }} />
+            </div>
+            <div className="hud-footer">
+              <span className="hud-pct">{progress}%</span>
+              <span className="hud-status">
+                {progress < 40
+                  ? "Mengunduh aset visual..."
+                  : progress < 85
+                  ? "Merender panggung & formasi..."
+                  : "Menyinkronkan ekosistem..."}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Skeleton Bottom Title */}
+        <div className="skeleton-bottom-bar">
+          <div className="skeleton-shimmer skeleton-big-title" />
+          <div className="skeleton-shimmer skeleton-sub-title" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Portfolio() {
+  const [isReady, setIsReady] = useState(false);
+  const [loadProgress, setLoadProgress] = useState(0);
+  const [skeletonMounted, setSkeletonMounted] = useState(true);
+
   const [activeSystemId, setActiveSystemId] = useState("integration");
   const [selectedMemberId, setSelectedMemberId] = useState("ichwal");
   const [hasMemberSelection, setHasMemberSelection] = useState(false);
@@ -176,6 +280,63 @@ export default function Portfolio() {
   const activeArchitectureView =
     architectureViews.find((view) => view.id === architectureView) ||
     architectureViews[0];
+
+  // Preload all 22 character figures + branding images before revealing
+  useEffect(() => {
+    let isCancelled = false;
+    const imageSources = [
+      getAssetUrl("/images/iclabs-logo.png"),
+      ...teamConfig.map((m) => getAssetUrl(m.image)),
+    ];
+
+    let loadedCount = 0;
+    const total = imageSources.length;
+
+    const notifyLoad = () => {
+      loadedCount++;
+      const percent = Math.min(100, Math.round((loadedCount / total) * 100));
+      if (!isCancelled) {
+        setLoadProgress(percent);
+        if (loadedCount >= total) {
+          setTimeout(() => {
+            if (!isCancelled) {
+              setIsReady(true);
+              setTimeout(() => {
+                if (!isCancelled) setSkeletonMounted(false);
+              }, 480);
+            }
+          }, 150);
+        }
+      }
+    };
+
+    // Safety fallback timeout: never block longer than 2.2s
+    const fallbackId = setTimeout(() => {
+      if (!isCancelled) {
+        setLoadProgress(100);
+        setIsReady(true);
+        setTimeout(() => {
+          if (!isCancelled) setSkeletonMounted(false);
+        }, 480);
+      }
+    }, 2200);
+
+    imageSources.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      if (img.complete) {
+        notifyLoad();
+      } else {
+        img.onload = notifyLoad;
+        img.onerror = notifyLoad;
+      }
+    });
+
+    return () => {
+      isCancelled = true;
+      clearTimeout(fallbackId);
+    };
+  }, []);
 
   // Auto center scroll on initial load (mobile / small screens)
   useEffect(() => {
@@ -296,7 +457,14 @@ export default function Portfolio() {
   };
 
   return (
-    <main id="top" className="site-canvas">
+    <>
+      {skeletonMounted && (
+        <HeroSkeleton progress={loadProgress} isFadingOut={isReady} />
+      )}
+      <main
+        id="top"
+        className={`site-canvas main-content-transition ${isReady ? "is-revealed" : "is-concealed"}`}
+      >
       <a href="#project-detail" className="skip-link">
         Lewati ke detail sistem
       </a>
@@ -1237,5 +1405,6 @@ export default function Portfolio() {
         </div>
       </footer>
     </main>
+    </>
   );
 }
