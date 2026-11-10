@@ -1,7 +1,70 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import {
+  ArrowsClockwise,
+  Browser,
+  Buildings,
+  Cloud,
+  Code,
+  Cube,
+  Database,
+  Files,
+  HardDrives,
+  LockKey,
+  Network,
+  ShieldCheck,
+  Stack,
+  Terminal,
+  UsersThree,
+} from "@phosphor-icons/react";
 import { teamConfig, systemsConfig, labConfig } from "../lib/config";
+import {
+  architectureViews,
+  architectureLayers,
+  architectureIntegrations,
+  domainCapabilities,
+  securityControls,
+  securityCaveats,
+  stackGroups,
+} from "../lib/architecture";
+
+const architectureLayerIcons = {
+  clients: UsersThree,
+  portals: Browser,
+  api: Stack,
+  data: Database,
+};
+
+const domainIcons = {
+  "sumber-daya": Buildings,
+  praktikum: Files,
+  monitoring: ArrowsClockwise,
+  peminjaman: Browser,
+  pendaftaran: Files,
+  "portal-hub": Network,
+  inventaris: Cube,
+  sipemla: Database,
+  sertifikasi: ShieldCheck,
+  shared: HardDrives,
+};
+
+const securityIcons = {
+  "01": LockKey,
+  "02": ShieldCheck,
+  "03": ArrowsClockwise,
+  "04": Files,
+  "05": HardDrives,
+  "06": Cloud,
+};
+
+const stackIcons = {
+  "Core & API": Terminal,
+  "Data & object storage": Database,
+  "Portal & adapter": Code,
+  "Hub & frontend modern": Browser,
+  "Infrastruktur & integrasi": Network,
+};
 
 /**
  * Exact 3-Tier Esports Layout mapping strictly matching docs/desain/layouts.png:
@@ -83,6 +146,7 @@ export default function Portfolio() {
   const [hasMemberSelection, setHasMemberSelection] = useState(false);
   const [profilePhase, setProfilePhase] = useState("closed");
   const [profileOrigin, setProfileOrigin] = useState({ x: 0, y: 0 });
+  const [architectureView, setArchitectureView] = useState("overview");
   const stageScrollRef = useRef(null);
   const stageRef = useRef(null);
   const profileCloseButtonRef = useRef(null);
@@ -94,6 +158,9 @@ export default function Portfolio() {
   const selectedIndex = teamConfig.findIndex(
     (m) => m.id === selectedMember.id
   );
+  const activeArchitectureView =
+    architectureViews.find((view) => view.id === architectureView) ||
+    architectureViews[0];
 
   // Auto center scroll on initial load (mobile / small screens)
   useEffect(() => {
@@ -155,6 +222,32 @@ export default function Portfolio() {
   };
 
   const closeMemberProfile = () => setProfilePhase("closing");
+
+  const handleArchitectureTabKeydown = (event, index) => {
+    const key = event.key;
+    if (![
+      "ArrowRight",
+      "ArrowLeft",
+      "Home",
+      "End",
+    ].includes(key)) {
+      return;
+    }
+
+    event.preventDefault();
+    const lastIndex = architectureViews.length - 1;
+    const nextIndex =
+      key === "Home"
+        ? 0
+        : key === "End"
+          ? lastIndex
+          : key === "ArrowRight"
+            ? (index + 1) % architectureViews.length
+            : (index - 1 + architectureViews.length) % architectureViews.length;
+    const nextView = architectureViews[nextIndex];
+    setArchitectureView(nextView.id);
+    document.getElementById(`architecture-tab-${nextView.id}`)?.focus();
+  };
 
   return (
     <main id="top" className="site-canvas">
@@ -419,7 +512,7 @@ export default function Portfolio() {
                   Buka Sistem ↗
                 </a>
               )}
-              <a href="#project-detail" className="hud-detail-cta">
+              <a href="#architecture" className="hud-detail-cta">
                 Detail Arsitektur ↓
               </a>
             </div>
@@ -532,7 +625,200 @@ export default function Portfolio() {
       </section>
 
       {/* ====================================================================
-          SECTION 3: COMPLETE TEAM DIRECTORY (22 Members Profiles)
+          SECTION 3: VERIFIED INTEGRATION ARCHITECTURE
+          ==================================================================== */}
+      <section
+        id="architecture"
+        className="architecture-section"
+        aria-labelledby="architecture-heading"
+      >
+        <div className="architecture-section-heading">
+          <div>
+            <span className="section-pill-tag">SISTEM TERINTEGRASI ICLABS</span>
+            <h2 id="architecture-heading" className="architecture-heading">
+              Satu inti.<br />
+              <span className="text-accent">Banyak permukaan.</span>
+            </h2>
+            <p>
+              Peta teknis untuk melihat batas tanggung jawab, bukan sekadar
+              daftar teknologi. Ringkasan ini diturunkan dari README API dan
+              dokumentasi integrasi backend per 3 November 2026.
+            </p>
+          </div>
+          <div className="architecture-fact-stamp" aria-label="Fakta arsitektur utama">
+            <span className="architecture-fact-kicker">MODEL SISTEM</span>
+            <strong>MODULAR<br />MONOLITH</strong>
+            <span>API pusat · bukan microservices penuh</span>
+          </div>
+        </div>
+
+        <div className="architecture-tabs" role="tablist" aria-label="Jelajahi arsitektur ICLabs">
+          {architectureViews.map((view, index) => {
+            const isActive = view.id === architectureView;
+            return (
+              <button
+                key={view.id}
+                id={`architecture-tab-${view.id}`}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                aria-controls={`architecture-panel-${view.id}`}
+                className={`architecture-tab ${isActive ? "is-active" : ""}`}
+                onClick={() => setArchitectureView(view.id)}
+                onKeyDown={(event) => handleArchitectureTabKeydown(event, index)}
+              >
+                {view.label}
+              </button>
+            );
+          })}
+        </div>
+
+        <div
+          key={architectureView}
+          id={`architecture-panel-${architectureView}`}
+          className="architecture-panel"
+          role="tabpanel"
+          aria-labelledby={`architecture-tab-${architectureView}`}
+        >
+          <header className="architecture-panel-header">
+            <span>{activeArchitectureView.eyebrow}</span>
+            <div>
+              <h3>{activeArchitectureView.title}</h3>
+              <p>{activeArchitectureView.description}</p>
+            </div>
+          </header>
+
+          {architectureView === "overview" && (
+            <div className="architecture-overview">
+              <div className="architecture-flow" aria-label="Alur integrasi dari pengguna ke data pusat">
+                {architectureLayers.map((layer, index) => (
+                  <div className="architecture-flow-unit" key={layer.id}>
+                    <article className={`architecture-layer ${layer.featured ? "is-featured" : ""}`}>
+                      {(() => {
+                        const LayerIcon = architectureLayerIcons[layer.id] || Cube;
+                        return <LayerIcon className="architecture-layer-icon" weight="regular" aria-hidden="true" />;
+                      })()}
+                      <div className="architecture-layer-copy">
+                        <span className="architecture-layer-code">{layer.code}</span>
+                        <h4>{layer.label}</h4>
+                        <strong>{layer.summary}</strong>
+                        <p>{layer.detail}</p>
+                      </div>
+                    </article>
+                    {index < architectureLayers.length - 1 && (
+                      <span className="architecture-flow-arrow" aria-hidden="true">→</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              <div className="architecture-request-path">
+                <span>Alur request</span>
+                <p>
+                  Browser → sesi portal → adapter server → bearer token → API
+                  policy/validasi → MySQL atau AIStor → respons aman ke portal.
+                </p>
+              </div>
+
+              <div className="architecture-integrations">
+                {architectureIntegrations.map((integration) => (
+                  <article key={integration.label}>
+                    <h4>{integration.label}</h4>
+                    <p>{integration.detail}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {architectureView === "domains" && (
+            <div className="domain-capability-grid">
+              {domainCapabilities.map((domain) => (
+                <article
+                  key={domain.id}
+                  className={`domain-capability-card ${domain.featured ? "is-featured" : ""}`}
+                >
+                  <div className="domain-capability-topline">
+                    <div className="domain-capability-id">
+                      {(() => {
+                        const DomainIcon = domainIcons[domain.id] || Cube;
+                        return <DomainIcon weight="regular" aria-hidden="true" />;
+                      })()}
+                      <span>{domain.code}</span>
+                    </div>
+                    <small>{domain.role}</small>
+                  </div>
+                  <h4>{domain.title}</h4>
+                  <ul>
+                    {domain.features.map((feature) => (
+                      <li key={feature}>{feature}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          )}
+
+          {architectureView === "security" && (
+            <div className="security-architecture-content">
+              <div className="security-control-grid">
+                {securityControls.map((control) => (
+                  <article className="security-control-card" key={control.code}>
+                    {(() => {
+                      const SecurityIcon = securityIcons[control.code] || ShieldCheck;
+                      return <SecurityIcon className="security-control-icon" weight="regular" aria-hidden="true" />;
+                    })()}
+                    <div>
+                      <span>{control.code}</span>
+                      <h4>{control.title}</h4>
+                      <p>{control.description}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+              <aside className="security-caveat" aria-label="Batasan yang perlu diketahui">
+                <div>
+                  <span className="security-caveat-label">BATASAN & STATUS OPERASIONAL</span>
+                  <h4>Transparan terhadap risiko yang belum selesai.</h4>
+                </div>
+                <ul>
+                  {securityCaveats.map((caveat) => (
+                    <li key={caveat}>{caveat}</li>
+                  ))}
+                </ul>
+              </aside>
+            </div>
+          )}
+
+          {architectureView === "stack" && (
+            <div className="stack-landscape">
+              {stackGroups.map((group) => (
+                <article className="stack-group" key={group.layer}>
+                  <header>
+                    {(() => {
+                      const StackIcon = stackIcons[group.layer] || Code;
+                      return <StackIcon className="stack-group-icon" weight="regular" aria-hidden="true" />;
+                    })()}
+                    <div>
+                      <span>TECH LAYER</span>
+                      <h4>{group.layer}</h4>
+                    </div>
+                  </header>
+                  <div className="stack-chip-list">
+                    {group.technologies.map((technology) => (
+                      <span key={technology}>{technology}</span>
+                    ))}
+                  </div>
+                  <p>{group.note}</p>
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ====================================================================
+          SECTION 4: COMPLETE TEAM DIRECTORY (22 Members Profiles)
           ==================================================================== */}
       <section id="team" className="team-section" aria-labelledby="team-heading">
         <div className="section-header">

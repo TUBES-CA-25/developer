@@ -981,7 +981,548 @@ a:focus-visible {
 }
 
 /* ==========================================================================
-   SECTION 3: COMPLETE TEAM DIRECTORY
+   SECTION 3: VERIFIED INTEGRATION ARCHITECTURE
+   ========================================================================== */
+.architecture-section {
+  padding: 112px 0 96px;
+  border-top: 1px solid var(--border);
+}
+
+.architecture-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 32px;
+  margin-bottom: 34px;
+}
+
+.architecture-section-heading > div:first-child {
+  max-width: 730px;
+}
+
+.architecture-heading {
+  margin: 0 0 16px;
+  color: var(--fg);
+  font-size: clamp(42px, 5.4vw, 76px);
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.065em;
+}
+
+.architecture-section-heading p {
+  max-width: 680px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.architecture-fact-stamp {
+  flex: 0 0 276px;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 18px 0 0 20px;
+  border-left: 1px solid var(--accent);
+}
+
+.architecture-fact-stamp strong,
+.architecture-fact-stamp span {
+  display: block;
+}
+
+.architecture-fact-stamp strong {
+  color: var(--accent);
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+}
+
+.architecture-fact-stamp > span:last-child {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.architecture-fact-stamp .architecture-fact-kicker {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.3px;
+}
+
+.architecture-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  overflow-x: auto;
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--border);
+  padding: 0;
+  scrollbar-width: thin;
+}
+
+.architecture-tab {
+  min-height: 52px;
+  padding: 12px 16px;
+  border-right: 1px solid var(--border);
+  border-radius: 0;
+  color: var(--muted);
+  background: transparent;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.architecture-tab:first-child {
+  border-left: 1px solid var(--border);
+}
+
+.architecture-tab:hover {
+  background: var(--surface);
+  color: var(--fg);
+}
+
+.architecture-tab.is-active {
+  box-shadow: inset 0 -2px 0 var(--accent);
+  color: var(--accent);
+  background: rgba(92, 225, 230, 0.04);
+}
+
+.architecture-panel {
+  margin-top: 24px;
+  padding: clamp(22px, 3.3vw, 48px);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: #091015;
+  animation: architecture-panel-in 260ms ease both;
+}
+
+.architecture-panel-header {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--border);
+}
+
+.architecture-panel-header > span {
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.architecture-panel-header h3 {
+  margin: 0;
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 750;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+.architecture-panel-header p {
+  max-width: 720px;
+  margin: 11px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.architecture-overview {
+  padding-top: 36px;
+}
+
+.architecture-flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 16px;
+}
+
+.architecture-flow-unit {
+  position: relative;
+  min-width: 0;
+}
+
+.architecture-layer {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  min-height: 258px;
+  padding: 22px 18px 18px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: #060b0f;
+}
+
+.architecture-layer.is-featured {
+  border-color: var(--border-accent);
+  background: #0a171c;
+}
+
+.architecture-layer-icon {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 42px;
+  color: var(--accent);
+}
+
+.architecture-layer-code {
+  display: block;
+  color: var(--accent);
+  font-size: 11px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.architecture-layer h4,
+.domain-capability-card h4,
+.security-control-card h4,
+.stack-group h4 {
+  margin: 8px 0 8px;
+  color: var(--fg);
+  font-size: 17px;
+  line-height: 1.25;
+}
+
+.architecture-layer strong {
+  display: block;
+  color: #c8d9e0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.architecture-layer p,
+.architecture-integrations p,
+.security-control-card p,
+.stack-group p {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.architecture-flow-arrow {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: -20px;
+  display: block;
+  width: 24px;
+  height: 1px;
+  transform: translateY(-50%);
+  color: transparent;
+  background: var(--accent);
+}
+
+.architecture-flow-arrow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -3px;
+  width: 6px;
+  height: 6px;
+  border-top: 1px solid var(--accent);
+  border-right: 1px solid var(--accent);
+  transform: rotate(45deg);
+}
+
+.architecture-request-path {
+  display: grid;
+  grid-template-columns: 154px 1fr;
+  gap: 18px;
+  margin-top: 20px;
+  padding: 18px 0;
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--border);
+}
+
+.architecture-request-path span {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.architecture-request-path p {
+  margin: 0;
+  color: #c5d4dc;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.architecture-integrations {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin-top: 28px;
+  border-top: 1px solid var(--border);
+}
+
+.architecture-integrations article {
+  padding: 18px 20px 0 0;
+  border-right: 1px solid var(--border);
+  background: transparent;
+}
+
+.architecture-integrations article:not(:first-child) {
+  padding-left: 20px;
+}
+
+.architecture-integrations article:last-child {
+  border-right: 0;
+}
+
+.architecture-integrations h4 {
+  margin: 0;
+  color: #c8d9e0;
+  font-size: 13px;
+}
+
+.architecture-integrations p {
+  margin-top: 8px;
+}
+
+.domain-capability-grid,
+.security-control-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  padding-top: 36px;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+
+.domain-capability-card,
+.security-control-card,
+.stack-group {
+  min-width: 0;
+  padding: 24px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+}
+
+.domain-capability-card.is-featured {
+  box-shadow: inset 2px 0 0 var(--accent);
+  background: rgba(92, 225, 230, 0.04);
+}
+
+.domain-capability-card:last-child {
+  grid-column: 1 / -1;
+}
+
+.domain-capability-card:last-child ul {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px 28px;
+}
+
+.domain-capability-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 14px;
+}
+
+.domain-capability-topline > span,
+.security-control-card > span {
+  color: var(--accent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+}
+
+.domain-capability-id {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--accent);
+}
+
+.domain-capability-id svg {
+  width: 19px;
+  height: 19px;
+}
+
+.domain-capability-topline small {
+  max-width: 160px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: right;
+}
+
+.domain-capability-card h4,
+.security-control-card h4 {
+  margin-top: 16px;
+}
+
+.domain-capability-card ul,
+.security-caveat ul {
+  display: grid;
+  gap: 9px;
+  padding: 0;
+  margin: 15px 0 0;
+  list-style: none;
+}
+
+.domain-capability-card li,
+.security-caveat li {
+  position: relative;
+  padding-left: 16px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.domain-capability-card li::before,
+.security-caveat li::before {
+  content: "";
+  position: absolute;
+  top: 0.58em;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.security-architecture-content {
+  padding-top: 36px;
+}
+
+.security-control-grid {
+  padding-top: 0;
+}
+
+.security-caveat {
+  display: grid;
+  grid-template-columns: minmax(210px, 0.65fr) 1.35fr;
+  gap: 34px;
+  margin-top: 28px;
+  padding: 28px 0 0;
+  border: 1px solid rgba(238, 188, 86, 0.42);
+  border-width: 1px 0 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.security-caveat-label {
+  color: #efc15f;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.security-caveat h4 {
+  margin: 10px 0 0;
+  color: var(--fg);
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.security-caveat ul {
+  margin: 0;
+}
+
+.security-caveat li::before {
+  background: #efc15f;
+}
+
+.stack-landscape {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  padding-top: 36px;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+
+.stack-group {
+  min-height: 208px;
+}
+
+.stack-group:last-child {
+  grid-column: 1 / -1;
+  min-height: 0;
+}
+
+.stack-group header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.stack-group header span {
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.stack-group h4 {
+  margin: 4px 0 0;
+}
+
+.stack-group-icon,
+.security-control-icon {
+  flex: 0 0 auto;
+  width: 23px;
+  height: 23px;
+  color: var(--accent);
+}
+
+.security-control-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.security-control-card h4 {
+  margin-top: 0;
+}
+
+.stack-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 16px;
+}
+
+.stack-chip-list span {
+  padding: 5px 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: 5px;
+  color: #c9d9df;
+  background: var(--surface-elevated);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+@keyframes architecture-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   SECTION 4: COMPLETE TEAM DIRECTORY
    ========================================================================== */
 .team-section {
   padding: 80px 0;
@@ -1437,6 +1978,39 @@ a:focus-visible {
     gap: 40px;
   }
 
+  .architecture-section-heading {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .architecture-fact-stamp {
+    flex-basis: auto;
+    width: 100%;
+    max-width: 430px;
+  }
+
+  .architecture-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .architecture-flow-arrow {
+    display: none;
+  }
+
+  .architecture-layer {
+    min-height: 205px;
+  }
+
+  .domain-capability-grid,
+  .security-control-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .domain-capability-card:last-child ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .team-split-layout {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -1549,6 +2123,107 @@ a:focus-visible {
 
   .stage-profile-content h2 {
     font-size: 28px;
+  }
+
+  .architecture-section {
+    padding: 76px 0 64px;
+  }
+
+  .architecture-heading {
+    font-size: clamp(42px, 14vw, 58px);
+  }
+
+  .architecture-fact-stamp {
+    max-width: none;
+    min-height: 124px;
+    padding-top: 24px;
+  }
+
+  .architecture-tabs {
+    display: flex;
+  }
+
+  .architecture-tab {
+    min-width: 138px;
+    flex: 0 0 138px;
+  }
+
+  .architecture-panel {
+    padding: 20px;
+    border-radius: 2px;
+  }
+
+  .architecture-panel-header {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding-bottom: 22px;
+  }
+
+  .architecture-panel-header p,
+  .architecture-section-heading p {
+    font-size: 14px;
+  }
+
+  .architecture-overview,
+  .security-architecture-content,
+  .stack-landscape,
+  .domain-capability-grid,
+  .security-control-grid {
+    padding-top: 22px;
+  }
+
+  .architecture-flow,
+  .architecture-integrations,
+  .domain-capability-grid,
+  .security-control-grid,
+  .stack-landscape {
+    grid-template-columns: 1fr;
+  }
+
+  .domain-capability-card:last-child ul {
+    grid-template-columns: 1fr;
+  }
+
+  .stack-group:last-child {
+    grid-column: auto;
+  }
+
+  .architecture-layer {
+    min-height: 0;
+    padding: 20px 16px 18px;
+  }
+
+  .architecture-layer-icon {
+    margin-bottom: 28px;
+  }
+
+  .architecture-request-path,
+  .security-caveat {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .architecture-request-path {
+    padding: 16px 0;
+  }
+
+  .architecture-integrations {
+    gap: 0;
+  }
+
+  .architecture-integrations article,
+  .architecture-integrations article:not(:first-child) {
+    padding: 18px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .architecture-integrations article:last-child {
+    border-bottom: 0;
+  }
+
+  .security-caveat {
+    padding: 20px 0 0;
   }
 
   .hud-actions {
