@@ -80,8 +80,11 @@ function getMockupRosterLayout(memberId) {
 export default function Portfolio() {
   const [activeSystemId, setActiveSystemId] = useState("integration");
   const [selectedMemberId, setSelectedMemberId] = useState("ichwal");
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [hasMemberSelection, setHasMemberSelection] = useState(false);
+  const [profilePhase, setProfilePhase] = useState("closed");
+  const [profileOrigin, setProfileOrigin] = useState({ x: 0, y: 0 });
   const stageScrollRef = useRef(null);
+  const stageRef = useRef(null);
   const profileCloseButtonRef = useRef(null);
 
   const activeSystem =
@@ -101,8 +104,20 @@ export default function Portfolio() {
     }
   }, []);
 
+  const isProfileVisible = profilePhase !== "closed";
+
   useEffect(() => {
-    if (!isProfileOpen) {
+    if (profilePhase === "opening") {
+      const frame = window.requestAnimationFrame(() => setProfilePhase("open"));
+      return () => window.cancelAnimationFrame(frame);
+    }
+
+    if (profilePhase === "closing") {
+      const timer = window.setTimeout(() => setProfilePhase("closed"), 280);
+      return () => window.clearTimeout(timer);
+    }
+
+    if (profilePhase !== "open") {
       return undefined;
     }
 
@@ -110,18 +125,36 @@ export default function Portfolio() {
 
     const closeOnEscape = (event) => {
       if (event.key === "Escape") {
-        setIsProfileOpen(false);
+        setProfilePhase("closing");
       }
     };
 
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [isProfileOpen]);
+  }, [profilePhase]);
 
-  const openMemberProfile = (memberId) => {
+  const openMemberProfile = (memberId, event) => {
     setSelectedMemberId(memberId);
-    setIsProfileOpen(true);
+    setHasMemberSelection(true);
+
+    const stageRect = stageRef.current?.getBoundingClientRect();
+    const trigger = event?.currentTarget;
+    const isRosterFigure = trigger?.classList?.contains("roster-player-figure");
+
+    if (stageRect && isRosterFigure) {
+      const sourceRect = trigger.getBoundingClientRect();
+      setProfileOrigin({
+        x: sourceRect.left + sourceRect.width / 2 - (stageRect.left + stageRect.width / 2),
+        y: sourceRect.top + sourceRect.height / 2 - (stageRect.top + stageRect.height / 2),
+      });
+    } else {
+      setProfileOrigin({ x: 0, y: 0 });
+    }
+
+    setProfilePhase("opening");
   };
+
+  const closeMemberProfile = () => setProfilePhase("closing");
 
   return (
     <main id="top" className="site-canvas">
@@ -149,12 +182,12 @@ export default function Portfolio() {
             </div>
           </a>
 
-          <div className="header-meta-badge">
+          {/* <div className="header-meta-badge">
             <span className="live-dot" aria-hidden="true" />
             <span className="meta-text">
               {labConfig.totalMembers} Personnel Official Roster · {labConfig.faculty}
             </span>
-          </div>
+          </div> */}
 
           <nav className="header-nav" aria-label="Navigasi Utama">
             <a href="#project-detail" className="nav-link">
@@ -209,7 +242,8 @@ export default function Portfolio() {
             ────────────────────────────────────────────────────────────────── */}
         <div className="esports-arena-wrapper">
           <div
-            className={`esports-arena-stage ${isProfileOpen ? "is-profile-open" : ""}`}
+            ref={stageRef}
+            className={`esports-arena-stage ${isProfileVisible ? "is-profile-visible" : ""}`}
             aria-label="Panggung Roster 22 Anggota ICLabs"
           >
             {/* Atmospheric Stage FX */}
@@ -235,14 +269,14 @@ export default function Portfolio() {
                     <button
                       key={member.id}
                       type="button"
-                      className={`roster-player-figure row-${layout.row} ${isLead ? "figure-captain" : ""} ${isSelected ? "is-focused" : ""}`}
+                      className={`roster-player-figure row-${layout.row} ${isLead ? "figure-captain" : ""} ${isProfileVisible && isSelected ? "is-focused" : ""}`}
                       style={{
                         "--pos-x": `${layout.x}%`,
                         "--pos-bottom": `${layout.bottom}px`,
                         "--fig-height": `${layout.height}px`,
-                        "--z-index": isProfileOpen && isSelected ? 50 : layout.zIndex,
+                        "--z-index": isProfileVisible && isSelected ? 50 : layout.zIndex,
                       }}
-                      onClick={() => openMemberProfile(member.id)}
+                      onClick={(event) => openMemberProfile(member.id, event)}
                       aria-label={`Pilih asisten ${member.name}`}
                       aria-pressed={isSelected}
                     >
@@ -266,24 +300,28 @@ export default function Portfolio() {
               </div>
             </div>
 
-            {isProfileOpen && (
+            {isProfileVisible && (
               <div
-                className="stage-profile-scrim"
+                className={`stage-profile-scrim is-${profilePhase}`}
                 role="presentation"
-                onClick={() => setIsProfileOpen(false)}
+                onClick={closeMemberProfile}
               >
                 <article
                   className="stage-profile-card"
                   role="dialog"
                   aria-modal="true"
                   aria-labelledby="stage-profile-name"
+                  style={{
+                    "--profile-origin-x": `${profileOrigin.x}px`,
+                    "--profile-origin-y": `${profileOrigin.y}px`,
+                  }}
                   onClick={(event) => event.stopPropagation()}
                 >
                   <button
                     ref={profileCloseButtonRef}
                     type="button"
                     className="stage-profile-close"
-                    onClick={() => setIsProfileOpen(false)}
+                    onClick={closeMemberProfile}
                     aria-label="Tutup profil"
                   >
                     ×
@@ -306,7 +344,7 @@ export default function Portfolio() {
                         ))}
                       </ul>
                     )}
-                    <a href="#team" onClick={() => setIsProfileOpen(false)}>
+                    <a href="#team" onClick={closeMemberProfile}>
                       Profil lengkap ↓
                     </a>
                   </div>
@@ -349,14 +387,15 @@ export default function Portfolio() {
             <div className="roster-name-ticker" aria-label="Daftar nama asisten">
               <div className="roster-name-ticker-track">
                 {[...teamConfig, ...teamConfig].map((member, index) => {
-                  const isCurrent = member.id === selectedMember.id;
+                  const isCurrent =
+                    hasMemberSelection && member.id === selectedMember.id;
                   const isDuplicate = index >= teamConfig.length;
                   return (
                     <button
                       key={`${member.id}-${index}`}
                       type="button"
                       className={`ticker-name-btn ${isCurrent ? "is-active" : ""}`}
-                      onClick={() => openMemberProfile(member.id)}
+                      onClick={(event) => openMemberProfile(member.id, event)}
                       aria-hidden={isDuplicate || undefined}
                       tabIndex={isDuplicate ? -1 : undefined}
                     >
