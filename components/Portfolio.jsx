@@ -10,7 +10,6 @@ import {
   Cube,
   Database,
   Files,
-  Globe,
   HardDrives,
   LockKey,
   Network,
@@ -29,7 +28,6 @@ import {
   securityCaveats,
   stackGroups,
 } from "../lib/architecture";
-import { getTechBadge } from "../lib/badges";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const getAssetUrl = (path) => {
@@ -117,7 +115,7 @@ function getMockupRosterLayout(memberId) {
     case "scania":
       return { row: 2, x: -40.5, bottom: 84, height: 350, zIndex: 22 };
     case "andi-ahsan":
-      return { row: 2, x: -29.0, bottom: 74, height: 285, scale: 0.86, zIndex: 23 };
+      return { row: 2, x: -29.0, bottom: 76, height: 350, zIndex: 23 };
     case "wanwan":
       return { row: 2, x: -17.5, bottom: 68, height: 350, zIndex: 24 };
     case "zaki":
@@ -186,33 +184,6 @@ export default function Portfolio() {
     }
   }, []);
 
-  // Draggable / swipeable viewport support for hero stage
-  const isDraggingRef = useRef(false);
-  const dragStartXRef = useRef(0);
-  const scrollLeftStartRef = useRef(0);
-  const hasMovedRef = useRef(false);
-
-  const handleStagePointerDown = (event) => {
-    if (event.pointerType === "mouse" && event.button !== 0) return;
-    isDraggingRef.current = true;
-    hasMovedRef.current = false;
-    dragStartXRef.current = event.clientX;
-    scrollLeftStartRef.current = stageScrollRef.current ? stageScrollRef.current.scrollLeft : 0;
-  };
-
-  const handleStagePointerMove = (event) => {
-    if (!isDraggingRef.current || !stageScrollRef.current) return;
-    const deltaX = event.clientX - dragStartXRef.current;
-    if (Math.abs(deltaX) > 6) {
-      hasMovedRef.current = true;
-    }
-    stageScrollRef.current.scrollLeft = scrollLeftStartRef.current - deltaX;
-  };
-
-  const handleStagePointerUp = () => {
-    isDraggingRef.current = false;
-  };
-
   const isProfileVisible = profilePhase !== "closed";
 
   useEffect(() => {
@@ -243,10 +214,6 @@ export default function Portfolio() {
   }, [profilePhase]);
 
   const openMemberProfile = (memberId, event) => {
-    if (hasMovedRef.current) {
-      hasMovedRef.current = false;
-      return;
-    }
     setSelectedMemberId(memberId);
     setHasMemberSelection(true);
 
@@ -397,10 +364,6 @@ export default function Portfolio() {
               className="arena-scroll-viewport"
               tabIndex={0}
               aria-label="Area gulir 22 personel"
-              onPointerDown={handleStagePointerDown}
-              onPointerMove={handleStagePointerMove}
-              onPointerUp={handleStagePointerUp}
-              onPointerCancel={handleStagePointerUp}
             >
               <div className="arena-lineup-container">
                 {teamConfig.map((member) => {
@@ -417,7 +380,6 @@ export default function Portfolio() {
                         "--pos-x": `${layout.x}%`,
                         "--pos-bottom": `${layout.bottom}px`,
                         "--fig-height": `${layout.height}px`,
-                        "--fig-scale": layout.scale || 1,
                         "--z-index": isProfileVisible && isSelected ? 50 : layout.zIndex,
                       }}
                       onClick={(event) => openMemberProfile(member.id, event)}
@@ -470,138 +432,27 @@ export default function Portfolio() {
                   >
                     ×
                   </button>
-
-                  <div className="stage-profile-photo-column">
-                    <div className="stage-profile-photo-frame">
-                      <img
-                        src={encodeURI(getAssetUrl(selectedMember.image))}
-                        alt={`Foto resmi ${selectedMember.name}`}
-                        className="stage-profile-photo"
-                      />
-                    </div>
-                    <div className="stage-profile-formation-tag">
-                      <span>Baris {selectedMember.row} · Posisi #{selectedMember.rowPosition}</span>
-                    </div>
-                  </div>
-
+                  <img
+                    src={encodeURI(getAssetUrl(selectedMember.image))}
+                    alt=""
+                    className="stage-profile-photo"
+                  />
                   <div className="stage-profile-content">
-                    <div className="stage-profile-header-meta">
-                      <span className="stage-profile-index">
-                        PERSONEL {String(selectedIndex + 1).padStart(2, "0")}
-                      </span>
-                      <span className={`stage-profile-lead-badge ${selectedMember.isLead ? "is-lead" : ""}`}>
-                        {selectedMember.isLead ? "Lead & System Architect" : "Personel Developer"}
-                      </span>
-                    </div>
-
-                    <h2 id="stage-profile-name" className="stage-profile-name">
-                      {selectedMember.name}
-                    </h2>
-                    <p className="stage-profile-role">{selectedMember.role}</p>
-
-                    {/* Stambuk & Email */}
-                    <div className="stage-profile-meta-grid">
-                      {selectedMember.stambuk && (
-                        <div className="stage-profile-meta-item">
-                          <span className="meta-label">Stambuk / NIM:</span>
-                          <span className="meta-value">{selectedMember.stambuk}</span>
-                        </div>
-                      )}
-                      {selectedMember.email && (
-                        <div className="stage-profile-meta-item">
-                          <span className="meta-label">Email:</span>
-                          <a href={`mailto:${selectedMember.email}`} className="meta-link">
-                            {selectedMember.email}
-                          </a>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Jobs & Keahlian */}
+                    <span className="stage-profile-index">
+                      PERSONEL {String(selectedIndex + 1).padStart(2, "0")}
+                    </span>
+                    <h2 id="stage-profile-name">{selectedMember.name}</h2>
+                    <p>{selectedMember.role}</p>
                     {selectedMember.jobs?.length > 0 && (
-                      <div className="stage-profile-jobs-wrap">
-                        <span className="meta-label">Bidang & Spesialisasi:</span>
-                        <div className="stage-profile-jobs-chips">
-                          {selectedMember.jobs.map((job) => (
-                            <span key={job} className="job-chip">
-                              {job}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
+                      <ul className="stage-profile-jobs">
+                        {selectedMember.jobs.map((job) => (
+                          <li key={job}>{job}</li>
+                        ))}
+                      </ul>
                     )}
-
-                    {/* Socials & Website Portfolio */}
-                    {selectedMember.socials &&
-                      Object.values(selectedMember.socials).some((val) => Boolean(val)) && (
-                        <div className="stage-profile-socials-wrap">
-                          <span className="meta-label">Tautan & Portofolio:</span>
-                          <div className="stage-profile-social-buttons">
-                            {selectedMember.socials.website && (
-                              <a
-                                href={selectedMember.socials.website}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="social-btn social-btn-website"
-                                aria-label={`Website & Portfolio ${selectedMember.name}`}
-                              >
-                                <Globe size={16} weight="bold" />
-                                <span>Website</span>
-                              </a>
-                            )}
-                            {selectedMember.socials.github && (
-                              <a
-                                href={selectedMember.socials.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="social-btn"
-                                aria-label="GitHub"
-                              >
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                                </svg>
-                                <span>GitHub</span>
-                              </a>
-                            )}
-                            {selectedMember.socials.instagram && (
-                              <a
-                                href={selectedMember.socials.instagram}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="social-btn"
-                                aria-label="Instagram"
-                              >
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
-                                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                                </svg>
-                                <span>Instagram</span>
-                              </a>
-                            )}
-                            {selectedMember.socials.linkedin && (
-                              <a
-                                href={selectedMember.socials.linkedin}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="social-btn"
-                                aria-label="LinkedIn"
-                              >
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                                </svg>
-                                <span>LinkedIn</span>
-                              </a>
-                            )}
-                          </div>
-                        </div>
-                      )}
-
-                    <div className="stage-profile-footer">
-                      <a href="#team" className="stage-profile-roster-link" onClick={closeMemberProfile}>
-                        Lihat profil lengkap di direktori roster ↓
-                      </a>
-                    </div>
+                    <a href="#team" onClick={closeMemberProfile}>
+                      Profil lengkap ↓
+                    </a>
                   </div>
                 </article>
               </div>
@@ -745,24 +596,15 @@ export default function Portfolio() {
               </ul>
             </div>
 
-            {activeSystem.tech && activeSystem.tech.length > 0 && (
+            {activeSystem.tech.length > 0 && (
               <div className="tech-block">
                 <h3 className="block-title">Teknologi Terintegrasi</h3>
-                <div className="tech-badge-container">
-                  {activeSystem.tech.map((t, idx) => {
-                    const badge = getTechBadge(t);
-                    return (
-                      <div key={`${t}-${idx}`} className="tech-badge-item" title={t}>
-                        <img
-                          src={badge.badgeUrl}
-                          alt={t}
-                          height="26"
-                          className="tech-badge-image"
-                          loading="lazy"
-                        />
-                      </div>
-                    );
-                  })}
+                <div className="tech-chips">
+                  {activeSystem.tech.map((t) => (
+                    <span key={t} className="tech-chip">
+                      {t}
+                    </span>
+                  ))}
                 </div>
               </div>
             )}
@@ -953,8 +795,8 @@ export default function Portfolio() {
                   <h4>Transparan terhadap risiko yang belum selesai.</h4>
                 </div>
                 <ul>
-                  {securityCaveats.filter(Boolean).map((caveat, idx) => (
-                    <li key={`${caveat.slice(0, 20)}-${idx}`}>{caveat}</li>
+                  {securityCaveats.map((caveat) => (
+                    <li key={caveat}>{caveat}</li>
                   ))}
                 </ul>
               </aside>
@@ -975,21 +817,10 @@ export default function Portfolio() {
                       <h4>{group.layer}</h4>
                     </div>
                   </header>
-                  <div className="stack-badge-list">
-                    {group.technologies.map((technology, techIdx) => {
-                      const badge = getTechBadge(technology);
-                      return (
-                        <div key={`${technology}-${techIdx}`} className="tech-badge-item" title={technology}>
-                          <img
-                            src={badge.badgeUrl}
-                            alt={technology}
-                            height="28"
-                            className="tech-badge-image"
-                            loading="lazy"
-                          />
-                        </div>
-                      );
-                    })}
+                  <div className="stack-chip-list">
+                    {group.technologies.map((technology) => (
+                      <span key={technology}>{technology}</span>
+                    ))}
                   </div>
                   <p>{group.note}</p>
                 </article>
@@ -1081,18 +912,6 @@ export default function Portfolio() {
                   <div className="spotlight-socials-block">
                     <span className="socials-block-label">Sosial Media:</span>
                     <div className="socials-links-wrap">
-                      {selectedMember.socials.website && (
-                        <a
-                          href={selectedMember.socials.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="social-btn social-btn-website"
-                          aria-label={`Website & Portofolio ${selectedMember.name}`}
-                        >
-                          <Globe size={16} weight="bold" />
-                          <span>Website</span>
-                        </a>
-                      )}
                       {selectedMember.socials.github && (
                         <a
                           href={selectedMember.socials.github}
