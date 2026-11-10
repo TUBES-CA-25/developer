@@ -2473,7 +2473,7 @@ a:focus-visible {
 }
 
 /* ==========================================================================
-   SKELETON LOADER & ESPORTS INITIALIZATION HUD
+   SKELETON LOADER & ESPORTS CYBERPUNK HOLOGRAM INITIALIZATION HUD
    ========================================================================== */
 @keyframes skeleton-shimmer {
   0% {
@@ -2484,12 +2484,21 @@ a:focus-visible {
   }
 }
 
-@keyframes hud-spin {
+@keyframes hud-spin-cw {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes hud-spin-ccw {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
   }
 }
 
@@ -2501,11 +2510,51 @@ a:focus-visible {
   50% {
     transform: scale(1.15);
     opacity: 1;
-    box-shadow: 0 0 16px var(--accent-glow);
+    box-shadow: 0 0 18px var(--accent-glow);
   }
   100% {
     transform: scale(0.85);
     opacity: 0.8;
+  }
+}
+
+@keyframes laser-sweep {
+  0% {
+    top: 5%;
+    opacity: 0.3;
+  }
+  45% {
+    top: 85%;
+    opacity: 0.9;
+  }
+  50% {
+    top: 85%;
+    opacity: 0.9;
+  }
+  95% {
+    top: 5%;
+    opacity: 0.3;
+  }
+  100% {
+    top: 5%;
+    opacity: 0.3;
+  }
+}
+
+@keyframes pod-scan {
+  0% {
+    top: 48px;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    top: calc(100% - 30px);
+    opacity: 0;
   }
 }
 
@@ -2537,7 +2586,7 @@ a:focus-visible {
   animation: skeleton-shimmer 2s infinite linear;
 }
 
-/* Fullscreen Skeleton Overlay */
+/* Fullscreen Holographic Skeleton Overlay */
 .site-skeleton-overlay {
   position: fixed;
   inset: 0;
@@ -2560,6 +2609,54 @@ a:focus-visible {
   pointer-events: none;
 }
 
+/* 4 Cyber Telemetry Corner HUDs */
+.telemetry-hud {
+  position: fixed;
+  z-index: 10000;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  color: rgba(92, 225, 230, 0.7);
+  pointer-events: none;
+  user-select: none;
+  padding: 6px 12px;
+  background: rgba(9, 15, 21, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(92, 225, 230, 0.2);
+  border-radius: 4px;
+}
+
+.telemetry-tl {
+  top: 14px;
+  left: 18px;
+}
+
+.telemetry-tr {
+  top: 14px;
+  right: 18px;
+}
+
+.telemetry-bl {
+  bottom: 14px;
+  left: 18px;
+}
+
+.telemetry-br {
+  bottom: 14px;
+  right: 18px;
+}
+
+.telemetry-bracket {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.telemetry-highlight {
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(92, 225, 230, 0.6);
+}
+
 .skeleton-container {
   width: 100%;
   max-width: 1480px;
@@ -2571,17 +2668,18 @@ a:focus-visible {
   justify-content: space-between;
 }
 
-/* Shimmer utility */
-.skeleton-shimmer {
+/* Hologram Shimmer utility */
+.hologram-shimmer {
   background: linear-gradient(
     90deg,
-    rgba(14, 23, 31, 0.8) 0%,
-    rgba(92, 225, 230, 0.12) 50%,
-    rgba(14, 23, 31, 0.8) 100%
+    rgba(14, 23, 31, 0.85) 0%,
+    rgba(92, 225, 230, 0.14) 50%,
+    rgba(14, 23, 31, 0.85) 100%
   );
   background-size: 200% 100%;
   animation: skeleton-shimmer 1.8s infinite linear;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(92, 225, 230, 0.15);
+  box-shadow: 0 0 10px rgba(92, 225, 230, 0.05);
 }
 
 /* Skeleton Header */
@@ -2591,6 +2689,7 @@ a:focus-visible {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--border);
+  padding: 0 8px;
 }
 
 .skeleton-brand {
@@ -2654,10 +2753,10 @@ a:focus-visible {
 
 .skeleton-tab-card.is-center {
   border-color: var(--border-accent);
-  box-shadow: 0 0 12px rgba(92, 225, 230, 0.15);
+  box-shadow: 0 0 16px rgba(92, 225, 230, 0.22);
 }
 
-/* Skeleton Arena Stage */
+/* Skeleton Arena Stage & Laser Scanner */
 .skeleton-arena-stage {
   flex: 1;
   min-height: 640px;
@@ -2667,106 +2766,288 @@ a:focus-visible {
   align-items: center;
   justify-content: flex-end;
   margin: 8px 0;
+  overflow: hidden;
 }
 
-.skeleton-lineup {
+.arena-laser-scanner {
   position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  overflow: hidden;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(92, 225, 230, 0.3) 15%,
+    var(--accent) 50%,
+    rgba(92, 225, 230, 0.3) 85%,
+    transparent 100%
+  );
+  box-shadow: 0 0 16px rgba(92, 225, 230, 0.8), 0 0 30px rgba(92, 225, 230, 0.4);
+  z-index: 15;
+  pointer-events: none;
+  animation: laser-sweep 4s ease-in-out infinite;
+}
+
+/* Lineup Stage dimensions */
+.hologram-lineup-stage {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1400px;
   pointer-events: none;
 }
 
-.skeleton-tier {
+/* 22 Holographic Biometric Pods */
+.hologram-figure-pod {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  left: calc(50% + var(--pos-x));
+  bottom: var(--pos-bottom);
+  transform: translateX(-50%) scale(var(--fig-scale, 1));
+  transform-origin: bottom center;
+  width: 90px;
+  height: var(--fig-height, 300px);
+  z-index: var(--z-index, 1);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hologram-pod-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Pod Corner Target Brackets */
+.pod-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: rgba(92, 225, 230, 0.3);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pod-corner-tl {
+  top: 0;
+  left: 10px;
+  border-top: 1.5px solid;
+  border-left: 1.5px solid;
+}
+
+.pod-corner-tr {
+  top: 0;
+  right: 10px;
+  border-top: 1.5px solid;
+  border-right: 1.5px solid;
+}
+
+.pod-corner-bl {
+  bottom: 24px;
+  left: 10px;
+  border-bottom: 1.5px solid;
+  border-left: 1.5px solid;
+}
+
+.pod-corner-br {
+  bottom: 24px;
+  right: 10px;
+  border-bottom: 1.5px solid;
+  border-right: 1.5px solid;
+}
+
+/* Head Targeting Reticle */
+.pod-reticle {
+  position: absolute;
+  top: 10px;
+  width: 32px;
+  height: 32px;
+  border: 1px dashed rgba(92, 225, 230, 0.35);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: flex-end;
+  font-size: 11px;
+  color: rgba(92, 225, 230, 0.5);
+  font-family: monospace;
+  transition: all 0.3s ease;
 }
 
-.skeleton-tier-3 {
-  bottom: 175px;
-  gap: 18px;
-  opacity: 0.35;
+.reticle-crosshair {
+  line-height: 1;
 }
 
-.skeleton-tier-2 {
-  bottom: 105px;
-  gap: 14px;
-  opacity: 0.5;
+/* Holographic Wireframe Body */
+.pod-body-beam {
+  position: absolute;
+  top: 48px;
+  bottom: 26px;
+  width: 58px;
+  background: linear-gradient(
+    180deg,
+    rgba(92, 225, 230, 0.08) 0%,
+    rgba(92, 225, 230, 0.02) 100%
+  );
+  border: 1px dashed rgba(92, 225, 230, 0.16);
+  border-radius: 28px 28px 6px 6px;
+  backdrop-filter: blur(2px);
+  transition: all 0.3s ease;
 }
 
-.skeleton-tier-1 {
-  bottom: 0;
-  gap: 12px;
-  opacity: 0.7;
+/* Scanning Streak */
+.pod-scan-streak {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  height: 16px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(92, 225, 230, 0.4) 50%,
+    transparent 100%
+  );
+  animation: pod-scan 2.6s ease-in-out infinite;
+  pointer-events: none;
 }
 
-.skeleton-silhouette {
-  border-radius: 40px 40px 4px 4px;
+/* Pedestal Base Ring */
+.pod-pedestal-ring {
+  position: absolute;
+  bottom: 12px;
+  width: 70px;
+  height: 18px;
+  border: 1.5px solid rgba(92, 225, 230, 0.25);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(92, 225, 230, 0.1) inset;
+  transform: rotateX(65deg);
+  transition: all 0.3s ease;
 }
 
-.silhouette-r3 {
-  width: 82px;
-  height: 380px;
+/* Pod Slot Code & Nickname Tag */
+.pod-slot-tag {
+  position: absolute;
+  bottom: -6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 8px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
-.silhouette-r2 {
-  width: 82px;
-  height: 330px;
+.pod-code {
+  color: rgba(92, 225, 230, 0.6);
+  font-weight: 700;
+  transition: color 0.3s ease;
 }
 
-.silhouette-r1 {
-  width: 86px;
-  height: 275px;
+.pod-name {
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+  max-width: 78px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease;
 }
 
-.silhouette-r1.is-lead {
-  height: 300px;
-  border-color: var(--border-accent);
-  box-shadow: 0 0 16px rgba(92, 225, 230, 0.2);
+/* ACTIVE / LOCKED BIOMETRIC POD STATE */
+.hologram-figure-pod.is-locked .pod-corner {
+  border-color: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
 }
 
-/* Cyber HUD Loader */
+.hologram-figure-pod.is-locked .pod-reticle {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 10px rgba(92, 225, 230, 0.45);
+}
+
+.hologram-figure-pod.is-locked .pod-body-beam {
+  background: linear-gradient(
+    180deg,
+    rgba(92, 225, 230, 0.16) 0%,
+    rgba(92, 225, 230, 0.04) 100%
+  );
+  border-color: rgba(92, 225, 230, 0.38);
+  box-shadow: 0 0 14px rgba(92, 225, 230, 0.12);
+}
+
+.hologram-figure-pod.is-locked .pod-pedestal-ring {
+  border-color: var(--accent);
+  box-shadow: 0 0 14px rgba(92, 225, 230, 0.4);
+}
+
+.hologram-figure-pod.is-locked .pod-code {
+  color: var(--accent);
+  text-shadow: 0 0 6px rgba(92, 225, 230, 0.6);
+}
+
+.hologram-figure-pod.is-locked .pod-name {
+  color: #fff;
+}
+
+/* LEAD POD SPECIAL GLOW */
+.hologram-figure-pod.is-lead .pod-reticle {
+  border-color: #ffd700;
+  color: #ffd700;
+}
+
+.hologram-figure-pod.is-lead .pod-code {
+  color: #ffd700;
+}
+
+/* Cyber HUD Loader Console */
 .skeleton-hud-card {
   position: relative;
-  z-index: 10;
-  margin-bottom: 140px;
-  width: 90%;
-  max-width: 440px;
-  background: rgba(9, 15, 21, 0.92);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--border-accent);
-  border-radius: 12px;
+  z-index: 25;
+  margin-bottom: 80px;
+  width: 92%;
+  max-width: 520px;
+  background: rgba(9, 15, 21, 0.94);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(92, 225, 230, 0.4);
+  border-radius: 14px;
   padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 24px rgba(92, 225, 230, 0.18);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.9),
+    0 0 30px rgba(92, 225, 230, 0.22);
 }
 
 .hud-radar-pulse {
   position: relative;
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
-.hud-ring {
+.hud-ring-outer {
   position: absolute;
   inset: 0;
-  border: 2px dashed var(--accent);
+  border: 2px dashed rgba(92, 225, 230, 0.85);
   border-radius: 50%;
-  animation: hud-spin 6s linear infinite;
+  animation: hud-spin-cw 8s linear infinite;
+}
+
+.hud-ring-inner {
+  position: absolute;
+  inset: 6px;
+  border: 1.5px dotted rgba(92, 225, 230, 0.5);
+  border-radius: 50%;
+  animation: hud-spin-ccw 5s linear infinite;
 }
 
 .hud-core-dot {
@@ -2778,7 +3059,19 @@ a:focus-visible {
 }
 
 .hud-content {
-  margin-bottom: 14px;
+  width: 100%;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hud-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 
 .hud-badge {
@@ -2788,36 +3081,77 @@ a:focus-visible {
   letter-spacing: 1.5px;
   color: var(--accent);
   background: var(--accent-dim);
-  border: 1px solid rgba(92, 225, 230, 0.3);
+  border: 1px solid rgba(92, 225, 230, 0.4);
+  padding: 3px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.hud-telemetry-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   padding: 3px 8px;
   border-radius: 4px;
-  margin-bottom: 6px;
-  text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .hud-title {
-  margin: 0;
-  font-size: 14px;
+  margin: 0 0 10px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--fg);
   letter-spacing: 0.3px;
 }
 
-.hud-progress-track {
+.hud-terminal-log {
   width: 100%;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(92, 225, 230, 0.15);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  text-align: left;
   overflow: hidden;
-  margin-bottom: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.hud-progress-fill {
+.hud-terminal-log code {
+  color: var(--accent);
+}
+
+/* 22 Segmented Micro-Cells Progress Bar */
+.hud-segmented-bar {
+  display: grid;
+  grid-template-columns: repeat(22, 1fr);
+  gap: 4px;
+  width: 100%;
+  height: 14px;
+  margin-bottom: 12px;
+  padding: 2px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(92, 225, 230, 0.25);
+  border-radius: 4px;
+}
+
+.hud-cell {
   height: 100%;
-  background: linear-gradient(90deg, #1fa2ff, var(--accent));
-  box-shadow: 0 0 10px var(--accent);
-  border-radius: 999px;
-  transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hud-cell.is-filled {
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
 }
 
 .hud-footer {
@@ -2826,17 +3160,31 @@ a:focus-visible {
   align-items: center;
   justify-content: space-between;
   font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.hud-nodes-counter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.hud-nodes-value {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.hud-pct-wrap {
+  display: flex;
+  align-items: center;
 }
 
 .hud-pct {
   font-weight: 800;
   color: var(--accent);
-  font-family: monospace;
-}
-
-.hud-status {
-  color: var(--muted);
-  font-size: 11px;
+  font-size: 14px;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 /* Skeleton Bottom Title */
@@ -2861,6 +3209,16 @@ a:focus-visible {
 }
 
 @media (max-width: 768px) {
+  .telemetry-hud {
+    font-size: 8px;
+    padding: 4px 8px;
+  }
+
+  .telemetry-bl,
+  .telemetry-br {
+    display: none;
+  }
+
   .skeleton-nav {
     display: none;
   }
@@ -2879,34 +3237,31 @@ a:focus-visible {
     min-height: 520px;
   }
 
-  .skeleton-tier-3 {
-    bottom: 140px;
-    gap: 8px;
+  .hologram-figure-pod {
+    width: 70px;
   }
 
-  .skeleton-tier-2 {
-    bottom: 80px;
-    gap: 6px;
-  }
-
-  .silhouette-r3 {
-    width: 60px;
-    height: 300px;
-  }
-
-  .silhouette-r2 {
-    width: 60px;
-    height: 260px;
-  }
-
-  .silhouette-r1 {
-    width: 65px;
-    height: 220px;
+  .pod-body-beam {
+    width: 44px;
   }
 
   .skeleton-hud-card {
-    margin-bottom: 90px;
+    margin-bottom: 60px;
     padding: 18px;
+  }
+
+  .hud-segmented-bar {
+    gap: 2px;
+    height: 10px;
+  }
+
+  .hud-title {
+    font-size: 13px;
+  }
+
+  .hud-terminal-log {
+    font-size: 10px;
+    padding: 6px 8px;
   }
 }
 

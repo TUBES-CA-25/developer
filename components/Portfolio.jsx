@@ -156,10 +156,20 @@ function getMockupRosterLayout(memberId) {
 }
 
 /**
- * Esports Cyber Skeleton Loader:
- * Displayed on initial load until all 22 personnel figures and assets are fully cached & rendered in memory.
+ * Esports Cyberpunk Hologram Initialization Loader:
+ * A high-tech hologram arena with live 22-slot biometric wireframe pods,
+ * laser scanner sweep, telemetry corner brackets, and 22 segmented micro-cells.
  */
-function HeroSkeleton({ progress, isFadingOut }) {
+function HeroSkeleton({ progress, loadedCount, totalCount, isFadingOut }) {
+  const telemetryMessage =
+    progress < 25
+      ? "> INITIALIZING PROTOCOL // FIKOM UMI 2026..."
+      : progress < 55
+        ? `> SYNCING BIOMETRIC ROSTER: ${loadedCount}/${totalCount} NODES VERIFIED...`
+        : progress < 85
+          ? "> CALIBRATING 3-TIER ARENA STAGE PERSPECTIVE..."
+          : "> ROSTER MATRIX STABILIZED. WELCOME TO ICLABS.";
+
   return (
     <div
       className={`site-skeleton-overlay ${isFadingOut ? "is-fading-out" : ""}`}
@@ -167,88 +177,153 @@ function HeroSkeleton({ progress, isFadingOut }) {
       aria-live="polite"
       aria-label="Memuat seluruh data dan personel ICLabs"
     >
+      {/* 4 Cyber Telemetry Corner HUDs */}
+      <div className="telemetry-hud telemetry-tl" aria-hidden="true">
+        <span className="telemetry-bracket">[+]</span> ICLABS_OS // STAGE INITIALIZATION
+      </div>
+      <div className="telemetry-hud telemetry-tr" aria-hidden="true">
+        SYSTEM BUFFER: <span className="telemetry-highlight">{loadedCount}/{totalCount}</span> NODES [SYNCED]
+      </div>
+      <div className="telemetry-hud telemetry-bl" aria-hidden="true">
+        NODE: <span className="telemetry-highlight">FIKOM_UMI_MAKASSAR</span> // WITA
+      </div>
+      <div className="telemetry-hud telemetry-br" aria-hidden="true">
+        SECURE_CORE: <span className="telemetry-highlight">AES_GCM_256</span> // 144Hz
+      </div>
+
       <div className="skeleton-container">
-        {/* Skeleton Header */}
+        {/* Hologram Header */}
         <header className="skeleton-header">
           <div className="skeleton-brand">
-            <div className="skeleton-shimmer skeleton-logo-box" />
+            <div className="hologram-shimmer skeleton-logo-box" />
             <div className="skeleton-text-group">
-              <div className="skeleton-shimmer skeleton-title-bar" />
-              <div className="skeleton-shimmer skeleton-subtitle-bar" />
+              <div className="hologram-shimmer skeleton-title-bar" />
+              <div className="hologram-shimmer skeleton-subtitle-bar" />
             </div>
           </div>
           <div className="skeleton-nav">
-            <div className="skeleton-shimmer skeleton-nav-pill" />
-            <div className="skeleton-shimmer skeleton-nav-pill" />
-            <div className="skeleton-shimmer skeleton-nav-pill" />
+            <div className="hologram-shimmer skeleton-nav-pill" />
+            <div className="hologram-shimmer skeleton-nav-pill" />
+            <div className="hologram-shimmer skeleton-nav-pill" />
           </div>
         </header>
 
-        {/* Skeleton Systems Tabs */}
+        {/* Hologram Systems Tabs */}
         <div className="skeleton-tabs-bar">
-          <div className="skeleton-shimmer skeleton-tab-card" />
-          <div className="skeleton-shimmer skeleton-tab-card" />
-          <div className="skeleton-shimmer skeleton-tab-card is-center" />
-          <div className="skeleton-shimmer skeleton-tab-card" />
-          <div className="skeleton-shimmer skeleton-tab-card" />
+          <div className="hologram-shimmer skeleton-tab-card" />
+          <div className="hologram-shimmer skeleton-tab-card" />
+          <div className="hologram-shimmer skeleton-tab-card is-center" />
+          <div className="hologram-shimmer skeleton-tab-card" />
+          <div className="hologram-shimmer skeleton-tab-card" />
         </div>
 
-        {/* Skeleton Stage Arena with 3-tier Silhouettes */}
+        {/* Hologram Arena Stage with 22 Exact-Coordinate Pods */}
         <div className="skeleton-arena-stage">
-          <div className="skeleton-lineup">
-            {/* Row 3 (7 Silhouettes) */}
-            <div className="skeleton-tier skeleton-tier-3">
-              {[...Array(7)].map((_, i) => (
-                <div key={`sk-r3-${i}`} className="skeleton-shimmer skeleton-silhouette silhouette-r3" />
-              ))}
-            </div>
-            {/* Row 2 (8 Silhouettes) */}
-            <div className="skeleton-tier skeleton-tier-2">
-              {[...Array(8)].map((_, i) => (
-                <div key={`sk-r2-${i}`} className="skeleton-shimmer skeleton-silhouette silhouette-r2" />
-              ))}
-            </div>
-            {/* Row 1 (7 Silhouettes) */}
-            <div className="skeleton-tier skeleton-tier-1">
-              {[...Array(7)].map((_, i) => (
+          {/* Moving Laser Scanner Beam */}
+          <div className="arena-laser-scanner" aria-hidden="true" />
+
+          {/* Lineup Container matching real stage dimensions */}
+          <div className="arena-lineup-container hologram-lineup-stage">
+            {teamConfig.map((member, index) => {
+              const layout = getMockupRosterLayout(member.id);
+              const isLead = layout.isLead;
+              const isLocked = index < loadedCount;
+
+              return (
                 <div
-                  key={`sk-r1-${i}`}
-                  className={`skeleton-shimmer skeleton-silhouette silhouette-r1 ${i === 3 ? "is-lead" : ""}`}
+                  key={member.id}
+                  className={`hologram-figure-pod row-${layout.row} ${isLead ? "is-lead" : ""} ${isLocked ? "is-locked" : ""}`}
+                  style={{
+                    "--pos-x": `${layout.x}%`,
+                    "--pos-bottom": `${layout.bottom}px`,
+                    "--fig-height": `${layout.height}px`,
+                    "--fig-scale": layout.scale || 1,
+                    "--z-index": layout.zIndex,
+                  }}
+                  aria-hidden="true"
+                >
+                  <div className="hologram-pod-inner">
+                    {/* Scanner Corner Brackets */}
+                    <div className="pod-corner pod-corner-tl" />
+                    <div className="pod-corner pod-corner-tr" />
+                    <div className="pod-corner pod-corner-bl" />
+                    <div className="pod-corner pod-corner-br" />
+
+                    {/* Head Targeting Reticle */}
+                    <div className="pod-reticle">
+                      <span className="reticle-crosshair">+</span>
+                    </div>
+
+                    {/* Holographic Wireframe Body & Scan Streak */}
+                    <div className="pod-body-beam" />
+                    <div className="pod-scan-streak" />
+
+                    {/* Pedestal Base Ring */}
+                    <div className="pod-pedestal-ring" />
+
+                    {/* Slot Code & Nickname Tag */}
+                    <div className="pod-slot-tag">
+                      <span className="pod-code">
+                        {isLead ? "LEAD" : `P-${String(index + 1).padStart(2, "0")}`}
+                      </span>
+                      <span className="pod-name">
+                        {(member.nickname || member.name).toUpperCase()}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Central Cyber Command Console HUD */}
+          <div className="skeleton-hud-card">
+            {/* Concentric Rotating Cyber Radar */}
+            <div className="hud-radar-pulse">
+              <div className="hud-ring-outer" />
+              <div className="hud-ring-inner" />
+              <div className="hud-core-dot" />
+            </div>
+
+            <div className="hud-content">
+              <div className="hud-badge-row">
+                <span className="hud-badge">HOLOGRAPHIC STAGE INIT</span>
+                <span className="hud-telemetry-tag">PROTOCOL_V2.6</span>
+              </div>
+              <p className="hud-title">Menyiapkan Ekosistem & 22 Personel ICLabs</p>
+              <div className="hud-terminal-log">
+                <code>{telemetryMessage}</code>
+              </div>
+            </div>
+
+            {/* 22 Segmented Micro-Cells Progress Bar */}
+            <div className="hud-segmented-bar" aria-label="22 Personel Loading Cells">
+              {teamConfig.map((m, idx) => (
+                <div
+                  key={m.id}
+                  className={`hud-cell ${idx < loadedCount ? "is-filled" : ""}`}
+                  title={`${m.name}: ${idx < loadedCount ? "Loaded" : "Loading"}`}
                 />
               ))}
             </div>
-          </div>
 
-          {/* High-Tech Cyber HUD Loader */}
-          <div className="skeleton-hud-card">
-            <div className="hud-radar-pulse">
-              <div className="hud-ring" />
-              <div className="hud-core-dot" />
-            </div>
-            <div className="hud-content">
-              <span className="hud-badge">INITIALIZING SYSTEM CORE</span>
-              <p className="hud-title">Menyiapkan Data & 22 Personel ICLabs</p>
-            </div>
-            <div className="hud-progress-track">
-              <div className="hud-progress-fill" style={{ width: `${progress}%` }} />
-            </div>
+            {/* HUD Footer Information */}
             <div className="hud-footer">
-              <span className="hud-pct">{progress}%</span>
-              <span className="hud-status">
-                {progress < 40
-                  ? "Mengunduh aset visual..."
-                  : progress < 85
-                  ? "Merender panggung & formasi..."
-                  : "Menyinkronkan ekosistem..."}
-              </span>
+              <div className="hud-nodes-counter">
+                <span className="hud-nodes-label">ROSTER NODES:</span>
+                <span className="hud-nodes-value">{loadedCount} / {totalCount}</span>
+              </div>
+              <div className="hud-pct-wrap">
+                <span className="hud-pct">{progress}%</span>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Skeleton Bottom Title */}
         <div className="skeleton-bottom-bar">
-          <div className="skeleton-shimmer skeleton-big-title" />
-          <div className="skeleton-shimmer skeleton-sub-title" />
+          <div className="hologram-shimmer skeleton-big-title" />
+          <div className="hologram-shimmer skeleton-sub-title" />
         </div>
       </div>
     </div>
@@ -258,6 +333,7 @@ function HeroSkeleton({ progress, isFadingOut }) {
 export default function Portfolio() {
   const [isReady, setIsReady] = useState(false);
   const [loadProgress, setLoadProgress] = useState(0);
+  const [loadedCount, setLoadedCount] = useState(0);
   const [skeletonMounted, setSkeletonMounted] = useState(true);
 
   const [activeSystemId, setActiveSystemId] = useState("integration");
@@ -289,15 +365,16 @@ export default function Portfolio() {
       ...teamConfig.map((m) => getAssetUrl(m.image)),
     ];
 
-    let loadedCount = 0;
+    let currentLoaded = 0;
     const total = imageSources.length;
 
     const notifyLoad = () => {
-      loadedCount++;
-      const percent = Math.min(100, Math.round((loadedCount / total) * 100));
+      currentLoaded++;
       if (!isCancelled) {
+        setLoadedCount(Math.min(teamConfig.length, currentLoaded));
+        const percent = Math.min(100, Math.round((currentLoaded / total) * 100));
         setLoadProgress(percent);
-        if (loadedCount >= total) {
+        if (currentLoaded >= total) {
           setTimeout(() => {
             if (!isCancelled) {
               setIsReady(true);
@@ -313,6 +390,7 @@ export default function Portfolio() {
     // Safety fallback timeout: never block longer than 2.2s
     const fallbackId = setTimeout(() => {
       if (!isCancelled) {
+        setLoadedCount(teamConfig.length);
         setLoadProgress(100);
         setIsReady(true);
         setTimeout(() => {
@@ -459,696 +537,474 @@ export default function Portfolio() {
   return (
     <>
       {skeletonMounted && (
-        <HeroSkeleton progress={loadProgress} isFadingOut={isReady} />
+        <HeroSkeleton
+          progress={loadProgress}
+          loadedCount={loadedCount}
+          totalCount={teamConfig.length}
+          isFadingOut={isReady}
+        />
       )}
       <main
         id="top"
         className={`site-canvas main-content-transition ${isReady ? "is-revealed" : "is-concealed"}`}
       >
-      <a href="#project-detail" className="skip-link">
-        Lewati ke detail sistem
-      </a>
+        <a href="#project-detail" className="skip-link">
+          Lewati ke detail sistem
+        </a>
 
-      {/* ====================================================================
+        {/* ====================================================================
           FULL-SCREEN ESPORTS ROSTER HERO (layouts.png reference)
           ==================================================================== */}
-      <section className="esports-hero-screen" aria-label="Official Esports Roster Showcase">
-        {/* Top Header */}
-        <header className="site-header">
-          <a className="brand" href="#top" aria-label="ICLabs Developer Collective - Beranda">
-            <img
-              src={getAssetUrl("/images/iclabs-logo.png")}
-              alt="Logo ICLabs"
-              width="36"
-              height="36"
-              className="brand-logo"
-            />
-            <div className="brand-text">
-              <span className="brand-title">{labConfig.name}</span>
-              <span className="brand-subtitle">Developer Collective</span>
-            </div>
-          </a>
+        <section className="esports-hero-screen" aria-label="Official Esports Roster Showcase">
+          {/* Top Header */}
+          <header className="site-header">
+            <a className="brand" href="#top" aria-label="ICLabs Developer Collective - Beranda">
+              <img
+                src={getAssetUrl("/images/iclabs-logo.png")}
+                alt="Logo ICLabs"
+                width="36"
+                height="36"
+                className="brand-logo"
+              />
+              <div className="brand-text">
+                <span className="brand-title">{labConfig.name}</span>
+                <span className="brand-subtitle">Developer Collective</span>
+              </div>
+            </a>
 
-          {/* <div className="header-meta-badge">
+            {/* <div className="header-meta-badge">
             <span className="live-dot" aria-hidden="true" />
             <span className="meta-text">
               {labConfig.totalMembers} Personnel Official Roster · {labConfig.faculty}
             </span>
           </div> */}
 
-          <nav className="header-nav" aria-label="Navigasi Utama">
-            <a href="#project-detail" className="nav-link">
-              Sistem
-            </a>
-            <a href="#team" className="nav-link">
-              Roster Lengkap
-            </a>
-            <a href="#about" className="nav-link nav-link-cta">
-              Tentang Lab
-            </a>
-          </nav>
-        </header>
+            <nav className="header-nav" aria-label="Navigasi Utama">
+              <a href="#project-detail" className="nav-link">
+                Sistem
+              </a>
+              <a href="#team" className="nav-link">
+                Roster Lengkap
+              </a>
+              <a href="#about" className="nav-link nav-link-cta">
+                Tentang Lab
+              </a>
+            </nav>
+          </header>
 
-        {/* ──────────────────────────────────────────────────────────────────
+          {/* ──────────────────────────────────────────────────────────────────
             TOP SYSTEMS TABS (Sesuai 5 kotak atas di layouts.png):
             [sistem] [sistem] [INTEGRATION (Tengah)] [sistem] [sistem]
             ────────────────────────────────────────────────────────────────── */}
-        <div className="esports-top-systems-bar" aria-label="Pilih Sistem Terintegrasi">
-          <div className="systems-marquee">
-            <div className="systems-tabs-container">
-              {[...systemsConfig, ...systemsConfig].map((sys, index) => {
-                const isActive = sys.id === activeSystemId;
-                const isCenter = sys.id === "integration";
-                const isDuplicate = index >= systemsConfig.length;
-                return (
-                  <button
-                    key={`${sys.id}-${index}`}
-                    type="button"
-                    className={`system-tab-card ${isActive ? "is-active" : ""} ${isCenter ? "is-center-system" : ""}`}
-                    onClick={() => setActiveSystemId(sys.id)}
-                    aria-pressed={isActive}
-                    aria-hidden={isDuplicate || undefined}
-                    tabIndex={isDuplicate ? -1 : undefined}
-                  >
-                    <span className="tab-number">{sys.number}</span>
-                    <span className="tab-label">{sys.label}</span>
-                    {sys.url && (
-                      <span className="tab-live-badge" title="Tersedia tautan live">
-                        ●
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* ──────────────────────────────────────────────────────────────────
-            MAIN ARENA STAGE (Bingkai Roster Persegi Panjang di layouts.png)
-            ────────────────────────────────────────────────────────────────── */}
-        <div className="esports-arena-wrapper">
-          <div
-            ref={stageRef}
-            className={`esports-arena-stage ${isProfileVisible ? "is-profile-visible" : ""}`}
-            aria-label="Panggung Roster 22 Anggota ICLabs"
-          >
-            {/* Atmospheric Stage FX */}
-            <div className="arena-backdrop-grid" aria-hidden="true" />
-            <div className="arena-smoke-overlay" aria-hidden="true" />
-            <div className="arena-ember-glow" aria-hidden="true" />
-
-            {/* Scrollable Viewport for 22 Roster Figures */}
-            <div
-              id="arena-stage-scroll"
-              ref={stageScrollRef}
-              className="arena-scroll-viewport"
-              tabIndex={0}
-              aria-label="Area gulir 22 personel"
-              onPointerDown={handleStagePointerDown}
-              onPointerMove={handleStagePointerMove}
-              onPointerUp={handleStagePointerUp}
-              onPointerCancel={handleStagePointerUp}
-            >
-              <div className="arena-lineup-container">
-                {teamConfig.map((member) => {
-                  const layout = getMockupRosterLayout(member.id);
-                  const isSelected = selectedMemberId === member.id;
-                  const isLead = layout.isLead;
-
+          <div className="esports-top-systems-bar" aria-label="Pilih Sistem Terintegrasi">
+            <div className="systems-marquee">
+              <div className="systems-tabs-container">
+                {[...systemsConfig, ...systemsConfig].map((sys, index) => {
+                  const isActive = sys.id === activeSystemId;
+                  const isCenter = sys.id === "integration";
+                  const isDuplicate = index >= systemsConfig.length;
                   return (
                     <button
-                      key={member.id}
+                      key={`${sys.id}-${index}`}
                       type="button"
-                      className={`roster-player-figure row-${layout.row} ${isLead ? "figure-captain" : ""} ${isProfileVisible && isSelected ? "is-focused" : ""}`}
-                      style={{
-                        "--pos-x": `${layout.x}%`,
-                        "--pos-bottom": `${layout.bottom}px`,
-                        "--fig-height": `${layout.height}px`,
-                        "--fig-scale": layout.scale || 1,
-                        "--z-index": isProfileVisible && isSelected ? 50 : layout.zIndex,
-                      }}
-                      onClick={(event) => openMemberProfile(member.id, event)}
-                      aria-label={`Pilih asisten ${member.name}`}
-                      aria-pressed={isSelected}
-                    >
-                      <div className="figure-photo-wrap">
-                        <img
-                          src={encodeURI(getAssetUrl(member.image))}
-                          alt={`Foto ${member.name}`}
-                          loading={layout.row <= 2 ? "eager" : "lazy"}
-                          className="figure-photo"
-                        />
-                      </div>
-
-                      <div className="esports-player-badge" aria-hidden="true">
-                        <span className="badge-name">
-                          - {(member.nickname || member.name).toUpperCase()} -
-                        </span>
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {isProfileVisible && (
-              <div
-                className={`stage-profile-scrim is-${profilePhase}`}
-                role="presentation"
-                onClick={closeMemberProfile}
-              >
-                <article
-                  className="stage-profile-card"
-                  role="dialog"
-                  aria-modal="true"
-                  aria-labelledby="stage-profile-name"
-                  style={{
-                    "--profile-origin-x": `${profileOrigin.x}px`,
-                    "--profile-origin-y": `${profileOrigin.y}px`,
-                  }}
-                  onClick={(event) => event.stopPropagation()}
-                >
-                  <button
-                    ref={profileCloseButtonRef}
-                    type="button"
-                    className="stage-profile-close"
-                    onClick={closeMemberProfile}
-                    aria-label="Tutup profil"
-                  >
-                    ×
-                  </button>
-
-                  <div className="stage-profile-photo-column">
-                    <div className="stage-profile-photo-frame">
-                      <img
-                        src={encodeURI(getAssetUrl(selectedMember.image))}
-                        alt={`Foto resmi ${selectedMember.name}`}
-                        className="stage-profile-photo"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="stage-profile-content">
-                    <div className="stage-profile-header-meta">
-                      <span className="stage-profile-index">
-                        PERSONEL {String(selectedIndex + 1).padStart(2, "0")}
-                      </span>
-                      <span className={`stage-profile-lead-badge ${selectedMember.isLead ? "is-lead" : ""}`}>
-                        {selectedMember.isLead ? "Lead & System Architect" : "Personel Developer"}
-                      </span>
-                    </div>
-
-                    <h2 id="stage-profile-name" className="stage-profile-name">
-                      {selectedMember.name}
-                    </h2>
-                    <p className="stage-profile-role">{selectedMember.role}</p>
-
-                    {/* Stambuk & Email */}
-                    <div className="stage-profile-meta-grid">
-                      {selectedMember.stambuk && (
-                        <div className="stage-profile-meta-item">
-                          <span className="meta-label">Stambuk / NIM:</span>
-                          <span className="meta-value">{selectedMember.stambuk}</span>
-                        </div>
-                      )}
-                      {selectedMember.email && (
-                        <div className="stage-profile-meta-item">
-                          <span className="meta-label">Email:</span>
-                          <a href={`mailto:${selectedMember.email}`} className="meta-link">
-                            {selectedMember.email}
-                          </a>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Jobs & Keahlian */}
-                    {selectedMember.jobs?.length > 0 && (
-                      <div className="stage-profile-jobs-wrap">
-                        <span className="meta-label">Bidang & Spesialisasi:</span>
-                        <div className="stage-profile-jobs-chips">
-                          {selectedMember.jobs.map((job) => (
-                            <span key={job} className="job-chip">
-                              {job}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Socials & Website Portfolio */}
-                    {selectedMember.socials &&
-                      Object.values(selectedMember.socials).some((val) => Boolean(val)) && (
-                        <div className="stage-profile-socials-wrap">
-                          <span className="meta-label">Tautan & Portofolio:</span>
-                          <div className="stage-profile-social-buttons">
-                            {selectedMember.socials.website && (
-                              <a
-                                href={selectedMember.socials.website}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="social-btn social-btn-website"
-                                aria-label={`Website & Portfolio ${selectedMember.name}`}
-                              >
-                                <Globe size={16} weight="bold" />
-                                <span>Profile</span>
-                              </a>
-                            )}
-                            {selectedMember.socials.github && (
-                              <a
-                                href={selectedMember.socials.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="social-btn"
-                                aria-label="GitHub"
-                              >
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                                </svg>
-                                <span>GitHub</span>
-                              </a>
-                            )}
-                            {selectedMember.socials.instagram && (
-                              <a
-                                href={selectedMember.socials.instagram}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="social-btn"
-                                aria-label="Instagram"
-                              >
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
-                                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                                </svg>
-                                <span>Instagram</span>
-                              </a>
-                            )}
-                            {selectedMember.socials.linkedin && (
-                              <a
-                                href={selectedMember.socials.linkedin}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="social-btn"
-                                aria-label="LinkedIn"
-                              >
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                                </svg>
-                                <span>LinkedIn</span>
-                              </a>
-                            )}
-                          </div>
-                        </div>
-                      )}
-
-                    <div className="stage-profile-footer">
-                      <a href="#team" className="stage-profile-roster-link" onClick={closeMemberProfile}>
-                        Lihat profil lengkap di direktori roster ↓
-                      </a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-            )}
-
-            <div className="arena-mobile-cue" aria-hidden="true">
-              <span>Geser untuk menjelajahi 22 personel ↔</span>
-            </div>
-          </div>
-        </div>
-
-        {/* ──────────────────────────────────────────────────────────────────
-            BOTTOM TITLE & TICKER (Teks "Developer By Iclabs" di Bawah Bingkai)
-            ────────────────────────────────────────────────────────────────── */}
-        <div className="esports-bottom-section">
-          {/* Main Title below stage matching layouts.png */}
-          <div className="esports-main-title-wrap">
-            <h1 className="esports-display-title">
-              DEVELOPER <span className="text-accent">BY ICLABS</span>
-            </h1>
-            <p className="esports-display-sub">
-              {labConfig.faculty} · {labConfig.university} · Season {labConfig.season}
-            </p>
-          </div>
-
-          {/* Bottom HUD Bar & Roster Name Ticker */}
-          <div className="esports-bottom-bar">
-            {/* Active Player HUD */}
-            <div className="hud-player-focus" aria-live="polite">
-              <span className="hud-focus-pill">
-                [{selectedIndex + 1}/{teamConfig.length}]
-              </span>
-              <strong className="hud-name">{selectedMember.name}</strong>
-              <span className="hud-role">· {selectedMember.role}</span>
-            </div>
-
-            {/* Horizontal Roster Name Ticker */}
-            <div className="roster-name-ticker" aria-label="Daftar nama asisten">
-              <div className="roster-name-ticker-track">
-                {[...teamConfig, ...teamConfig].map((member, index) => {
-                  const isCurrent =
-                    hasMemberSelection && member.id === selectedMember.id;
-                  const isDuplicate = index >= teamConfig.length;
-                  return (
-                    <button
-                      key={`${member.id}-${index}`}
-                      type="button"
-                      className={`ticker-name-btn ${isCurrent ? "is-active" : ""}`}
-                      onClick={(event) => openMemberProfile(member.id, event)}
+                      className={`system-tab-card ${isActive ? "is-active" : ""} ${isCenter ? "is-center-system" : ""}`}
+                      onClick={() => setActiveSystemId(sys.id)}
+                      aria-pressed={isActive}
                       aria-hidden={isDuplicate || undefined}
                       tabIndex={isDuplicate ? -1 : undefined}
                     >
-                      - {(member.nickname || member.name).toUpperCase()} -
+                      <span className="tab-number">{sys.number}</span>
+                      <span className="tab-label">{sys.label}</span>
+                      {sys.url && (
+                        <span className="tab-live-badge" title="Tersedia tautan live">
+                          ●
+                        </span>
+                      )}
                     </button>
                   );
                 })}
               </div>
             </div>
-
-            {/* Quick Actions */}
-            <div className="hud-actions">
-              {activeSystem.url && (
-                <a
-                  href={activeSystem.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hud-launch-btn"
-                  title={`Buka ${activeSystem.label}`}
-                >
-                  Buka Sistem ↗
-                </a>
-              )}
-              <a href="#architecture" className="hud-detail-cta">
-                Detail Arsitektur ↓
-              </a>
-            </div>
           </div>
-        </div>
-      </section>
 
-      {/* ====================================================================
-          SECTION 2: PROJECT DETAIL (Integrated Systems Architecture)
-          ==================================================================== */}
-      <section
-        className="project-detail-section"
-        id="project-detail"
-        aria-labelledby="project-title"
-      >
-        <div className="detail-grid">
-          <div className="detail-content">
-            <div className="detail-header-block">
-              <span className="section-pill-tag">DETAIL ARSITEKTUR SISTEM</span>
-              <h2 id="project-title" className="project-heading">
-                {activeSystem.title.split("\n").map((line, i) => (
-                  <span key={line} className={i > 0 ? "heading-secondary" : ""}>
-                    {line}
-                    <br />
-                  </span>
-                ))}
-              </h2>
-              <div className="project-category-meta-row">
-                <span className="project-category-badge">{activeSystem.category}</span>
-                {activeSystem.url ? (
-                  <a
-                    href={activeSystem.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="system-external-link"
-                  >
-                    Kunjungi Portal: {activeSystem.url.replace(/^https?:\/\//, "")} ↗
-                  </a>
-                ) : (
-                  <span className="system-internal-badge">Modul Internal API</span>
-                )}
-              </div>
-              <p className="project-description">{activeSystem.description}</p>
-            </div>
+          {/* ──────────────────────────────────────────────────────────────────
+            MAIN ARENA STAGE (Bingkai Roster Persegi Panjang di layouts.png)
+            ────────────────────────────────────────────────────────────────── */}
+          <div className="esports-arena-wrapper">
+            <div
+              ref={stageRef}
+              className={`esports-arena-stage ${isProfileVisible ? "is-profile-visible" : ""}`}
+              aria-label="Panggung Roster 22 Anggota ICLabs"
+            >
+              {/* Atmospheric Stage FX */}
+              <div className="arena-backdrop-grid" aria-hidden="true" />
+              <div className="arena-smoke-overlay" aria-hidden="true" />
+              <div className="arena-ember-glow" aria-hidden="true" />
 
-            <div className="features-block">
-              <h3 className="block-title">Fitur & Arsitektur Utama</h3>
-              <ul className="features-list">
-                {activeSystem.features.map((feat) => (
-                  <li key={feat} className="feature-item">
-                    <svg
-                      width="15"
-                      height="15"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="feature-icon"
-                      aria-hidden="true"
-                    >
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    <span>{feat}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              {/* Scrollable Viewport for 22 Roster Figures */}
+              <div
+                id="arena-stage-scroll"
+                ref={stageScrollRef}
+                className="arena-scroll-viewport"
+                tabIndex={0}
+                aria-label="Area gulir 22 personel"
+                onPointerDown={handleStagePointerDown}
+                onPointerMove={handleStagePointerMove}
+                onPointerUp={handleStagePointerUp}
+                onPointerCancel={handleStagePointerUp}
+              >
+                <div className="arena-lineup-container">
+                  {teamConfig.map((member) => {
+                    const layout = getMockupRosterLayout(member.id);
+                    const isSelected = selectedMemberId === member.id;
+                    const isLead = layout.isLead;
 
-            {activeSystem.tech && activeSystem.tech.length > 0 && (
-              <div className="tech-block">
-                <h3 className="block-title">Teknologi Terintegrasi</h3>
-                <div className="tech-badge-container">
-                  {activeSystem.tech.map((t, idx) => {
-                    const badge = getTechBadge(t);
                     return (
-                      <div key={`${t}-${idx}`} className="tech-badge-item" title={t}>
-                        <img
-                          src={badge.badgeUrl}
-                          alt={t}
-                          height="26"
-                          className="tech-badge-image"
-                          loading="lazy"
-                        />
-                      </div>
+                      <button
+                        key={member.id}
+                        type="button"
+                        className={`roster-player-figure row-${layout.row} ${isLead ? "figure-captain" : ""} ${isProfileVisible && isSelected ? "is-focused" : ""}`}
+                        style={{
+                          "--pos-x": `${layout.x}%`,
+                          "--pos-bottom": `${layout.bottom}px`,
+                          "--fig-height": `${layout.height}px`,
+                          "--fig-scale": layout.scale || 1,
+                          "--z-index": isProfileVisible && isSelected ? 50 : layout.zIndex,
+                        }}
+                        onClick={(event) => openMemberProfile(member.id, event)}
+                        aria-label={`Pilih asisten ${member.name}`}
+                        aria-pressed={isSelected}
+                      >
+                        <div className="figure-photo-wrap">
+                          <img
+                            src={encodeURI(getAssetUrl(member.image))}
+                            alt={`Foto ${member.name}`}
+                            loading={layout.row <= 2 ? "eager" : "lazy"}
+                            className="figure-photo"
+                          />
+                        </div>
+
+                        <div className="esports-player-badge" aria-hidden="true">
+                          <span className="badge-name">
+                            - {(member.nickname || member.name).toUpperCase()} -
+                          </span>
+                        </div>
+                      </button>
                     );
                   })}
                 </div>
               </div>
-            )}
 
-            {activeSystem.note && (
-              <div className="project-note-box">
-                <span className="note-label">Catatan Integrasi:</span>
-                <p className="note-text">{activeSystem.note}</p>
-              </div>
-            )}
-          </div>
-
-          <div className="detail-visual-column">
-            <figure className="detail-figure">
-              <img
-                src={getAssetUrl("/images/gedung-fikom-malam.webp")}
-                alt="Gedung Fakultas Ilmu Komputer pada malam hari"
-                loading="lazy"
-                className="figure-image"
-              />
-              <figcaption className="figure-caption">
-                <span className="caption-sub">Pusat operasional laboratorium</span>
-                <strong className="caption-main">ICLabs Fikom</strong>
-                <span className="caption-desc">
-                  {labConfig.faculty} · Ekosistem praktikum, riset, dan rekrutmen terpadu.
-                </span>
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      {/* ====================================================================
-          SECTION 3: VERIFIED INTEGRATION ARCHITECTURE
-          ==================================================================== */}
-      <section
-        id="architecture"
-        className="architecture-section"
-        aria-labelledby="architecture-heading"
-      >
-        <div className="architecture-section-heading">
-          <div>
-            <span className="section-pill-tag">SISTEM TERINTEGRASI ICLABS</span>
-            <h2 id="architecture-heading" className="architecture-heading">
-              Satu inti.<br />
-              <span className="text-accent">Banyak permukaan.</span>
-            </h2>
-            <p>
-              Peta teknis untuk melihat batas tanggung jawab, bukan sekadar
-              daftar teknologi. Ringkasan ini diturunkan dari README API dan
-              dokumentasi integrasi backend per 3 November 2026.
-            </p>
-          </div>
-          <div className="architecture-fact-stamp" aria-label="Fakta arsitektur utama">
-            <span className="architecture-fact-kicker">MODEL SISTEM</span>
-            <strong>MODULAR<br />MONOLITH</strong>
-            <span>API pusat · bukan microservices penuh</span>
-          </div>
-        </div>
-
-        <div className="architecture-tabs" role="tablist" aria-label="Jelajahi arsitektur ICLabs">
-          {architectureViews.map((view, index) => {
-            const isActive = view.id === architectureView;
-            return (
-              <button
-                key={view.id}
-                id={`architecture-tab-${view.id}`}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                aria-controls={`architecture-panel-${view.id}`}
-                className={`architecture-tab ${isActive ? "is-active" : ""}`}
-                onClick={() => setArchitectureView(view.id)}
-                onKeyDown={(event) => handleArchitectureTabKeydown(event, index)}
-              >
-                {view.label}
-              </button>
-            );
-          })}
-        </div>
-
-        <div
-          key={architectureView}
-          id={`architecture-panel-${architectureView}`}
-          className="architecture-panel"
-          role="tabpanel"
-          aria-labelledby={`architecture-tab-${architectureView}`}
-        >
-          <header className="architecture-panel-header">
-            <span>{activeArchitectureView.eyebrow}</span>
-            <div>
-              <h3>{activeArchitectureView.title}</h3>
-              <p>{activeArchitectureView.description}</p>
-            </div>
-          </header>
-
-          {architectureView === "overview" && (
-            <div className="architecture-overview">
-              <div className="architecture-flow" aria-label="Alur integrasi dari pengguna ke data pusat">
-                {architectureLayers.map((layer, index) => (
-                  <div className="architecture-flow-unit" key={layer.id}>
-                    <article className={`architecture-layer ${layer.featured ? "is-featured" : ""}`}>
-                      {(() => {
-                        const LayerIcon = architectureLayerIcons[layer.id] || Cube;
-                        return <LayerIcon className="architecture-layer-icon" weight="regular" aria-hidden="true" />;
-                      })()}
-                      <div className="architecture-layer-copy">
-                        <span className="architecture-layer-code">{layer.code}</span>
-                        <h4>{layer.label}</h4>
-                        <strong>{layer.summary}</strong>
-                        <p>{layer.detail}</p>
-                      </div>
-                    </article>
-                    {index < architectureLayers.length - 1 && (
-                      <span className="architecture-flow-arrow" aria-hidden="true">→</span>
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              <div className="architecture-request-path">
-                <span>Alur request</span>
-                <p>
-                  Browser → sesi portal → adapter server → bearer token → API
-                  policy/validasi → MySQL atau AIStor → respons aman ke portal.
-                </p>
-              </div>
-
-              <div className="architecture-integrations">
-                {architectureIntegrations.map((integration) => (
-                  <article key={integration.label}>
-                    <h4>{integration.label}</h4>
-                    <p>{integration.detail}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {architectureView === "domains" && (
-            <div className="domain-capability-grid">
-              {domainCapabilities.map((domain) => (
-                <article
-                  key={domain.id}
-                  className={`domain-capability-card ${domain.featured ? "is-featured" : ""}`}
+              {isProfileVisible && (
+                <div
+                  className={`stage-profile-scrim is-${profilePhase}`}
+                  role="presentation"
+                  onClick={closeMemberProfile}
                 >
-                  <div className="domain-capability-topline">
-                    <div className="domain-capability-id">
-                      {(() => {
-                        const DomainIcon = domainIcons[domain.id] || Cube;
-                        return <DomainIcon weight="regular" aria-hidden="true" />;
-                      })()}
-                      <span>{domain.code}</span>
-                    </div>
-                    <small>{domain.role}</small>
-                  </div>
-                  <h4>{domain.title}</h4>
-                  <ul>
-                    {domain.features.map((feature) => (
-                      <li key={feature}>{feature}</li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
-          )}
+                  <article
+                    className="stage-profile-card"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="stage-profile-name"
+                    style={{
+                      "--profile-origin-x": `${profileOrigin.x}px`,
+                      "--profile-origin-y": `${profileOrigin.y}px`,
+                    }}
+                    onClick={(event) => event.stopPropagation()}
+                  >
+                    <button
+                      ref={profileCloseButtonRef}
+                      type="button"
+                      className="stage-profile-close"
+                      onClick={closeMemberProfile}
+                      aria-label="Tutup profil"
+                    >
+                      ×
+                    </button>
 
-          {architectureView === "security" && (
-            <div className="security-architecture-content">
-              <div className="security-control-grid">
-                {securityControls.map((control) => (
-                  <article className="security-control-card" key={control.code}>
-                    {(() => {
-                      const SecurityIcon = securityIcons[control.code] || ShieldCheck;
-                      return <SecurityIcon className="security-control-icon" weight="regular" aria-hidden="true" />;
-                    })()}
-                    <div>
-                      <span>{control.code}</span>
-                      <h4>{control.title}</h4>
-                      <p>{control.description}</p>
+                    <div className="stage-profile-photo-column">
+                      <div className="stage-profile-photo-frame">
+                        <img
+                          src={encodeURI(getAssetUrl(selectedMember.image))}
+                          alt={`Foto resmi ${selectedMember.name}`}
+                          className="stage-profile-photo"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="stage-profile-content">
+                      <div className="stage-profile-header-meta">
+                        <span className="stage-profile-index">
+                          PERSONEL {String(selectedIndex + 1).padStart(2, "0")}
+                        </span>
+                        <span className={`stage-profile-lead-badge ${selectedMember.isLead ? "is-lead" : ""}`}>
+                          {selectedMember.isLead ? "Lead & System Architect" : "Personel Developer"}
+                        </span>
+                      </div>
+
+                      <h2 id="stage-profile-name" className="stage-profile-name">
+                        {selectedMember.name}
+                      </h2>
+                      <p className="stage-profile-role">{selectedMember.role}</p>
+
+                      {/* Stambuk & Email */}
+                      <div className="stage-profile-meta-grid">
+                        {selectedMember.stambuk && (
+                          <div className="stage-profile-meta-item">
+                            <span className="meta-label">Stambuk / NIM:</span>
+                            <span className="meta-value">{selectedMember.stambuk}</span>
+                          </div>
+                        )}
+                        {selectedMember.email && (
+                          <div className="stage-profile-meta-item">
+                            <span className="meta-label">Email:</span>
+                            <a href={`mailto:${selectedMember.email}`} className="meta-link">
+                              {selectedMember.email}
+                            </a>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Jobs & Keahlian */}
+                      {selectedMember.jobs?.length > 0 && (
+                        <div className="stage-profile-jobs-wrap">
+                          <span className="meta-label">Bidang & Spesialisasi:</span>
+                          <div className="stage-profile-jobs-chips">
+                            {selectedMember.jobs.map((job) => (
+                              <span key={job} className="job-chip">
+                                {job}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Socials & Website Portfolio */}
+                      {selectedMember.socials &&
+                        Object.values(selectedMember.socials).some((val) => Boolean(val)) && (
+                          <div className="stage-profile-socials-wrap">
+                            <span className="meta-label">Tautan & Portofolio:</span>
+                            <div className="stage-profile-social-buttons">
+                              {selectedMember.socials.website && (
+                                <a
+                                  href={selectedMember.socials.website}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="social-btn social-btn-website"
+                                  aria-label={`Website & Portfolio ${selectedMember.name}`}
+                                >
+                                  <Globe size={16} weight="bold" />
+                                  <span>Profile</span>
+                                </a>
+                              )}
+                              {selectedMember.socials.github && (
+                                <a
+                                  href={selectedMember.socials.github}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="social-btn"
+                                  aria-label="GitHub"
+                                >
+                                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                                  </svg>
+                                  <span>GitHub</span>
+                                </a>
+                              )}
+                              {selectedMember.socials.instagram && (
+                                <a
+                                  href={selectedMember.socials.instagram}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="social-btn"
+                                  aria-label="Instagram"
+                                >
+                                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                                  </svg>
+                                  <span>Instagram</span>
+                                </a>
+                              )}
+                              {selectedMember.socials.linkedin && (
+                                <a
+                                  href={selectedMember.socials.linkedin}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="social-btn"
+                                  aria-label="LinkedIn"
+                                >
+                                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                                  </svg>
+                                  <span>LinkedIn</span>
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        )}
+
+                      <div className="stage-profile-footer">
+                        <a href="#team" className="stage-profile-roster-link" onClick={closeMemberProfile}>
+                          Lihat profil lengkap di direktori roster ↓
+                        </a>
+                      </div>
                     </div>
                   </article>
-                ))}
-              </div>
-              <aside className="security-caveat" aria-label="Batasan yang perlu diketahui">
-                <div>
-                  <span className="security-caveat-label">BATASAN & STATUS OPERASIONAL</span>
-                  <h4>Transparan terhadap risiko yang belum selesai.</h4>
                 </div>
-                <ul>
-                  {securityCaveats.filter(Boolean).map((caveat, idx) => (
-                    <li key={`${caveat.slice(0, 20)}-${idx}`}>{caveat}</li>
+              )}
+
+              <div className="arena-mobile-cue" aria-hidden="true">
+                <span>Geser untuk menjelajahi 22 personel ↔</span>
+              </div>
+            </div>
+          </div>
+
+          {/* ──────────────────────────────────────────────────────────────────
+            BOTTOM TITLE & TICKER (Teks "Developer By Iclabs" di Bawah Bingkai)
+            ────────────────────────────────────────────────────────────────── */}
+          <div className="esports-bottom-section">
+            {/* Main Title below stage matching layouts.png */}
+            <div className="esports-main-title-wrap">
+              <h1 className="esports-display-title">
+                DEVELOPER <span className="text-accent">BY ICLABS</span>
+              </h1>
+              <p className="esports-display-sub">
+                {labConfig.faculty} · {labConfig.university} · Season {labConfig.season}
+              </p>
+            </div>
+
+            {/* Bottom HUD Bar & Roster Name Ticker */}
+            <div className="esports-bottom-bar">
+              {/* Active Player HUD */}
+              <div className="hud-player-focus" aria-live="polite">
+                <span className="hud-focus-pill">
+                  [{selectedIndex + 1}/{teamConfig.length}]
+                </span>
+                <strong className="hud-name">{selectedMember.name}</strong>
+                <span className="hud-role">· {selectedMember.role}</span>
+              </div>
+
+              {/* Horizontal Roster Name Ticker */}
+              <div className="roster-name-ticker" aria-label="Daftar nama asisten">
+                <div className="roster-name-ticker-track">
+                  {[...teamConfig, ...teamConfig].map((member, index) => {
+                    const isCurrent =
+                      hasMemberSelection && member.id === selectedMember.id;
+                    const isDuplicate = index >= teamConfig.length;
+                    return (
+                      <button
+                        key={`${member.id}-${index}`}
+                        type="button"
+                        className={`ticker-name-btn ${isCurrent ? "is-active" : ""}`}
+                        onClick={(event) => openMemberProfile(member.id, event)}
+                        aria-hidden={isDuplicate || undefined}
+                        tabIndex={isDuplicate ? -1 : undefined}
+                      >
+                        - {(member.nickname || member.name).toUpperCase()} -
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Quick Actions */}
+              <div className="hud-actions">
+                {activeSystem.url && (
+                  <a
+                    href={activeSystem.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hud-launch-btn"
+                    title={`Buka ${activeSystem.label}`}
+                  >
+                    Buka Sistem ↗
+                  </a>
+                )}
+                <a href="#architecture" className="hud-detail-cta">
+                  Detail Arsitektur ↓
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ====================================================================
+          SECTION 2: PROJECT DETAIL (Integrated Systems Architecture)
+          ==================================================================== */}
+        <section
+          className="project-detail-section"
+          id="project-detail"
+          aria-labelledby="project-title"
+        >
+          <div className="detail-grid">
+            <div className="detail-content">
+              <div className="detail-header-block">
+                <span className="section-pill-tag">DETAIL ARSITEKTUR SISTEM</span>
+                <h2 id="project-title" className="project-heading">
+                  {activeSystem.title.split("\n").map((line, i) => (
+                    <span key={line} className={i > 0 ? "heading-secondary" : ""}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
+                </h2>
+                <div className="project-category-meta-row">
+                  <span className="project-category-badge">{activeSystem.category}</span>
+                  {activeSystem.url ? (
+                    <a
+                      href={activeSystem.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="system-external-link"
+                    >
+                      Kunjungi Portal: {activeSystem.url.replace(/^https?:\/\//, "")} ↗
+                    </a>
+                  ) : (
+                    <span className="system-internal-badge">Modul Internal API</span>
+                  )}
+                </div>
+                <p className="project-description">{activeSystem.description}</p>
+              </div>
+
+              <div className="features-block">
+                <h3 className="block-title">Fitur & Arsitektur Utama</h3>
+                <ul className="features-list">
+                  {activeSystem.features.map((feat) => (
+                    <li key={feat} className="feature-item">
+                      <svg
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feature-icon"
+                        aria-hidden="true"
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                      <span>{feat}</span>
+                    </li>
                   ))}
                 </ul>
-              </aside>
-            </div>
-          )}
+              </div>
 
-          {architectureView === "stack" && (
-            <div className="stack-landscape">
-              {stackGroups.map((group) => (
-                <article className="stack-group" key={group.layer}>
-                  <header>
-                    {(() => {
-                      const StackIcon = stackIcons[group.layer] || Code;
-                      return <StackIcon className="stack-group-icon" weight="regular" aria-hidden="true" />;
-                    })()}
-                    <div>
-                      <span>TECH LAYER</span>
-                      <h4>{group.layer}</h4>
-                    </div>
-                  </header>
-                  <div className="stack-badge-list">
-                    {group.technologies.map((technology, techIdx) => {
-                      const badge = getTechBadge(technology);
+              {activeSystem.tech && activeSystem.tech.length > 0 && (
+                <div className="tech-block">
+                  <h3 className="block-title">Teknologi Terintegrasi</h3>
+                  <div className="tech-badge-container">
+                    {activeSystem.tech.map((t, idx) => {
+                      const badge = getTechBadge(t);
                       return (
-                        <div key={`${technology}-${techIdx}`} className="tech-badge-item" title={technology}>
+                        <div key={`${t}-${idx}`} className="tech-badge-item" title={t}>
                           <img
                             src={badge.badgeUrl}
-                            alt={technology}
-                            height="28"
+                            alt={t}
+                            height="26"
                             className="tech-badge-image"
                             loading="lazy"
                           />
@@ -1156,255 +1012,482 @@ export default function Portfolio() {
                       );
                     })}
                   </div>
-                  <p>{group.note}</p>
-                </article>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
+                </div>
+              )}
 
-      {/* ====================================================================
-          SECTION 4: COMPLETE TEAM DIRECTORY (22 Members Profiles)
+              {activeSystem.note && (
+                <div className="project-note-box">
+                  <span className="note-label">Catatan Integrasi:</span>
+                  <p className="note-text">{activeSystem.note}</p>
+                </div>
+              )}
+            </div>
+
+            <div className="detail-visual-column">
+              <figure className="detail-figure">
+                <img
+                  src={getAssetUrl("/images/gedung-fikom-malam.webp")}
+                  alt="Gedung Fakultas Ilmu Komputer pada malam hari"
+                  loading="lazy"
+                  className="figure-image"
+                />
+                <figcaption className="figure-caption">
+                  <span className="caption-sub">Pusat operasional laboratorium</span>
+                  <strong className="caption-main">ICLabs Fikom</strong>
+                  <span className="caption-desc">
+                    {labConfig.faculty} · Ekosistem praktikum, riset, dan rekrutmen terpadu.
+                  </span>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        {/* ====================================================================
+          SECTION 3: VERIFIED INTEGRATION ARCHITECTURE
           ==================================================================== */}
-      <section id="team" className="team-section" aria-labelledby="team-heading">
-        <div className="section-header">
-          <div>
-            <h2 id="team-heading" className="section-title">
-              Built by us<span className="text-accent">.</span>
-            </h2>
-            <p className="section-subtitle">
-              {labConfig.totalMembers} asisten dan personel di balik pengembangan ekosistem digital laboratorium.
-            </p>
-          </div>
-          <span className="team-total-badge">
-            {labConfig.totalMembers} PERSPEKTIF · 1 TIM
-          </span>
-        </div>
-
-        <div className="team-split-layout">
-          {/* Selected Member Profile Card */}
-          <div className="member-spotlight-card" aria-live="polite">
-            <div className="spotlight-photo-frame">
-              <img
-                src={encodeURI(getAssetUrl(selectedMember.image))}
-                alt={`Foto resmi ${selectedMember.name}`}
-                loading="lazy"
-                className="spotlight-photo"
-              />
+        <section
+          id="architecture"
+          className="architecture-section"
+          aria-labelledby="architecture-heading"
+        >
+          <div className="architecture-section-heading">
+            <div>
+              <span className="section-pill-tag">SISTEM TERINTEGRASI ICLABS</span>
+              <h2 id="architecture-heading" className="architecture-heading">
+                Satu inti.<br />
+                <span className="text-accent">Banyak permukaan.</span>
+              </h2>
+              <p>
+                Peta teknis untuk melihat batas tanggung jawab, bukan sekadar
+                daftar teknologi. Ringkasan ini diturunkan dari README API dan
+                dokumentasi integrasi backend per 3 November 2026.
+              </p>
             </div>
-            <div className="spotlight-details">
-              <div className="spotlight-header-meta">
-                <span className="spotlight-status">
-                  {selectedMember.isLead ? "Lead & System Architect" : "Personel Developer"}
-                </span>
-                <span className="spotlight-tier-tag">
-                  Baris {selectedMember.row} · Posisi #{selectedMember.rowPosition}
-                </span>
-              </div>
-              <h3 className="spotlight-name">{selectedMember.name}</h3>
-              <p className="spotlight-role">{selectedMember.role}</p>
-
-              {/* Data Stambuk / NIM */}
-              {selectedMember.stambuk && (
-                <div className="spotlight-meta-row">
-                  <span className="meta-row-label">Stambuk:</span>
-                  <span className="meta-row-val">{selectedMember.stambuk}</span>
-                </div>
-              )}
-
-              {/* Data Email */}
-              {selectedMember.email && (
-                <div className="spotlight-meta-row">
-                  <span className="meta-row-label">Email:</span>
-                  <a
-                    href={`mailto:${selectedMember.email}`}
-                    className="meta-row-link"
-                  >
-                    {selectedMember.email}
-                  </a>
-                </div>
-              )}
-
-              {/* Data Jobs & Keahlian */}
-              {selectedMember.jobs && selectedMember.jobs.length > 0 && (
-                <div className="spotlight-jobs-block">
-                  <span className="jobs-block-label">Bidang & Keahlian:</span>
-                  <div className="jobs-chip-wrap">
-                    {selectedMember.jobs.map((job) => (
-                      <span key={job} className="job-chip">
-                        {job}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Data Sosial Media */}
-              {selectedMember.socials &&
-                Object.values(selectedMember.socials).some((val) => Boolean(val)) && (
-                  <div className="spotlight-socials-block">
-                    <span className="socials-block-label">Sosial Media:</span>
-                    <div className="socials-links-wrap">
-                      {selectedMember.socials.website && (
-                        <a
-                          href={selectedMember.socials.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="social-btn social-btn-website"
-                          aria-label={`Website & Portofolio ${selectedMember.name}`}
-                        >
-                          <Globe size={16} weight="bold" />
-                          <span>Website</span>
-                        </a>
-                      )}
-                      {selectedMember.socials.github && (
-                        <a
-                          href={selectedMember.socials.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="social-btn"
-                          aria-label="GitHub"
-                        >
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                          </svg>
-                          <span>GitHub</span>
-                        </a>
-                      )}
-                      {selectedMember.socials.instagram && (
-                        <a
-                          href={selectedMember.socials.instagram}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="social-btn"
-                          aria-label="Instagram"
-                        >
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                          </svg>
-                          <span>Instagram</span>
-                        </a>
-                      )}
-                      {selectedMember.socials.linkedin && (
-                        <a
-                          href={selectedMember.socials.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="social-btn"
-                          aria-label="LinkedIn"
-                        >
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                          </svg>
-                          <span>LinkedIn</span>
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                )}
-
-              <div className="spotlight-affiliation">
-                <span>{labConfig.fullName}</span>
-                <span>{labConfig.faculty} · {labConfig.university}</span>
-              </div>
+            <div className="architecture-fact-stamp" aria-label="Fakta arsitektur utama">
+              <span className="architecture-fact-kicker">MODEL SISTEM</span>
+              <strong>MODULAR<br />MONOLITH</strong>
+              <span>API pusat · bukan microservices penuh</span>
             </div>
           </div>
 
-          {/* Full Roster Grid */}
-          <div className="roster-grid" role="list" aria-label="Daftar asisten ICLabs">
-            {teamConfig.map((member) => {
-              const isCurrent = member.id === selectedMember.id;
+          <div className="architecture-tabs" role="tablist" aria-label="Jelajahi arsitektur ICLabs">
+            {architectureViews.map((view, index) => {
+              const isActive = view.id === architectureView;
               return (
                 <button
-                  key={member.id}
+                  key={view.id}
+                  id={`architecture-tab-${view.id}`}
                   type="button"
-                  className={`roster-card ${isCurrent ? "is-selected" : ""}`}
-                  onClick={() => setSelectedMemberId(member.id)}
-                  aria-pressed={isCurrent}
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls={`architecture-panel-${view.id}`}
+                  className={`architecture-tab ${isActive ? "is-active" : ""}`}
+                  onClick={() => setArchitectureView(view.id)}
+                  onKeyDown={(event) => handleArchitectureTabKeydown(event, index)}
                 >
-                  <div className="roster-thumb-wrap">
-                    <img
-                      src={encodeURI(getAssetUrl(member.image))}
-                      alt=""
-                      loading="lazy"
-                      className="roster-thumb"
-                    />
-                  </div>
-                  <div className="roster-card-info">
-                    <strong className="roster-member-name">{member.name}</strong>
-                    <span className="roster-member-role">{member.role}</span>
-                  </div>
-                  <span className="roster-indicator" aria-hidden="true">
-                    {isCurrent ? "●" : "→"}
-                  </span>
+                  {view.label}
                 </button>
               );
             })}
           </div>
-        </div>
-      </section>
 
-      {/* ====================================================================
+          <div
+            key={architectureView}
+            id={`architecture-panel-${architectureView}`}
+            className="architecture-panel"
+            role="tabpanel"
+            aria-labelledby={`architecture-tab-${architectureView}`}
+          >
+            <header className="architecture-panel-header">
+              <span>{activeArchitectureView.eyebrow}</span>
+              <div>
+                <h3>{activeArchitectureView.title}</h3>
+                <p>{activeArchitectureView.description}</p>
+              </div>
+            </header>
+
+            {architectureView === "overview" && (
+              <div className="architecture-overview">
+                <div className="architecture-flow" aria-label="Alur integrasi dari pengguna ke data pusat">
+                  {architectureLayers.map((layer, index) => (
+                    <div className="architecture-flow-unit" key={layer.id}>
+                      <article className={`architecture-layer ${layer.featured ? "is-featured" : ""}`}>
+                        {(() => {
+                          const LayerIcon = architectureLayerIcons[layer.id] || Cube;
+                          return <LayerIcon className="architecture-layer-icon" weight="regular" aria-hidden="true" />;
+                        })()}
+                        <div className="architecture-layer-copy">
+                          <span className="architecture-layer-code">{layer.code}</span>
+                          <h4>{layer.label}</h4>
+                          <strong>{layer.summary}</strong>
+                          <p>{layer.detail}</p>
+                        </div>
+                      </article>
+                      {index < architectureLayers.length - 1 && (
+                        <span className="architecture-flow-arrow" aria-hidden="true">→</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="architecture-request-path">
+                  <span>Alur request</span>
+                  <p>
+                    Browser → sesi portal → adapter server → bearer token → API
+                    policy/validasi → MySQL atau AIStor → respons aman ke portal.
+                  </p>
+                </div>
+
+                <div className="architecture-integrations">
+                  {architectureIntegrations.map((integration) => (
+                    <article key={integration.label}>
+                      <h4>{integration.label}</h4>
+                      <p>{integration.detail}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {architectureView === "domains" && (
+              <div className="domain-capability-grid">
+                {domainCapabilities.map((domain) => (
+                  <article
+                    key={domain.id}
+                    className={`domain-capability-card ${domain.featured ? "is-featured" : ""}`}
+                  >
+                    <div className="domain-capability-topline">
+                      <div className="domain-capability-id">
+                        {(() => {
+                          const DomainIcon = domainIcons[domain.id] || Cube;
+                          return <DomainIcon weight="regular" aria-hidden="true" />;
+                        })()}
+                        <span>{domain.code}</span>
+                      </div>
+                      <small>{domain.role}</small>
+                    </div>
+                    <h4>{domain.title}</h4>
+                    <ul>
+                      {domain.features.map((feature) => (
+                        <li key={feature}>{feature}</li>
+                      ))}
+                    </ul>
+                  </article>
+                ))}
+              </div>
+            )}
+
+            {architectureView === "security" && (
+              <div className="security-architecture-content">
+                <div className="security-control-grid">
+                  {securityControls.map((control) => (
+                    <article className="security-control-card" key={control.code}>
+                      {(() => {
+                        const SecurityIcon = securityIcons[control.code] || ShieldCheck;
+                        return <SecurityIcon className="security-control-icon" weight="regular" aria-hidden="true" />;
+                      })()}
+                      <div>
+                        <span>{control.code}</span>
+                        <h4>{control.title}</h4>
+                        <p>{control.description}</p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+                <aside className="security-caveat" aria-label="Batasan yang perlu diketahui">
+                  <div>
+                    <span className="security-caveat-label">BATASAN & STATUS OPERASIONAL</span>
+                    <h4>Transparan terhadap risiko yang belum selesai.</h4>
+                  </div>
+                  <ul>
+                    {securityCaveats.filter(Boolean).map((caveat, idx) => (
+                      <li key={`${caveat.slice(0, 20)}-${idx}`}>{caveat}</li>
+                    ))}
+                  </ul>
+                </aside>
+              </div>
+            )}
+
+            {architectureView === "stack" && (
+              <div className="stack-landscape">
+                {stackGroups.map((group) => (
+                  <article className="stack-group" key={group.layer}>
+                    <header>
+                      {(() => {
+                        const StackIcon = stackIcons[group.layer] || Code;
+                        return <StackIcon className="stack-group-icon" weight="regular" aria-hidden="true" />;
+                      })()}
+                      <div>
+                        <span>TECH LAYER</span>
+                        <h4>{group.layer}</h4>
+                      </div>
+                    </header>
+                    <div className="stack-badge-list">
+                      {group.technologies.map((technology, techIdx) => {
+                        const badge = getTechBadge(technology);
+                        return (
+                          <div key={`${technology}-${techIdx}`} className="tech-badge-item" title={technology}>
+                            <img
+                              src={badge.badgeUrl}
+                              alt={technology}
+                              height="28"
+                              className="tech-badge-image"
+                              loading="lazy"
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <p>{group.note}</p>
+                  </article>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* ====================================================================
+          SECTION 4: COMPLETE TEAM DIRECTORY (22 Members Profiles)
+          ==================================================================== */}
+        <section id="team" className="team-section" aria-labelledby="team-heading">
+          <div className="section-header">
+            <div>
+              <h2 id="team-heading" className="section-title">
+                Built by us<span className="text-accent">.</span>
+              </h2>
+              <p className="section-subtitle">
+                {labConfig.totalMembers} asisten dan personel di balik pengembangan ekosistem digital laboratorium.
+              </p>
+            </div>
+            <span className="team-total-badge">
+              {labConfig.totalMembers} PERSPEKTIF · 1 TIM
+            </span>
+          </div>
+
+          <div className="team-split-layout">
+            {/* Selected Member Profile Card */}
+            <div className="member-spotlight-card" aria-live="polite">
+              <div className="spotlight-photo-frame">
+                <img
+                  src={encodeURI(getAssetUrl(selectedMember.image))}
+                  alt={`Foto resmi ${selectedMember.name}`}
+                  loading="lazy"
+                  className="spotlight-photo"
+                />
+              </div>
+              <div className="spotlight-details">
+                <div className="spotlight-header-meta">
+                  <span className="spotlight-status">
+                    {selectedMember.isLead ? "Lead & System Architect" : "Personel Developer"}
+                  </span>
+                  <span className="spotlight-tier-tag">
+                    Baris {selectedMember.row} · Posisi #{selectedMember.rowPosition}
+                  </span>
+                </div>
+                <h3 className="spotlight-name">{selectedMember.name}</h3>
+                <p className="spotlight-role">{selectedMember.role}</p>
+
+                {/* Data Stambuk / NIM */}
+                {selectedMember.stambuk && (
+                  <div className="spotlight-meta-row">
+                    <span className="meta-row-label">Stambuk:</span>
+                    <span className="meta-row-val">{selectedMember.stambuk}</span>
+                  </div>
+                )}
+
+                {/* Data Email */}
+                {selectedMember.email && (
+                  <div className="spotlight-meta-row">
+                    <span className="meta-row-label">Email:</span>
+                    <a
+                      href={`mailto:${selectedMember.email}`}
+                      className="meta-row-link"
+                    >
+                      {selectedMember.email}
+                    </a>
+                  </div>
+                )}
+
+                {/* Data Jobs & Keahlian */}
+                {selectedMember.jobs && selectedMember.jobs.length > 0 && (
+                  <div className="spotlight-jobs-block">
+                    <span className="jobs-block-label">Bidang & Keahlian:</span>
+                    <div className="jobs-chip-wrap">
+                      {selectedMember.jobs.map((job) => (
+                        <span key={job} className="job-chip">
+                          {job}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Data Sosial Media */}
+                {selectedMember.socials &&
+                  Object.values(selectedMember.socials).some((val) => Boolean(val)) && (
+                    <div className="spotlight-socials-block">
+                      <span className="socials-block-label">Sosial Media:</span>
+                      <div className="socials-links-wrap">
+                        {selectedMember.socials.website && (
+                          <a
+                            href={selectedMember.socials.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="social-btn social-btn-website"
+                            aria-label={`Website & Portofolio ${selectedMember.name}`}
+                          >
+                            <Globe size={16} weight="bold" />
+                            <span>Website</span>
+                          </a>
+                        )}
+                        {selectedMember.socials.github && (
+                          <a
+                            href={selectedMember.socials.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="social-btn"
+                            aria-label="GitHub"
+                          >
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                            <span>GitHub</span>
+                          </a>
+                        )}
+                        {selectedMember.socials.instagram && (
+                          <a
+                            href={selectedMember.socials.instagram}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="social-btn"
+                            aria-label="Instagram"
+                          >
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
+                            <span>Instagram</span>
+                          </a>
+                        )}
+                        {selectedMember.socials.linkedin && (
+                          <a
+                            href={selectedMember.socials.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="social-btn"
+                            aria-label="LinkedIn"
+                          >
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                            <span>LinkedIn</span>
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                <div className="spotlight-affiliation">
+                  <span>{labConfig.fullName}</span>
+                  <span>{labConfig.faculty} · {labConfig.university}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Full Roster Grid */}
+            <div className="roster-grid" role="list" aria-label="Daftar asisten ICLabs">
+              {teamConfig.map((member) => {
+                const isCurrent = member.id === selectedMember.id;
+                return (
+                  <button
+                    key={member.id}
+                    type="button"
+                    className={`roster-card ${isCurrent ? "is-selected" : ""}`}
+                    onClick={() => setSelectedMemberId(member.id)}
+                    aria-pressed={isCurrent}
+                  >
+                    <div className="roster-thumb-wrap">
+                      <img
+                        src={encodeURI(getAssetUrl(member.image))}
+                        alt=""
+                        loading="lazy"
+                        className="roster-thumb"
+                      />
+                    </div>
+                    <div className="roster-card-info">
+                      <strong className="roster-member-name">{member.name}</strong>
+                      <span className="roster-member-role">{member.role}</span>
+                    </div>
+                    <span className="roster-indicator" aria-hidden="true">
+                      {isCurrent ? "●" : "→"}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ====================================================================
           SECTION 4: ABOUT LAB
           ==================================================================== */}
-      <section id="about" className="about-section">
-        <div className="about-card">
-          <div className="about-text-content">
-            <h2 className="about-heading">
-              Satu Ekosistem untuk Seluruh Laboratorium.
-            </h2>
-            <p className="about-description">
-              ICLabs ({labConfig.fullName}) mengintegrasikan seluruh alur operasional
-              laboratorium komputer {labConfig.faculty}—mulai dari pembagian jadwal
-              praktikum, presensi harian, peminjaman ruang, hingga rekrutmen asisten baru.
-            </p>
+        <section id="about" className="about-section">
+          <div className="about-card">
+            <div className="about-text-content">
+              <h2 className="about-heading">
+                Satu Ekosistem untuk Seluruh Laboratorium.
+              </h2>
+              <p className="about-description">
+                ICLabs ({labConfig.fullName}) mengintegrasikan seluruh alur operasional
+                laboratorium komputer {labConfig.faculty}—mulai dari pembagian jadwal
+                praktikum, presensi harian, peminjaman ruang, hingga rekrutmen asisten baru.
+              </p>
+            </div>
+            <div className="about-meta-grid">
+              <div className="meta-box">
+                <strong className="meta-number">12</strong>
+                <span className="meta-label">Modul sistem terintegrasi</span>
+              </div>
+              <div className="meta-box">
+                <strong className="meta-number">{labConfig.totalMembers}</strong>
+                <span className="meta-label">Anggota tim pengembang</span>
+              </div>
+              <div className="meta-box">
+                <strong className="meta-number">100%</strong>
+                <span className="meta-label">Kolaborasi mandiri laboratorium</span>
+              </div>
+            </div>
           </div>
-          <div className="about-meta-grid">
-            <div className="meta-box">
-              <strong className="meta-number">12</strong>
-              <span className="meta-label">Modul sistem terintegrasi</span>
-            </div>
-            <div className="meta-box">
-              <strong className="meta-number">{labConfig.totalMembers}</strong>
-              <span className="meta-label">Anggota tim pengembang</span>
-            </div>
-            <div className="meta-box">
-              <strong className="meta-number">100%</strong>
-              <span className="meta-label">Kolaborasi mandiri laboratorium</span>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ====================================================================
+        {/* ====================================================================
           FOOTER
           ==================================================================== */}
-      <footer className="site-footer">
-        <div className="footer-top">
-          <div className="footer-brand">
-            <strong>{labConfig.name.toUpperCase()} DEVELOPER COLLECTIVE</strong>
-            <p>Laboratorium Komputer Terpadu · {labConfig.faculty}</p>
+        <footer className="site-footer">
+          <div className="footer-top">
+            <div className="footer-brand">
+              <strong>{labConfig.name.toUpperCase()} DEVELOPER COLLECTIVE</strong>
+              <p>Laboratorium Komputer Terpadu · {labConfig.faculty}</p>
+            </div>
+            <a href="#top" className="back-top-link">
+              Kembali ke atas ↑
+            </a>
           </div>
-          <a href="#top" className="back-top-link">
-            Kembali ke atas ↑
-          </a>
-        </div>
 
-        <div className="footer-headline-wrap">
-          <p className="footer-headline">
-            Developed by <span className="text-accent">Iclabs</span>.
-          </p>
-        </div>
+          <div className="footer-headline-wrap">
+            <p className="footer-headline">
+              Developed by <span className="text-accent">Iclabs</span>.
+            </p>
+          </div>
 
-        <div className="footer-bottom">
-          <span>{labConfig.fullName}</span>
-          <span>{labConfig.location}</span>
-        </div>
-      </footer>
-    </main>
+          <div className="footer-bottom">
+            <span>{labConfig.fullName}</span>
+            <span>{labConfig.location}</span>
+          </div>
+        </footer>
+      </main>
     </>
   );
 }

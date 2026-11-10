@@ -17,7 +17,7 @@ Setiap personel didefinisikan sebagai objek JavaScript dengan struktur lengkap:
   name: "Ichwal",                           // Nama lengkap resmi
   nickname: "Ichwal",                       // Nama panggilan / label yang muncul di badge roster
   stambuk: "09320210xxx",                   // Nomor Stambuk / NIM mahasiswa
-  email: "ichwal@students.umi.ac.id",       // Alamat email aktif (otomatis jadi link mailto:)
+  email: "13020230049@students.umi.ac.id",       // Alamat email aktif (otomatis jadi link mailto:)
   role: "System Design & DevOps",           // Jabatan / peran utama di lab
   jobs: [                                   // Keahlian / spesialisasi pekerjaan (tampil sebagai chip tag)
     "Project Lead",
