@@ -1,78 +1,96 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { projects } from "../lib/projects";
-import { team } from "../lib/team";
+import { teamConfig, systemsConfig, labConfig } from "../lib/config";
 
-// Position mapping for all 22 members matching the esports reference.png composition:
-// Progressive scaling & Gender layout:
-// - Row 1 (Front Row - 7 males): Lead (Ichwal, Center) + 6 front males (Height ~275-315px)
-// - Row 2 (Mid Row - 8 males): Staggered in gap windows, larger (Height ~370-388px)
-// - Row 3 (Back Row - ALL 7 FEMALES): Towering guardians in the back, largest of all (Height ~462-480px)
-function getEsportsRosterLayout(index) {
-  // Index 0: ICHWAL - Center Front Captain (No badge label overlay per user request)
-  if (index === 0) {
-    return {
-      row: 1,
-      x: 0,
-      bottom: 0,
-      height: 315,
-      zIndex: 40,
-      isCaptain: true,
-    };
+/**
+ * Exact 3-Tier Esports Layout mapping strictly matching docs/desain/layouts.png:
+ * - Row 1 (Front Row - 7 Males):
+ *   Rifky aunur (-34.5%) | Raihan (-23.0%) | fatwa (-11.5%) | ICHWAL (0%, LEAD) | Riswan (+11.5%) | fuad (+23.0%) | nahwa (+34.5%)
+ * - Row 2 (Middle Row - 8 Males):
+ *   Scania (-40.5%) | Ahwan (-29.0%) | wawan (-17.5%) | zaki (-5.8%) | Aan (+5.8%) | ikhlas (+17.5%) | Rafli (+29.0%) | Daifan (+40.5%)
+ * - Row 3 (Back Row - ALL 7 FEMALES):
+ *   Firly (-35.2%) | Fara (-23.5%) | Halima (-11.8%) | THALITA (0%, Center) | Safira (+11.8%) | Lutfia (+23.5%) | Rizki (+35.2%)
+ */
+function getMockupRosterLayout(memberId) {
+  switch (memberId) {
+    // ══════════════════════════════════════════════════════════════
+    // BARIS DEPAN (ROW 1) — 7 Laki-laki
+    // ══════════════════════════════════════════════════════════════
+    case "andi-rifqi":
+      return { row: 1, x: -34.5, bottom: 28, height: 265, zIndex: 32 };
+    case "raihan":
+      return { row: 1, x: -23.0, bottom: 18, height: 275, zIndex: 33 };
+    case "fatwa":
+      return { row: 1, x: -11.5, bottom: 8, height: 285, zIndex: 34 };
+    case "ichwal":
+      // Lead / Center: extending down across the bottom arena border as drawn in layouts.png
+      return { row: 1, x: 0, bottom: -4, height: 310, zIndex: 36, isLead: true };
+    case "rizwan":
+      return { row: 1, x: 11.5, bottom: 8, height: 285, zIndex: 34 };
+    case "fuad":
+      return { row: 1, x: 23.0, bottom: 18, height: 275, zIndex: 33 };
+    case "nahwa":
+      return { row: 1, x: 34.5, bottom: 28, height: 265, zIndex: 32 };
+
+    // ══════════════════════════════════════════════════════════════
+    // BARIS TENGAH (ROW 2) — 8 Laki-laki (Ukuran Sedang)
+    // ══════════════════════════════════════════════════════════════
+    case "scania":
+      return { row: 2, x: -40.5, bottom: 84, height: 350, zIndex: 22 };
+    case "andi-ahsan":
+      return { row: 2, x: -29.0, bottom: 76, height: 350, zIndex: 23 };
+    case "wanwan":
+      return { row: 2, x: -17.5, bottom: 68, height: 350, zIndex: 24 };
+    case "zaki":
+      return { row: 2, x: -5.8, bottom: 60, height: 350, zIndex: 25 };
+    case "aan":
+      return { row: 2, x: 5.8, bottom: 60, height: 350, zIndex: 25 };
+    case "ikhlas":
+      return { row: 2, x: 17.5, bottom: 68, height: 350, zIndex: 24 };
+    case "rafly":
+      return { row: 2, x: 29.0, bottom: 76, height: 350, zIndex: 23 };
+    case "daifan":
+      return { row: 2, x: 40.5, bottom: 84, height: 350, zIndex: 22 };
+
+    // ══════════════════════════════════════════════════════════════
+    // BARIS BELAKANG (ROW 3) — 7 Perempuan (Towering & Paling Besar)
+    // ══════════════════════════════════════════════════════════════
+    case "firly":
+      return { row: 3, x: -35.2, bottom: 132, height: 395, zIndex: 12 };
+    case "farah":
+      return { row: 3, x: -23.5, bottom: 128, height: 400, zIndex: 13 };
+    case "halima":
+      return { row: 3, x: -11.8, bottom: 124, height: 405, zIndex: 14 };
+    case "thalita":
+      // Thalita at dead center back, towers directly above the center gap
+      return { row: 3, x: 0, bottom: 120, height: 410, zIndex: 15 };
+    case "siti-safira":
+      return { row: 3, x: 11.8, bottom: 124, height: 405, zIndex: 14 };
+    case "sitti-lutfia":
+      return { row: 3, x: 23.5, bottom: 128, height: 400, zIndex: 13 };
+    case "rizqi":
+      return { row: 3, x: 35.2, bottom: 132, height: 395, zIndex: 12 };
+
+    default:
+      return { row: 3, x: 0, bottom: 150, height: 450, zIndex: 10 };
   }
-
-  // Row 1 (Front Row - 6 Males flanking Ichwal):
-  // Left: Aan Ms (1), Andi Ahsan Ashuri (2), Andi Rifqi Aunur Rahman 1 (3)
-  if (index === 1) return { row: 1, x: -11.5, bottom: 8, height: 285, zIndex: 37 };
-  if (index === 2) return { row: 1, x: -23.0, bottom: 16, height: 280, zIndex: 35 };
-  if (index === 3) return { row: 1, x: -34.5, bottom: 24, height: 275, zIndex: 33 };
-
-  // Right: Fatwa (5), Ikhlas (7), Muhammad Nur Fuad (8)
-  if (index === 5) return { row: 1, x: 11.5, bottom: 8, height: 285, zIndex: 37 };
-  if (index === 7) return { row: 1, x: 23.0, bottom: 16, height: 280, zIndex: 35 };
-  if (index === 8) return { row: 1, x: 34.5, bottom: 24, height: 275, zIndex: 33 };
-
-  // Row 2 (Mid Row - 8 Males): LARGER than Row 1 (~370-388px), elevated in gap windows
-  // Left: Nahwa (9), Rafly (10), Raihan Nur Rizqillah (11), Zaki (18)
-  if (index === 9) return { row: 2, x: -6.0, bottom: 65, height: 388, zIndex: 26 };
-  if (index === 10) return { row: 2, x: -17.5, bottom: 70, height: 382, zIndex: 24 };
-  if (index === 11) return { row: 2, x: -29.0, bottom: 75, height: 376, zIndex: 22 };
-  if (index === 18) return { row: 2, x: -40.5, bottom: 80, height: 370, zIndex: 20 };
-
-  // Right: Rizwan (13), Scania (14), daifan (19), wanwan (21)
-  if (index === 13) return { row: 2, x: 6.0, bottom: 65, height: 388, zIndex: 26 };
-  if (index === 14) return { row: 2, x: 17.5, bottom: 70, height: 382, zIndex: 24 };
-  if (index === 19) return { row: 2, x: 29.0, bottom: 75, height: 376, zIndex: 22 };
-  if (index === 21) return { row: 2, x: 40.5, bottom: 80, height: 370, zIndex: 20 };
-
-  // Row 3 (Back Row - ALL 7 FEMALES): LARGEST OF ALL (~462-480px, +4px enlarged), towering in the back!
-  // Center Queen: Sitti Lutfia (16) towering high above Ichwal
-  if (index === 16) return { row: 3, x: 0, bottom: 148, height: 480, zIndex: 15 };
-
-  // Left side females: Rizqi Ananda Jalil (12), Thalita (17), Farah (4)
-  if (index === 12) return { row: 3, x: -12.0, bottom: 144, height: 474, zIndex: 14 };
-  if (index === 17) return { row: 3, x: -23.5, bottom: 146, height: 468, zIndex: 13 };
-  if (index === 4) return { row: 3, x: -35.0, bottom: 150, height: 462, zIndex: 12 };
-
-  // Right side females: Firly (6), Siti Safira (15), halima (20)
-  if (index === 6) return { row: 3, x: 12.0, bottom: 144, height: 474, zIndex: 14 };
-  if (index === 15) return { row: 3, x: 23.5, bottom: 146, height: 468, zIndex: 13 };
-  if (index === 20) return { row: 3, x: 35.0, bottom: 150, height: 462, zIndex: 12 };
-
-  return { row: 3, x: 0, bottom: 140, height: 460, zIndex: 10 };
 }
 
 export default function Portfolio() {
-  const [activeProject, setActiveProject] = useState(0);
-  const [selectedPerson, setSelectedPerson] = useState("Ichwal");
+  const [activeSystemId, setActiveSystemId] = useState("integration");
+  const [selectedMemberId, setSelectedMemberId] = useState("ichwal");
   const stageScrollRef = useRef(null);
 
-  const project = projects[activeProject] || projects[0];
-  const selected = team.find((m) => m.name === selectedPerson) || team[0];
-  const selectedIndex = team.findIndex((m) => m.name === selectedPerson);
+  const activeSystem =
+    systemsConfig.find((s) => s.id === activeSystemId) || systemsConfig[0];
+  const selectedMember =
+    teamConfig.find((m) => m.id === selectedMemberId) || teamConfig[0];
+  const selectedIndex = teamConfig.findIndex(
+    (m) => m.id === selectedMember.id
+  );
 
-  // Auto center scroll on mobile so Ichwal is immediately in view
+  // Auto center scroll on initial load (mobile / small screens)
   useEffect(() => {
     if (stageScrollRef.current) {
       const container = stageScrollRef.current;
@@ -88,7 +106,7 @@ export default function Portfolio() {
       </a>
 
       {/* ====================================================================
-          FULL-SCREEN 100VH ESPORTS ROSTER HERO SCREEN (reference.png layout)
+          FULL-SCREEN ESPORTS ROSTER HERO (layouts.png reference)
           ==================================================================== */}
       <section className="esports-hero-screen" aria-label="Official Esports Roster Showcase">
         {/* Top Header */}
@@ -102,14 +120,16 @@ export default function Portfolio() {
               className="brand-logo"
             />
             <div className="brand-text">
-              <span className="brand-title">ICLABS</span>
+              <span className="brand-title">{labConfig.name}</span>
               <span className="brand-subtitle">Developer Collective</span>
             </div>
           </a>
 
           <div className="header-meta-badge">
             <span className="live-dot" aria-hidden="true" />
-            <span className="meta-text">22 Personnel Official Roster · Fikom UMI</span>
+            <span className="meta-text">
+              {labConfig.totalMembers} Personnel Official Roster · {labConfig.faculty}
+            </span>
           </div>
 
           <nav className="header-nav" aria-label="Navigasi Utama">
@@ -125,152 +145,167 @@ export default function Portfolio() {
           </nav>
         </header>
 
-        {/* Top System Selector Tabs (from markup.png) */}
-        <div className="esports-systems-bar">
-          <span className="systems-bar-label">Pilih sistem:</span>
-          <nav className="systems-pill-track" aria-label="Pilih sistem terintegrasi">
-            {projects.map((p, i) => (
-              <button
-                key={p.id}
-                type="button"
-                className={`system-pill-btn ${activeProject === i ? "is-active" : ""}`}
-                aria-pressed={activeProject === i}
-                onClick={() => setActiveProject(i)}
-              >
-                <span className="pill-name">{p.label}</span>
-              </button>
-            ))}
-          </nav>
-        </div>
-
-        {/* Central Esports Stage (Exact composition of reference.png) */}
-        <div
-          className="esports-arena-stage"
-          aria-label="Panggung Roster 22 Anggota ICLabs"
-        >
-          {/* Stage Atmosphere Lighting & Embers */}
-          <div className="arena-backdrop-grid" aria-hidden="true" />
-          <div className="arena-spotlight-beam" aria-hidden="true" />
-          <div className="arena-smoke-overlay" aria-hidden="true" />
-          <div className="arena-ember-glow" aria-hidden="true" />
-
-          {/* SVG Stadium Watermark */}
-          <svg className="arena-watermark-svg" viewBox="0 0 1000 120" aria-hidden="true">
-            <text
-              x="50%"
-              y="50%"
-              dominantBaseline="middle"
-              textAnchor="middle"
-              fill="currentColor"
-              className="watermark-svg-text"
-            >
-              ICLABS COLLECTIVE
-            </text>
-          </svg>
-
-          {/* Heading overlay at top of stage */}
-          <div className="arena-heading-wrap">
-            <span className="arena-kicker">FIKOM UMI · INTEGRATED LABS</span>
-            <h1 className="arena-title">
-              DEVELOPER <span className="text-accent">BY ICLABS</span>
-            </h1>
-            <p className="arena-subtitle">
-              Satu visi. 22 personel di balik ekosistem digital laboratorium terintegrasi.
-            </p>
-          </div>
-
-          {/* Scrollable Viewport for 22-Player Esports Formation */}
-          <div
-            id="arena-stage-scroll"
-            ref={stageScrollRef}
-            className="arena-scroll-viewport"
-            tabIndex={0}
-            aria-label="Area gulir 22 personel"
-          >
-            <div className="arena-lineup-container">
-              {team.map((member, i) => {
-                const layout = getEsportsRosterLayout(i);
-                const isSelected = selectedPerson === member.name;
-                const isLead = layout.isCaptain;
-
-                return (
-                  <button
-                    key={member.name}
-                    type="button"
-                    className={`roster-player-figure row-${layout.row} ${isLead ? "figure-captain" : ""} ${isSelected && !isLead ? "is-focused" : ""}`}
-                    style={{
-                      "--pos-x": `${layout.x}%`,
-                      "--pos-bottom": `${layout.bottom}px`,
-                      "--fig-height": `${layout.height}px`,
-                      "--z-index": isSelected ? 50 : layout.zIndex,
-                    }}
-                    onClick={() => setSelectedPerson(member.name)}
-                    aria-label={`Pilih asisten ${member.name}`}
-                    aria-pressed={isSelected}
-                  >
-                    <div className="figure-photo-wrap">
-                      <img
-                        src={encodeURI(member.image)}
-                        alt={`Foto ${member.name}`}
-                        loading={layout.row <= 2 ? "eager" : "lazy"}
-                        className="figure-photo"
-                      />
-                    </div>
-
-                    {/* Player Name Badge (omitted for lead per user request) */}
-                    {!isLead && (
-                      <div className="esports-player-badge">
-                        <span className="badge-name">
-                          - {member.name.toUpperCase()} -
-                        </span>
-                      </div>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="arena-mobile-cue">
-            <span>Geser untuk menjelajahi 22 personel ↔</span>
-          </div>
-        </div>
-
-        {/* Bottom Esports Banner & HUD (from markup.png & reference.png) */}
-        <div className="esports-bottom-bar">
-          <div className="hud-title-unit">
-            <span className="hud-brand-season">SEASON 2026</span>
-            <strong className="hud-brand-title">OFFICIAL ROSTER · 22</strong>
-          </div>
-
-          {/* Active Player HUD */}
-          <div className="hud-player-focus" aria-live="polite">
-            <span className="hud-focus-pill">IN FOCUS [{selectedIndex + 1}/22]</span>
-            <strong className="hud-name">{selected.name}</strong>
-            <span className="hud-role">· {selected.role}</span>
-          </div>
-
-          {/* Horizontal Roster Name Ticker (from reference.png: - NAME -) */}
-          <div className="roster-name-ticker" aria-label="Daftar nama asisten">
-            {team.map((member) => {
-              const isCurrent = member.name === selected.name;
+        {/* ──────────────────────────────────────────────────────────────────
+            TOP SYSTEMS TABS (Sesuai 5 kotak atas di layouts.png):
+            [sistem] [sistem] [INTEGRATION (Tengah)] [sistem] [sistem]
+            ────────────────────────────────────────────────────────────────── */}
+        <div className="esports-top-systems-bar" aria-label="Pilih Sistem Terintegrasi">
+          <div className="systems-tabs-container">
+            {systemsConfig.map((sys) => {
+              const isActive = sys.id === activeSystemId;
+              const isCenter = sys.id === "integration";
               return (
                 <button
-                  key={member.name}
+                  key={sys.id}
                   type="button"
-                  className={`ticker-name-btn ${isCurrent ? "is-active" : ""}`}
-                  onClick={() => setSelectedPerson(member.name)}
+                  className={`system-tab-card ${isActive ? "is-active" : ""} ${isCenter ? "is-center-system" : ""}`}
+                  onClick={() => setActiveSystemId(sys.id)}
+                  aria-pressed={isActive}
                 >
-                  - {member.name.toUpperCase()} -
+                  <span className="tab-number">{sys.number}</span>
+                  <span className="tab-label">{sys.label}</span>
+                  {sys.url && (
+                    <span className="tab-live-badge" title="Tersedia tautan live">
+                      ●
+                    </span>
+                  )}
                 </button>
               );
             })}
           </div>
+        </div>
 
-          {/* Jump Link to Details */}
-          <a href="#project-detail" className="hud-detail-cta">
-            Detail Sistem ↓
-          </a>
+        {/* ──────────────────────────────────────────────────────────────────
+            MAIN ARENA STAGE (Bingkai Roster Persegi Panjang di layouts.png)
+            ────────────────────────────────────────────────────────────────── */}
+        <div className="esports-arena-wrapper">
+          <div
+            className="esports-arena-stage"
+            aria-label="Panggung Roster 22 Anggota ICLabs"
+          >
+            {/* Atmospheric Stage FX */}
+            <div className="arena-backdrop-grid" aria-hidden="true" />
+            <div className="arena-smoke-overlay" aria-hidden="true" />
+            <div className="arena-ember-glow" aria-hidden="true" />
+
+            {/* Scrollable Viewport for 22 Roster Figures */}
+            <div
+              id="arena-stage-scroll"
+              ref={stageScrollRef}
+              className="arena-scroll-viewport"
+              tabIndex={0}
+              aria-label="Area gulir 22 personel"
+            >
+              <div className="arena-lineup-container">
+                {teamConfig.map((member) => {
+                  const layout = getMockupRosterLayout(member.id);
+                  const isSelected = selectedMemberId === member.id;
+                  const isLead = layout.isLead;
+
+                  return (
+                    <button
+                      key={member.id}
+                      type="button"
+                      className={`roster-player-figure row-${layout.row} ${isLead ? "figure-captain" : ""} ${isSelected && !isLead ? "is-focused" : ""}`}
+                      style={{
+                        "--pos-x": `${layout.x}%`,
+                        "--pos-bottom": `${layout.bottom}px`,
+                        "--fig-height": `${layout.height}px`,
+                        "--z-index": isSelected ? 50 : layout.zIndex,
+                      }}
+                      onClick={() => setSelectedMemberId(member.id)}
+                      aria-label={`Pilih asisten ${member.name}`}
+                      aria-pressed={isSelected}
+                    >
+                      <div className="figure-photo-wrap">
+                        <img
+                          src={encodeURI(member.image)}
+                          alt={`Foto ${member.name}`}
+                          loading={layout.row <= 2 ? "eager" : "lazy"}
+                          className="figure-photo"
+                        />
+                      </div>
+
+                      {/* Player Name Badge (Omitted for Lead per request) */}
+                      {!isLead && (
+                        <div className="esports-player-badge" aria-hidden="true">
+                          <span className="badge-name">
+                            - {(member.nickname || member.name).toUpperCase()} -
+                          </span>
+                        </div>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="arena-mobile-cue" aria-hidden="true">
+              <span>Geser untuk menjelajahi 22 personel ↔</span>
+            </div>
+          </div>
+        </div>
+
+        {/* ──────────────────────────────────────────────────────────────────
+            BOTTOM TITLE & TICKER (Teks "Developer By Iclabs" di Bawah Bingkai)
+            ────────────────────────────────────────────────────────────────── */}
+        <div className="esports-bottom-section">
+          {/* Main Title below stage matching layouts.png */}
+          <div className="esports-main-title-wrap">
+            <h1 className="esports-display-title">
+              DEVELOPER <span className="text-accent">BY ICLABS</span>
+            </h1>
+            <p className="esports-display-sub">
+              {labConfig.faculty} · {labConfig.university} · Season {labConfig.season}
+            </p>
+          </div>
+
+          {/* Bottom HUD Bar & Roster Name Ticker */}
+          <div className="esports-bottom-bar">
+            {/* Active Player HUD */}
+            <div className="hud-player-focus" aria-live="polite">
+              <span className="hud-focus-pill">
+                [{selectedIndex + 1}/{teamConfig.length}]
+              </span>
+              <strong className="hud-name">{selectedMember.name}</strong>
+              <span className="hud-role">· {selectedMember.role}</span>
+            </div>
+
+            {/* Horizontal Roster Name Ticker */}
+            <div className="roster-name-ticker" aria-label="Daftar nama asisten">
+              {teamConfig.map((member) => {
+                const isCurrent = member.id === selectedMember.id;
+                return (
+                  <button
+                    key={member.id}
+                    type="button"
+                    className={`ticker-name-btn ${isCurrent ? "is-active" : ""}`}
+                    onClick={() => setSelectedMemberId(member.id)}
+                  >
+                    - {(member.nickname || member.name).toUpperCase()} -
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Quick Actions */}
+            <div className="hud-actions">
+              {activeSystem.url && (
+                <a
+                  href={activeSystem.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hud-launch-btn"
+                  title={`Buka ${activeSystem.label}`}
+                >
+                  Buka Sistem ↗
+                </a>
+              )}
+              <a href="#project-detail" className="hud-detail-cta">
+                Detail Arsitektur ↓
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -287,21 +322,35 @@ export default function Portfolio() {
             <div className="detail-header-block">
               <span className="section-pill-tag">DETAIL ARSITEKTUR SISTEM</span>
               <h2 id="project-title" className="project-heading">
-                {project.title.split("\n").map((line, i) => (
+                {activeSystem.title.split("\n").map((line, i) => (
                   <span key={line} className={i > 0 ? "heading-secondary" : ""}>
                     {line}
                     <br />
                   </span>
                 ))}
               </h2>
-              <p className="project-category-meta">Kategori: {project.category}</p>
-              <p className="project-description">{project.description}</p>
+              <div className="project-category-meta-row">
+                <span className="project-category-badge">{activeSystem.category}</span>
+                {activeSystem.url ? (
+                  <a
+                    href={activeSystem.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="system-external-link"
+                  >
+                    Kunjungi Portal: {activeSystem.url.replace(/^https?:\/\//, "")} ↗
+                  </a>
+                ) : (
+                  <span className="system-internal-badge">Modul Internal API</span>
+                )}
+              </div>
+              <p className="project-description">{activeSystem.description}</p>
             </div>
 
             <div className="features-block">
               <h3 className="block-title">Fitur & Arsitektur Utama</h3>
               <ul className="features-list">
-                {project.features.map((feat) => (
+                {activeSystem.features.map((feat) => (
                   <li key={feat} className="feature-item">
                     <svg
                       width="15"
@@ -323,21 +372,23 @@ export default function Portfolio() {
               </ul>
             </div>
 
-            <div className="tech-block">
-              <h3 className="block-title">Teknologi Terintegrasi</h3>
-              <div className="tech-chips">
-                {project.tech.map((t) => (
-                  <span key={t} className="tech-chip">
-                    {t}
-                  </span>
-                ))}
+            {activeSystem.tech.length > 0 && (
+              <div className="tech-block">
+                <h3 className="block-title">Teknologi Terintegrasi</h3>
+                <div className="tech-chips">
+                  {activeSystem.tech.map((t) => (
+                    <span key={t} className="tech-chip">
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
-            {project.note && (
+            {activeSystem.note && (
               <div className="project-note-box">
                 <span className="note-label">Catatan Integrasi:</span>
-                <p className="note-text">{project.note}</p>
+                <p className="note-text">{activeSystem.note}</p>
               </div>
             )}
           </div>
@@ -354,7 +405,7 @@ export default function Portfolio() {
                 <span className="caption-sub">Pusat operasional laboratorium</span>
                 <strong className="caption-main">ICLabs Fikom</strong>
                 <span className="caption-desc">
-                  Fakultas Ilmu Komputer · Ekosistem praktikum, riset, dan rekrutmen terpadu.
+                  {labConfig.faculty} · Ekosistem praktikum, riset, dan rekrutmen terpadu.
                 </span>
               </figcaption>
             </figure>
@@ -372,10 +423,12 @@ export default function Portfolio() {
               Built by us<span className="text-accent">.</span>
             </h2>
             <p className="section-subtitle">
-              22 asisten dan personel di balik pengembangan sistem informasi laboratorium.
+              {labConfig.totalMembers} asisten dan personel di balik pengembangan ekosistem digital laboratorium.
             </p>
           </div>
-          <span className="team-total-badge">22 PERSPEKTIF · 1 TIM</span>
+          <span className="team-total-badge">
+            {labConfig.totalMembers} PERSPEKTIF · 1 TIM
+          </span>
         </div>
 
         <div className="team-split-layout">
@@ -383,33 +436,130 @@ export default function Portfolio() {
           <div className="member-spotlight-card" aria-live="polite">
             <div className="spotlight-photo-frame">
               <img
-                src={encodeURI(selected.image)}
-                alt={`Foto resmi ${selected.name}`}
+                src={encodeURI(selectedMember.image)}
+                alt={`Foto resmi ${selectedMember.name}`}
                 loading="lazy"
                 className="spotlight-photo"
               />
             </div>
             <div className="spotlight-details">
-              <span className="spotlight-status">Profil asisten terpilih</span>
-              <h3 className="spotlight-name">{selected.name}</h3>
-              <p className="spotlight-role">{selected.role}</p>
+              <div className="spotlight-header-meta">
+                <span className="spotlight-status">
+                  {selectedMember.isLead ? "Lead & System Architect" : "Personel Developer"}
+                </span>
+                <span className="spotlight-tier-tag">
+                  Baris {selectedMember.row} · Posisi #{selectedMember.rowPosition}
+                </span>
+              </div>
+              <h3 className="spotlight-name">{selectedMember.name}</h3>
+              <p className="spotlight-role">{selectedMember.role}</p>
+
+              {/* Data Stambuk / NIM */}
+              {selectedMember.stambuk && (
+                <div className="spotlight-meta-row">
+                  <span className="meta-row-label">Stambuk:</span>
+                  <span className="meta-row-val">{selectedMember.stambuk}</span>
+                </div>
+              )}
+
+              {/* Data Email */}
+              {selectedMember.email && (
+                <div className="spotlight-meta-row">
+                  <span className="meta-row-label">Email:</span>
+                  <a
+                    href={`mailto:${selectedMember.email}`}
+                    className="meta-row-link"
+                  >
+                    {selectedMember.email}
+                  </a>
+                </div>
+              )}
+
+              {/* Data Jobs & Keahlian */}
+              {selectedMember.jobs && selectedMember.jobs.length > 0 && (
+                <div className="spotlight-jobs-block">
+                  <span className="jobs-block-label">Bidang & Keahlian:</span>
+                  <div className="jobs-chip-wrap">
+                    {selectedMember.jobs.map((job) => (
+                      <span key={job} className="job-chip">
+                        {job}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Data Sosial Media */}
+              {selectedMember.socials &&
+                Object.values(selectedMember.socials).some((val) => Boolean(val)) && (
+                  <div className="spotlight-socials-block">
+                    <span className="socials-block-label">Sosial Media:</span>
+                    <div className="socials-links-wrap">
+                      {selectedMember.socials.github && (
+                        <a
+                          href={selectedMember.socials.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="social-btn"
+                          aria-label="GitHub"
+                        >
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                          </svg>
+                          <span>GitHub</span>
+                        </a>
+                      )}
+                      {selectedMember.socials.instagram && (
+                        <a
+                          href={selectedMember.socials.instagram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="social-btn"
+                          aria-label="Instagram"
+                        >
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                          </svg>
+                          <span>Instagram</span>
+                        </a>
+                      )}
+                      {selectedMember.socials.linkedin && (
+                        <a
+                          href={selectedMember.socials.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="social-btn"
+                          aria-label="LinkedIn"
+                        >
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                          </svg>
+                          <span>LinkedIn</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                )}
+
               <div className="spotlight-affiliation">
-                <span>Integrated Computer Laboratory System</span>
-                <span>Fakultas Ilmu Komputer</span>
+                <span>{labConfig.fullName}</span>
+                <span>{labConfig.faculty} · {labConfig.university}</span>
               </div>
             </div>
           </div>
 
           {/* Full Roster Grid */}
           <div className="roster-grid" role="list" aria-label="Daftar asisten ICLabs">
-            {team.map((member) => {
-              const isCurrent = member.name === selected.name;
+            {teamConfig.map((member) => {
+              const isCurrent = member.id === selectedMember.id;
               return (
                 <button
-                  key={member.name}
+                  key={member.id}
                   type="button"
                   className={`roster-card ${isCurrent ? "is-selected" : ""}`}
-                  onClick={() => setSelectedPerson(member.name)}
+                  onClick={() => setSelectedMemberId(member.id)}
                   aria-pressed={isCurrent}
                 >
                   <div className="roster-thumb-wrap">
@@ -444,10 +594,9 @@ export default function Portfolio() {
               Satu Ekosistem untuk Seluruh Laboratorium.
             </h2>
             <p className="about-description">
-              ICLabs (Integrated Computer Laboratory System) mengintegrasikan seluruh
-              alur operasional laboratorium komputer Fakultas Ilmu Komputer—mulai dari
-              pembagian jadwal praktikum, presensi harian, peminjaman ruang, hingga
-              rekrutmen asisten baru.
+              ICLabs ({labConfig.fullName}) mengintegrasikan seluruh alur operasional
+              laboratorium komputer {labConfig.faculty}—mulai dari pembagian jadwal
+              praktikum, presensi harian, peminjaman ruang, hingga rekrutmen asisten baru.
             </p>
           </div>
           <div className="about-meta-grid">
@@ -456,7 +605,7 @@ export default function Portfolio() {
               <span className="meta-label">Modul sistem terintegrasi</span>
             </div>
             <div className="meta-box">
-              <strong className="meta-number">22</strong>
+              <strong className="meta-number">{labConfig.totalMembers}</strong>
               <span className="meta-label">Anggota tim pengembang</span>
             </div>
             <div className="meta-box">
@@ -473,8 +622,8 @@ export default function Portfolio() {
       <footer className="site-footer">
         <div className="footer-top">
           <div className="footer-brand">
-            <strong>ICLABS DEVELOPER COLLECTIVE</strong>
-            <p>Laboratorium Komputer Terpadu · Fakultas Ilmu Komputer</p>
+            <strong>{labConfig.name.toUpperCase()} DEVELOPER COLLECTIVE</strong>
+            <p>Laboratorium Komputer Terpadu · {labConfig.faculty}</p>
           </div>
           <a href="#top" className="back-top-link">
             Kembali ke atas ↑
@@ -488,8 +637,8 @@ export default function Portfolio() {
         </div>
 
         <div className="footer-bottom">
-          <span>Integrated Computer Laboratory System</span>
-          <span>Makassar, Sulawesi Selatan · WITA</span>
+          <span>{labConfig.fullName}</span>
+          <span>{labConfig.location}</span>
         </div>
       </footer>
     </main>
