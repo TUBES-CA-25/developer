@@ -96,59 +96,59 @@ function getMockupRosterLayout(memberId) {
     // BARIS DEPAN (ROW 1) — 7 Laki-laki
     // ══════════════════════════════════════════════════════════════
     case "andi-rifqi":
-      return { row: 1, x: -34.5, bottom: 28, height: 265, zIndex: 32 };
+      return { row: 1, x: -34.5, bottom: 20, height: 260, zIndex: 32 };
     case "raihan":
-      return { row: 1, x: -23.0, bottom: 18, height: 275, zIndex: 33 };
+      return { row: 1, x: -23.0, bottom: 12, height: 270, zIndex: 33 };
     case "fatwa":
-      return { row: 1, x: -11.5, bottom: 8, height: 285, zIndex: 34 };
+      return { row: 1, x: -11.5, bottom: 4, height: 280, zIndex: 34 };
     case "ichwal":
       // Lead / Center: extending down across the bottom arena border as drawn in layouts.png
-      return { row: 1, x: 0, bottom: -4, height: 310, zIndex: 36, isLead: true };
+      return { row: 1, x: 0, bottom: -8, height: 305, zIndex: 36, isLead: true };
     case "rizwan":
-      return { row: 1, x: 11.5, bottom: 8, height: 285, zIndex: 34 };
+      return { row: 1, x: 11.5, bottom: 4, height: 280, zIndex: 34 };
     case "fuad":
-      return { row: 1, x: 23.0, bottom: 18, height: 275, zIndex: 33 };
+      return { row: 1, x: 23.0, bottom: 12, height: 270, zIndex: 33 };
     case "nahwa":
-      return { row: 1, x: 34.5, bottom: 28, height: 265, zIndex: 32 };
+      return { row: 1, x: 34.5, bottom: 20, height: 260, zIndex: 32 };
 
     // ══════════════════════════════════════════════════════════════
     // BARIS TENGAH (ROW 2) — 8 Laki-laki (Ukuran Sedang)
     // ══════════════════════════════════════════════════════════════
     case "scania":
-      return { row: 2, x: -40.5, bottom: 84, height: 350, zIndex: 22 };
+      return { row: 2, x: -40.5, bottom: 70, height: 335, zIndex: 22 };
     case "andi-ahsan":
-      return { row: 2, x: -29.0, bottom: 74, height: 285, scale: 0.86, zIndex: 23 };
+      return { row: 2, x: -29.0, bottom: 62, height: 275, scale: 0.86, zIndex: 23 };
     case "wanwan":
-      return { row: 2, x: -17.5, bottom: 68, height: 350, zIndex: 24 };
+      return { row: 2, x: -17.5, bottom: 56, height: 335, zIndex: 24 };
     case "zaki":
-      return { row: 2, x: -5.8, bottom: 60, height: 350, zIndex: 25 };
+      return { row: 2, x: -5.8, bottom: 48, height: 335, zIndex: 25 };
     case "aan":
-      return { row: 2, x: 5.8, bottom: 60, height: 350, zIndex: 25 };
+      return { row: 2, x: 5.8, bottom: 48, height: 335, zIndex: 25 };
     case "ikhlas":
-      return { row: 2, x: 17.5, bottom: 68, height: 350, zIndex: 24 };
+      return { row: 2, x: 17.5, bottom: 56, height: 335, zIndex: 24 };
     case "rafly":
-      return { row: 2, x: 29.0, bottom: 76, height: 350, zIndex: 23 };
+      return { row: 2, x: 29.0, bottom: 62, height: 335, zIndex: 23 };
     case "daifan":
-      return { row: 2, x: 40.5, bottom: 84, height: 350, zIndex: 22 };
+      return { row: 2, x: 40.5, bottom: 70, height: 335, zIndex: 22 };
 
     // ══════════════════════════════════════════════════════════════
     // BARIS BELAKANG (ROW 3) — 7 Perempuan (Towering & Paling Besar)
     // ══════════════════════════════════════════════════════════════
     case "firly":
-      return { row: 3, x: -35.2, bottom: 132, height: 395, zIndex: 12 };
+      return { row: 3, x: -35.2, bottom: 98, height: 365, zIndex: 12 };
     case "farah":
-      return { row: 3, x: -23.5, bottom: 128, height: 400, zIndex: 13 };
+      return { row: 3, x: -23.5, bottom: 94, height: 370, zIndex: 13 };
     case "halima":
-      return { row: 3, x: -11.8, bottom: 124, height: 405, zIndex: 14 };
+      return { row: 3, x: -11.8, bottom: 90, height: 375, zIndex: 14 };
     case "thalita":
       // Thalita at dead center back, towers directly above the center gap
-      return { row: 3, x: 0, bottom: 120, height: 410, zIndex: 15 };
+      return { row: 3, x: 0, bottom: 86, height: 380, zIndex: 15 };
     case "siti-safira":
-      return { row: 3, x: 11.8, bottom: 124, height: 405, zIndex: 14 };
+      return { row: 3, x: 11.8, bottom: 90, height: 375, zIndex: 14 };
     case "sitti-lutfia":
-      return { row: 3, x: 23.5, bottom: 128, height: 400, zIndex: 13 };
+      return { row: 3, x: 23.5, bottom: 94, height: 370, zIndex: 13 };
     case "rizqi":
-      return { row: 3, x: 35.2, bottom: 132, height: 395, zIndex: 12 };
+      return { row: 3, x: 35.2, bottom: 98, height: 365, zIndex: 12 };
 
     default:
       return { row: 3, x: 0, bottom: 150, height: 450, zIndex: 10 };
@@ -546,7 +546,7 @@ export default function Portfolio() {
                                 aria-label={`Website & Portfolio ${selectedMember.name}`}
                               >
                                 <Globe size={16} weight="bold" />
-                                <span>Website</span>
+                                <span>Profile</span>
                               </a>
                             )}
                             {selectedMember.socials.github && (
