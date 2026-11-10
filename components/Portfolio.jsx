@@ -80,7 +80,9 @@ function getMockupRosterLayout(memberId) {
 export default function Portfolio() {
   const [activeSystemId, setActiveSystemId] = useState("integration");
   const [selectedMemberId, setSelectedMemberId] = useState("ichwal");
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const stageScrollRef = useRef(null);
+  const profileCloseButtonRef = useRef(null);
 
   const activeSystem =
     systemsConfig.find((s) => s.id === activeSystemId) || systemsConfig[0];
@@ -98,6 +100,28 @@ export default function Portfolio() {
       container.scrollLeft = centerTarget;
     }
   }, []);
+
+  useEffect(() => {
+    if (!isProfileOpen) {
+      return undefined;
+    }
+
+    profileCloseButtonRef.current?.focus();
+
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") {
+        setIsProfileOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [isProfileOpen]);
+
+  const openMemberProfile = (memberId) => {
+    setSelectedMemberId(memberId);
+    setIsProfileOpen(true);
+  };
 
   return (
     <main id="top" className="site-canvas">
@@ -150,28 +174,33 @@ export default function Portfolio() {
             [sistem] [sistem] [INTEGRATION (Tengah)] [sistem] [sistem]
             ────────────────────────────────────────────────────────────────── */}
         <div className="esports-top-systems-bar" aria-label="Pilih Sistem Terintegrasi">
-          <div className="systems-tabs-container">
-            {systemsConfig.map((sys) => {
-              const isActive = sys.id === activeSystemId;
-              const isCenter = sys.id === "integration";
-              return (
-                <button
-                  key={sys.id}
-                  type="button"
-                  className={`system-tab-card ${isActive ? "is-active" : ""} ${isCenter ? "is-center-system" : ""}`}
-                  onClick={() => setActiveSystemId(sys.id)}
-                  aria-pressed={isActive}
-                >
-                  <span className="tab-number">{sys.number}</span>
-                  <span className="tab-label">{sys.label}</span>
-                  {sys.url && (
-                    <span className="tab-live-badge" title="Tersedia tautan live">
-                      ●
-                    </span>
-                  )}
-                </button>
-              );
-            })}
+          <div className="systems-marquee">
+            <div className="systems-tabs-container">
+              {[...systemsConfig, ...systemsConfig].map((sys, index) => {
+                const isActive = sys.id === activeSystemId;
+                const isCenter = sys.id === "integration";
+                const isDuplicate = index >= systemsConfig.length;
+                return (
+                  <button
+                    key={`${sys.id}-${index}`}
+                    type="button"
+                    className={`system-tab-card ${isActive ? "is-active" : ""} ${isCenter ? "is-center-system" : ""}`}
+                    onClick={() => setActiveSystemId(sys.id)}
+                    aria-pressed={isActive}
+                    aria-hidden={isDuplicate || undefined}
+                    tabIndex={isDuplicate ? -1 : undefined}
+                  >
+                    <span className="tab-number">{sys.number}</span>
+                    <span className="tab-label">{sys.label}</span>
+                    {sys.url && (
+                      <span className="tab-live-badge" title="Tersedia tautan live">
+                        ●
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
@@ -180,7 +209,7 @@ export default function Portfolio() {
             ────────────────────────────────────────────────────────────────── */}
         <div className="esports-arena-wrapper">
           <div
-            className="esports-arena-stage"
+            className={`esports-arena-stage ${isProfileOpen ? "is-profile-open" : ""}`}
             aria-label="Panggung Roster 22 Anggota ICLabs"
           >
             {/* Atmospheric Stage FX */}
@@ -206,14 +235,14 @@ export default function Portfolio() {
                     <button
                       key={member.id}
                       type="button"
-                      className={`roster-player-figure row-${layout.row} ${isLead ? "figure-captain" : ""} ${isSelected && !isLead ? "is-focused" : ""}`}
+                      className={`roster-player-figure row-${layout.row} ${isLead ? "figure-captain" : ""} ${isSelected ? "is-focused" : ""}`}
                       style={{
                         "--pos-x": `${layout.x}%`,
                         "--pos-bottom": `${layout.bottom}px`,
                         "--fig-height": `${layout.height}px`,
-                        "--z-index": isSelected ? 50 : layout.zIndex,
+                        "--z-index": isProfileOpen && isSelected ? 50 : layout.zIndex,
                       }}
-                      onClick={() => setSelectedMemberId(member.id)}
+                      onClick={() => openMemberProfile(member.id)}
                       aria-label={`Pilih asisten ${member.name}`}
                       aria-pressed={isSelected}
                     >
@@ -226,19 +255,64 @@ export default function Portfolio() {
                         />
                       </div>
 
-                      {/* Player Name Badge (Omitted for Lead per request) */}
-                      {!isLead && (
-                        <div className="esports-player-badge" aria-hidden="true">
-                          <span className="badge-name">
-                            - {(member.nickname || member.name).toUpperCase()} -
-                          </span>
-                        </div>
-                      )}
+                      <div className="esports-player-badge" aria-hidden="true">
+                        <span className="badge-name">
+                          - {(member.nickname || member.name).toUpperCase()} -
+                        </span>
+                      </div>
                     </button>
                   );
                 })}
               </div>
             </div>
+
+            {isProfileOpen && (
+              <div
+                className="stage-profile-scrim"
+                role="presentation"
+                onClick={() => setIsProfileOpen(false)}
+              >
+                <article
+                  className="stage-profile-card"
+                  role="dialog"
+                  aria-modal="true"
+                  aria-labelledby="stage-profile-name"
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  <button
+                    ref={profileCloseButtonRef}
+                    type="button"
+                    className="stage-profile-close"
+                    onClick={() => setIsProfileOpen(false)}
+                    aria-label="Tutup profil"
+                  >
+                    ×
+                  </button>
+                  <img
+                    src={encodeURI(selectedMember.image)}
+                    alt=""
+                    className="stage-profile-photo"
+                  />
+                  <div className="stage-profile-content">
+                    <span className="stage-profile-index">
+                      PERSONEL {String(selectedIndex + 1).padStart(2, "0")}
+                    </span>
+                    <h2 id="stage-profile-name">{selectedMember.name}</h2>
+                    <p>{selectedMember.role}</p>
+                    {selectedMember.jobs?.length > 0 && (
+                      <ul className="stage-profile-jobs">
+                        {selectedMember.jobs.map((job) => (
+                          <li key={job}>{job}</li>
+                        ))}
+                      </ul>
+                    )}
+                    <a href="#team" onClick={() => setIsProfileOpen(false)}>
+                      Profil lengkap ↓
+                    </a>
+                  </div>
+                </article>
+              </div>
+            )}
 
             <div className="arena-mobile-cue" aria-hidden="true">
               <span>Geser untuk menjelajahi 22 personel ↔</span>
@@ -273,19 +347,24 @@ export default function Portfolio() {
 
             {/* Horizontal Roster Name Ticker */}
             <div className="roster-name-ticker" aria-label="Daftar nama asisten">
-              {teamConfig.map((member) => {
-                const isCurrent = member.id === selectedMember.id;
-                return (
-                  <button
-                    key={member.id}
-                    type="button"
-                    className={`ticker-name-btn ${isCurrent ? "is-active" : ""}`}
-                    onClick={() => setSelectedMemberId(member.id)}
-                  >
-                    - {(member.nickname || member.name).toUpperCase()} -
-                  </button>
-                );
-              })}
+              <div className="roster-name-ticker-track">
+                {[...teamConfig, ...teamConfig].map((member, index) => {
+                  const isCurrent = member.id === selectedMember.id;
+                  const isDuplicate = index >= teamConfig.length;
+                  return (
+                    <button
+                      key={`${member.id}-${index}`}
+                      type="button"
+                      className={`ticker-name-btn ${isCurrent ? "is-active" : ""}`}
+                      onClick={() => openMemberProfile(member.id)}
+                      aria-hidden={isDuplicate || undefined}
+                      tabIndex={isDuplicate ? -1 : undefined}
+                    >
+                      - {(member.nickname || member.name).toUpperCase()} -
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Quick Actions */}

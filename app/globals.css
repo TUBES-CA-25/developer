@@ -195,25 +195,26 @@ a:focus-visible {
 .esports-top-systems-bar {
   padding: 10px 0 8px;
   flex-shrink: 0;
+  overflow: hidden;
+}
+
+.systems-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, black 4%, black 96%, transparent);
 }
 
 .systems-tabs-container {
   display: flex;
   align-items: center;
   gap: 10px;
-  overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-strong) transparent;
-  padding-bottom: 4px;
+  width: max-content;
+  padding: 2px 0 6px;
+  animation: marquee-left 40s linear infinite;
 }
 
-.systems-tabs-container::-webkit-scrollbar {
-  height: 3px;
-}
-
-.systems-tabs-container::-webkit-scrollbar-thumb {
-  background: var(--border-strong);
-  border-radius: 3px;
+.systems-marquee:hover .systems-tabs-container,
+.systems-marquee:focus-within .systems-tabs-container {
+  animation-play-state: paused;
 }
 
 .system-tab-card {
@@ -284,15 +285,14 @@ a:focus-visible {
   min-height: 550px;
   height: 100%;
   position: relative;
-  overflow: hidden;
-  /* Distinct esports stadium border matching the frame in layouts.png */
-  border: 1.5px solid rgba(92, 225, 230, 0.25);
-  border-radius: 16px;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
   background: radial-gradient(ellipse at 50% 90%, #11202b 0%, #081117 50%, #05080b 88%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
+  box-shadow: none;
 }
 
 /* Atmosphere: Grid, Smoke, Embers */
@@ -328,8 +328,7 @@ a:focus-visible {
 .arena-scroll-viewport {
   width: 100%;
   height: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: visible;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -337,15 +336,6 @@ a:focus-visible {
   scrollbar-color: var(--border-strong) transparent;
   position: relative;
   z-index: 2;
-}
-
-.arena-scroll-viewport::-webkit-scrollbar {
-  height: 4px;
-}
-
-.arena-scroll-viewport::-webkit-scrollbar-thumb {
-  background: var(--border-strong);
-  border-radius: 4px;
 }
 
 /* Lineup Container: 22 Players in 3 Tiers */
@@ -383,11 +373,9 @@ a:focus-visible {
               opacity 0.25s;
 }
 
-.roster-player-figure:focus,
 .roster-player-figure:focus-visible {
-  outline: none !important;
-  border: none !important;
-  box-shadow: none !important;
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 6px;
 }
 
 .figure-photo-wrap {
@@ -424,15 +412,9 @@ a:focus-visible {
   opacity: 1;
 }
 
-/* Lead (Ichwal): Natural Display per user request ("cukup tampil saja") */
-.figure-captain,
-.figure-captain:hover,
-.figure-captain.is-focused,
-.figure-captain:focus,
-.figure-captain:active {
+/* Lead remains central but receives the same interactive feedback as the roster. */
+.figure-captain {
   filter: brightness(1) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.6)) !important;
-  transform: translateX(-50%) !important;
-  outline: none !important;
 }
 
 /* Hover and Focus States for other players */
@@ -446,7 +428,7 @@ a:focus-visible {
 /* Floating Player Name Badge (reference.png: - PLAYER -) */
 .esports-player-badge {
   position: absolute;
-  top: 6%;
+  bottom: calc(100% + 10px);
   left: 50%;
   transform: translateX(-50%);
   background: rgba(9, 14, 19, 0.94);
@@ -471,6 +453,118 @@ a:focus-visible {
 .roster-player-figure.is-focused .esports-player-badge {
   opacity: 1;
   border-color: var(--accent);
+}
+
+.is-profile-open .roster-player-figure:not(.is-focused) {
+  filter: blur(3px) brightness(0.42) saturate(0.35) !important;
+  opacity: 0.55 !important;
+  pointer-events: none;
+}
+
+.is-profile-open .roster-player-figure.is-focused {
+  filter: brightness(1.08) drop-shadow(0 0 26px rgba(92, 225, 230, 0.55)) !important;
+}
+
+.stage-profile-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(4, 8, 11, 0.44);
+  backdrop-filter: blur(3px);
+}
+
+.stage-profile-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(150px, 0.7fr) minmax(260px, 1.3fr);
+  width: min(100%, 620px);
+  overflow: hidden;
+  background: rgba(10, 18, 24, 0.96);
+  border: 1px solid var(--border-accent);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55), 0 0 30px rgba(92, 225, 230, 0.12);
+}
+
+.stage-profile-photo {
+  width: 100%;
+  height: 100%;
+  min-height: 290px;
+  object-fit: contain;
+  object-position: center bottom;
+  background: radial-gradient(circle at 50% 25%, #1a4750, #081117 72%);
+}
+
+.stage-profile-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 34px;
+}
+
+.stage-profile-index {
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.stage-profile-content h2 {
+  margin: 9px 0 0;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1;
+}
+
+.stage-profile-content > p {
+  margin: 8px 0 18px;
+  color: var(--accent);
+  font-size: 14px;
+}
+
+.stage-profile-jobs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0;
+  margin: 0 0 22px;
+  list-style: none;
+}
+
+.stage-profile-jobs li {
+  padding: 5px 8px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.stage-profile-content a {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.stage-profile-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  color: var(--fg);
+  background: rgba(6, 10, 13, 0.75);
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.stage-profile-close:hover {
+  color: var(--accent);
+  border-color: var(--border-accent);
 }
 
 .arena-mobile-cue {
@@ -554,10 +648,9 @@ a:focus-visible {
 
 /* Horizontal Roster Name Ticker */
 .roster-name-ticker {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  overflow-x: auto;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
   scrollbar-width: none;
   padding: 0 10px;
   mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
@@ -576,6 +669,20 @@ a:focus-visible {
   padding: 4px 8px;
   border-radius: 4px;
   transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.roster-name-ticker-track {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+  animation: marquee-left 52s linear infinite;
+}
+
+.roster-name-ticker:hover .roster-name-ticker-track,
+.roster-name-ticker:focus-within .roster-name-ticker-track {
+  animation-play-state: paused;
 }
 
 .ticker-name-btn:hover {
@@ -586,6 +693,11 @@ a:focus-visible {
   color: var(--accent);
   background: var(--accent-dim);
   border: 1px solid var(--border-accent);
+}
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 .hud-actions {
@@ -1342,6 +1454,8 @@ a:focus-visible {
 
   .esports-arena-stage {
     min-height: 460px;
+    overflow-x: clip;
+    overflow-y: visible;
   }
 
   .arena-lineup-container {
@@ -1385,6 +1499,26 @@ a:focus-visible {
   .roster-name-ticker {
     width: 100%;
     mask-image: none;
+  }
+
+  .stage-profile-scrim {
+    padding: 16px;
+  }
+
+  .stage-profile-card {
+    grid-template-columns: 120px minmax(0, 1fr);
+  }
+
+  .stage-profile-photo {
+    min-height: 230px;
+  }
+
+  .stage-profile-content {
+    padding: 22px 18px;
+  }
+
+  .stage-profile-content h2 {
+    font-size: 28px;
   }
 
   .hud-actions {
