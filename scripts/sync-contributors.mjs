@@ -246,7 +246,7 @@ export function getMemberContribution(memberId) {
 export function getTopCommitters() {
   return Object.values(memberContributions)
     .filter((m) => m.commits > 0)
-    .sort((a, b) => b.commits - a.commits);
+    .sort((a, b) => a.rank - b.rank || b.commits - a.commits);
 }
 
 export function getTopPRContributors() {
