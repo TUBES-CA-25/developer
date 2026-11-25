@@ -16,6 +16,7 @@ import {
   UsersThree,
 } from "@phosphor-icons/react";
 import { teamConfig, systemsConfig, labConfig } from "../lib/config";
+import ArchitectureGraph from "./ArchitectureGraph";
 import {
   targetRepositories,
   ecosystemStats,
@@ -501,7 +502,7 @@ export default function Portfolio() {
 
             <nav className="header-nav" aria-label="Navigasi Utama">
               <a href="#project-detail" className="nav-link">
-                Sistem
+                Arsitektur
               </a>
               <a href="#contributors" className="nav-link">
                 Kontributor & Commit
@@ -949,8 +950,8 @@ export default function Portfolio() {
                     Buka Sistem ↗
                   </a>
                 )}
-                <a href="#contributors" className="hud-detail-cta">
-                  Leaderboard Kontributor ↓
+                <a href="#project-detail" className="hud-detail-cta">
+                  Graf Arsitektur ↓
                 </a>
               </div>
             </div>
@@ -958,95 +959,35 @@ export default function Portfolio() {
         </section>
 
         {/* ====================================================================
-          SECTION 2: PROJECT DETAIL (Integrated Systems Overview)
-          (Teknologi Terintegrasi / Tech Badges dihilangkan sesuai permintaan)
+          SECTION 2: INTERACTIVE SYSTEM ARCHITECTURE TOPOLOGY GRAPH
           ==================================================================== */}
         <section
-          className="project-detail-section"
+          className="project-detail-section architecture-graph-section"
           id="project-detail"
           aria-labelledby="project-title"
         >
-          <div className="detail-grid">
-            <div className="detail-content">
-              <div className="detail-header-block">
-                <span className="section-pill-tag">DETAIL ARSITEKTUR SISTEM</span>
-                <h2 id="project-title" className="project-heading">
-                  {activeSystem.title.split("\n").map((line, i) => (
-                    <span key={line} className={i > 0 ? "heading-secondary" : ""}>
-                      {line}
-                      <br />
-                    </span>
-                  ))}
-                </h2>
-                <div className="project-category-meta-row">
-                  <span className="project-category-badge">{activeSystem.category}</span>
-                  {activeSystem.url ? (
-                    <a
-                      href={activeSystem.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="system-external-link"
-                    >
-                      Kunjungi Portal: {activeSystem.url.replace(/^https?:\/\//, "")} ↗
-                    </a>
-                  ) : (
-                    <span className="system-internal-badge">Modul Internal API</span>
-                  )}
-                </div>
-                <p className="project-description">{activeSystem.description}</p>
-              </div>
-
-              <div className="features-block">
-                <h3 className="block-title">Fitur & Arsitektur Utama</h3>
-                <ul className="features-list">
-                  {activeSystem.features.map((feat) => (
-                    <li key={feat} className="feature-item">
-                      <svg
-                        width="15"
-                        height="15"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feature-icon"
-                        aria-hidden="true"
-                      >
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {activeSystem.note && (
-                <div className="project-note-box">
-                  <span className="note-label">Catatan Integrasi:</span>
-                  <p className="note-text">{activeSystem.note}</p>
-                </div>
-              )}
+          <div className="section-header architecture-graph-header">
+            <div>
+              <span className="section-pill-tag">ARSITEKTUR EKOSISTEM TERINTEGRASI</span>
+              <h2 id="project-title" className="section-title">
+                Satu inti<span className="text-accent">.</span> Semua terhubung<span className="text-accent">.</span>
+              </h2>
+              <p className="section-subtitle">
+                Peta graf interaktif lalu lintas portal ICLabs (<code>iclabs.fikom.umi.ac.id</code>) melalui
+                Caddy reverse proxy, proteksi dua arah Wazuh IDS, cluster API stateless, replikasi MySQL, dan storage MinIO AIStor.
+              </p>
             </div>
-
-            <div className="detail-visual-column">
-              <figure className="detail-figure">
-                <img
-                  src={getAssetUrl("/images/gedung-fikom-malam.webp")}
-                  alt="Gedung Fakultas Ilmu Komputer pada malam hari"
-                  loading="lazy"
-                  className="figure-image"
-                />
-                <figcaption className="figure-caption">
-                  <span className="caption-sub">Pusat operasional laboratorium</span>
-                  <strong className="caption-main">ICLabs Fikom</strong>
-                  <span className="caption-desc">
-                    {labConfig.faculty} · Ekosistem praktikum, riset, dan rekrutmen terpadu.
-                  </span>
-                </figcaption>
-              </figure>
+            <div className="architecture-graph-pills">
+              <span className="team-total-badge">
+                7 CLIENT PORTALS · 2 API NODES · 2-WAY IDS
+              </span>
             </div>
           </div>
+
+          <ArchitectureGraph
+            activeSystem={activeSystem}
+            onSelectSystem={setActiveSystemId}
+          />
         </section>
 
         {/* ====================================================================
