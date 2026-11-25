@@ -51,65 +51,65 @@ const getAssetUrl = (path) => {
 function getMockupRosterLayout(memberId) {
   switch (memberId) {
     // ══════════════════════════════════════════════════════════════
-    // BARIS DEPAN (ROW 1) — 7 Laki-laki
+    // BARIS DEPAN (ROW 1) — 7 Laki-laki (Proporsi seimbang)
     // ══════════════════════════════════════════════════════════════
     case "andi-rifqi":
-      return { row: 1, x: -34.5, bottom: 24, height: 268, zIndex: 32 };
+      return { row: 1, x: -34.5, bottom: 16, height: 282, zIndex: 32 };
     case "raihan":
-      return { row: 1, x: -23.0, bottom: 16, height: 278, zIndex: 33 };
+      return { row: 1, x: -23.0, bottom: 14, height: 278, zIndex: 33 };
     case "fatwa":
       return { row: 1, x: -11.5, bottom: 6, height: 288, zIndex: 34 };
     case "ichwal":
       // Lead / Center: extending down across the bottom arena border as drawn in layouts.png
       return { row: 1, x: 0, bottom: -8, height: 315, zIndex: 36, isLead: true };
     case "rizwan":
-      return { row: 1, x: 11.5, bottom: 6, height: 288, zIndex: 34 };
+      return { row: 1, x: 11.5, bottom: 4, height: 294, zIndex: 34 };
     case "fuad":
-      return { row: 1, x: 23.0, bottom: 16, height: 278, zIndex: 33 };
+      return { row: 1, x: 23.0, bottom: -12, height: 312, zIndex: 33 };
     case "nahwa":
-      return { row: 1, x: 34.5, bottom: 24, height: 268, zIndex: 32 };
+      return { row: 1, x: 34.5, bottom: 12, height: 284, zIndex: 32 };
 
     // ══════════════════════════════════════════════════════════════
-    // BARIS TENGAH (ROW 2) — 8 Laki-laki (Ukuran Sedang, Renggang & Seimbang)
+    // BARIS TENGAH (ROW 2) — 8 Laki-laki (Ukuran kepala & bahu seragam)
     // ══════════════════════════════════════════════════════════════
     case "scania":
-      return { row: 2, x: -40.5, bottom: 122, height: 348, zIndex: 22 };
+      return { row: 2, x: -40.5, bottom: 120, height: 348, zIndex: 22 };
     case "andi-ahsan":
-      return { row: 2, x: -29.0, bottom: 114, height: 348, zIndex: 23 };
+      return { row: 2, x: -29.0, bottom: 184, height: 274, zIndex: 23 };
     case "wanwan":
       return { row: 2, x: -17.5, bottom: 106, height: 348, zIndex: 24 };
     case "zaki":
-      return { row: 2, x: -5.8, bottom: 98, height: 348, zIndex: 25 };
+      return { row: 2, x: -5.8, bottom: 126, height: 322, zIndex: 25 };
     case "aan":
-      return { row: 2, x: 5.8, bottom: 98, height: 348, zIndex: 25 };
+      return { row: 2, x: 5.8, bottom: 92, height: 356, zIndex: 25 };
     case "ikhlas":
-      return { row: 2, x: 17.5, bottom: 106, height: 348, zIndex: 24 };
+      return { row: 2, x: 17.5, bottom: 152, height: 300, zIndex: 24 };
     case "rafly":
-      return { row: 2, x: 29.0, bottom: 114, height: 348, zIndex: 23 };
+      return { row: 2, x: 29.0, bottom: 150, height: 308, zIndex: 23 };
     case "daifan":
-      return { row: 2, x: 40.5, bottom: 122, height: 348, zIndex: 22 };
+      return { row: 2, x: 40.5, bottom: 132, height: 336, zIndex: 22 };
 
     // ══════════════════════════════════════════════════════════════
-    // BARIS BELAKANG (ROW 3) — 7 Perempuan (Mengisi Ruang Atas Panggung)
+    // BARIS BELAKANG (ROW 3) — 7 Perempuan (Tersebar rapi & proporsional)
     // ══════════════════════════════════════════════════════════════
     case "firly":
-      return { row: 3, x: -35.2, bottom: 190, height: 408, zIndex: 12 };
+      return { row: 3, x: -35.2, bottom: 230, height: 352, zIndex: 12 };
     case "farah":
-      return { row: 3, x: -23.5, bottom: 185, height: 412, zIndex: 13 };
+      return { row: 3, x: -23.5, bottom: 270, height: 308, zIndex: 13 };
     case "halima":
-      return { row: 3, x: -11.8, bottom: 180, height: 416, zIndex: 14 };
+      return { row: 3, x: -11.8, bottom: 272, height: 304, zIndex: 14 };
     case "thalita":
       // Thalita at dead center back, towers directly above the center gap
-      return { row: 3, x: 0, bottom: 176, height: 420, zIndex: 15 };
+      return { row: 3, x: 0, bottom: 242, height: 336, zIndex: 15 };
     case "siti-safira":
-      return { row: 3, x: 11.8, bottom: 180, height: 416, zIndex: 14 };
+      return { row: 3, x: 11.8, bottom: 278, height: 298, zIndex: 14 };
     case "sitti-lutfia":
-      return { row: 3, x: 23.5, bottom: 185, height: 412, zIndex: 13 };
+      return { row: 3, x: 23.5, bottom: 252, height: 326, zIndex: 13 };
     case "rizqi":
-      return { row: 3, x: 35.2, bottom: 190, height: 408, zIndex: 12 };
+      return { row: 3, x: 35.2, bottom: 268, height: 312, zIndex: 12 };
 
     default:
-      return { row: 3, x: 0, bottom: 150, height: 450, zIndex: 10 };
+      return { row: 3, x: 0, bottom: 200, height: 360, zIndex: 10 };
   }
 }
 
@@ -903,7 +903,7 @@ export default function Portfolio() {
                 {selectedContrib.commits > 0 && (
                   <span
                     className="hud-contrib-pill"
-                    title={`${selectedContrib.commits} commits pada branch default di 7 repositori inti`}
+                    title={`${selectedContrib.commits} commits pada branch default di ${ecosystemStats.trackedReposCount} repositori inti`}
                   >
                     ⚡ {selectedContrib.commits} Commits · {selectedContrib.repoCount} Repo
                   </span>
@@ -967,21 +967,9 @@ export default function Portfolio() {
           aria-labelledby="project-title"
         >
           <div className="section-header architecture-graph-header">
-            <div>
-              <span className="section-pill-tag">ARSITEKTUR EKOSISTEM TERINTEGRASI</span>
-              <h2 id="project-title" className="section-title">
-                Satu inti<span className="text-accent">.</span> Semua terhubung<span className="text-accent">.</span>
-              </h2>
-              <p className="section-subtitle">
-                Peta graf interaktif lalu lintas portal ICLabs (<code>iclabs.fikom.umi.ac.id</code>) melalui
-                Caddy reverse proxy, proteksi dua arah Wazuh IDS, cluster API stateless, replikasi MySQL, dan storage MinIO AIStor.
-              </p>
-            </div>
-            <div className="architecture-graph-pills">
-              <span className="team-total-badge">
-                7 CLIENT PORTALS · 2 API NODES · 2-WAY IDS
-              </span>
-            </div>
+            <h2 id="project-title" className="section-title">
+              ICLABS <span className="text-accent">EKOSISTEM</span>
+            </h2>
           </div>
 
           <ArchitectureGraph
@@ -1006,12 +994,12 @@ export default function Portfolio() {
                 Built by code<span className="text-accent">.</span>
               </h2>
               <p className="section-subtitle">
-                Transparansi kontribusi 20 kontributor aktif pada default branch dan pull request lintas 8 repositori terpadu.
+                Transparansi kontribusi {ecosystemStats.activeContributorsCount} kontributor aktif pada default branch dan pull request lintas {ecosystemStats.trackedReposCount} repositori terpadu.
               </p>
             </div>
             <div className="contributors-badge-wrap">
               <span className="team-total-badge">
-                2.265 COMMITS · 247 PR · 7 REPOSITORI
+                {ecosystemStats.totalCommits.toLocaleString("id-ID")} COMMITS · {ecosystemStats.totalPRs} PR · {ecosystemStats.trackedReposCount} REPOSITORI
               </span>
             </div>
           </div>
@@ -1023,8 +1011,8 @@ export default function Portfolio() {
                 <span className="stat-kicker">TOTAL COMMITS</span>
                 <GitCommit size={20} className="stat-icon" />
               </div>
-              <strong className="stat-number">2.265</strong>
-              <span className="stat-detail">Branch default terverifikasi di 7 repositori inti</span>
+              <strong className="stat-number">{ecosystemStats.totalCommits.toLocaleString("id-ID")}</strong>
+              <span className="stat-detail">Branch default terverifikasi di {ecosystemStats.trackedReposCount} repositori inti</span>
             </div>
 
             <div className="stat-card">
@@ -1032,7 +1020,7 @@ export default function Portfolio() {
                 <span className="stat-kicker">PULL REQUESTS</span>
                 <GitPullRequest size={20} className="stat-icon text-accent2" />
               </div>
-              <strong className="stat-number">247</strong>
+              <strong className="stat-number">{ecosystemStats.totalPRs.toLocaleString("id-ID")}</strong>
               <span className="stat-detail">Kolaborasi branch, code review & merge sistem</span>
             </div>
 
@@ -1041,7 +1029,7 @@ export default function Portfolio() {
                 <span className="stat-kicker">REPOSITORI TERPADU</span>
                 <GitBranch size={20} className="stat-icon" />
               </div>
-              <strong className="stat-number">7</strong>
+              <strong className="stat-number">{ecosystemStats.trackedReposCount}</strong>
               <span className="stat-detail">Backend, Praktikum, Inventaris, Reservasi, dll.</span>
             </div>
 
@@ -1050,7 +1038,7 @@ export default function Portfolio() {
                 <span className="stat-kicker">KONTRIBUTOR TERLIBAT</span>
                 <UsersThree size={20} className="stat-icon" />
               </div>
-              <strong className="stat-number">20 / 22</strong>
+              <strong className="stat-number">{ecosystemStats.activeContributorsCount} / {ecosystemStats.totalPersonnel}</strong>
               <span className="stat-detail">Developer & asisten kontributor aktif</span>
             </div>
           </div>
@@ -1079,7 +1067,7 @@ export default function Portfolio() {
               onClick={() => setContributorTab("repos")}
             >
               <GitBranch size={16} />
-              <span>7 Repositori Inti</span>
+              <span>{ecosystemStats.trackedReposCount} Repositori Inti</span>
             </button>
           </div>
 
@@ -1106,7 +1094,7 @@ export default function Portfolio() {
                     onClick={() => setLeaderboardMetric("commits")}
                   >
                     <GitCommit size={14} />
-                    <span>Commits (2.265)</span>
+                    <span>Commits ({ecosystemStats.totalCommits.toLocaleString("id-ID")})</span>
                   </button>
                   <button
                     type="button"
@@ -1114,20 +1102,25 @@ export default function Portfolio() {
                     onClick={() => setLeaderboardMetric("prs")}
                   >
                     <GitPullRequest size={14} />
-                    <span>Pull Requests (247)</span>
+                    <span>Pull Requests ({ecosystemStats.totalPRs})</span>
                   </button>
                 </div>
               </div>
 
               <div className="leaderboard-list">
                 {(leaderboardMetric === "commits" ? getTopCommitters() : getTopPRContributors()).map(
-                  (c, idx) => {
+                  (c, idx, arr) => {
                     const member = teamConfig.find((m) => m.id === c.memberId) || {
                       name: c.username,
                       role: "Kontributor",
                       image: "/images/iclabs-logo.png",
                     };
-                    const maxVal = leaderboardMetric === "commits" ? 602 : 126;
+                    const maxVal = Math.max(
+                      1,
+                      leaderboardMetric === "commits"
+                        ? (arr[0]?.commits || 1)
+                        : (arr[0]?.prs || 1)
+                    );
                     const curVal = leaderboardMetric === "commits" ? c.commits : c.prs;
                     const percent = Math.max((curVal / maxVal) * 100, 3);
                     const isTopThree = idx < 3;
@@ -1299,10 +1292,10 @@ export default function Portfolio() {
                         </td>
                       ))}
                       <td className="td-total-foot">
-                        <strong>2.265</strong>
+                        <strong>{ecosystemStats.totalCommits.toLocaleString("id-ID")}</strong>
                       </td>
                       <td className="td-total-foot is-pr-col">
-                        <strong>247</strong>
+                        <strong>{ecosystemStats.totalPRs}</strong>
                       </td>
                     </tr>
                   </tfoot>
@@ -1433,7 +1426,7 @@ export default function Portfolio() {
                 {/* Data Kontribusi Git 7 Repositori */}
                 <div className="spotlight-git-block">
                   <div className="spotlight-git-top">
-                    <span className="jobs-block-label">Aktivitas Git (7 Repos Inti):</span>
+                    <span className="jobs-block-label">Aktivitas Git ({ecosystemStats.trackedReposCount} Repos Inti):</span>
                     {selectedContrib.username && (
                       <a
                         href={`https://github.com/${selectedContrib.username}`}

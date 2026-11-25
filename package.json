@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0",
     "build": "next build",
-    "start": "next start --hostname 0.0.0.0"
+    "start": "next start --hostname 0.0.0.0",
+    "sync:github": "node scripts/sync-contributors.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

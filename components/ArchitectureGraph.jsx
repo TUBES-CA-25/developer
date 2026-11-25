@@ -3,84 +3,130 @@
 import { useState, useMemo, useEffect } from "react";
 import {
   ArrowSquareOut,
-  ArrowsLeftRight,
-  Check,
-  Cpu,
-  Database,
-  HardDrives,
+  ArrowsClockwise,
+  Globe,
+  LockSimple,
   Pause,
   Play,
-  Pulse,
-  ShieldCheck,
-  Sparkle,
-  Stack,
+  X,
 } from "@phosphor-icons/react";
 import {
+  architectureZones,
   architectureGraphNodes,
   architectureGraphEdges,
   architectureScenarios,
+  SUMBER_DAYA_APPS_API,
+  apiApplicationsCatalog,
+  nodePortalExtras,
 } from "../lib/architecture";
 
 const CATEGORY_COLORS = {
   "database-replica": {
     stroke: "#f87171",
-    glow: "rgba(248, 113, 113, 0.45)",
-    fillPattern: "url(#topo-hatch-db-rep)",
-    badge: "REPLICA / FAILOVER",
+    bg: "rgba(22, 13, 17, 0.94)",
+    iconBg: "rgba(248, 113, 113, 0.14)",
   },
   "database-main": {
     stroke: "#38bdf8",
-    glow: "rgba(56, 189, 248, 0.45)",
-    fillPattern: "url(#topo-hatch-db-main)",
-    badge: "PRIMARY SSOT",
+    bg: "rgba(10, 20, 30, 0.94)",
+    iconBg: "rgba(56, 189, 248, 0.14)",
   },
   api: {
     stroke: "#5ce1e6",
-    glow: "rgba(92, 225, 230, 0.45)",
-    fillPattern: "url(#topo-hatch-api)",
-    badge: "API CLUSTER",
+    bg: "rgba(10, 22, 30, 0.94)",
+    iconBg: "rgba(92, 225, 230, 0.14)",
   },
   storage: {
     stroke: "#fb7185",
-    glow: "rgba(251, 113, 133, 0.45)",
-    fillPattern: "url(#topo-hatch-storage)",
-    badge: "OBJECT STORAGE",
+    bg: "rgba(24, 13, 19, 0.94)",
+    iconBg: "rgba(251, 113, 133, 0.14)",
   },
   security: {
     stroke: "#fb923c",
-    glow: "rgba(251, 146, 60, 0.5)",
-    fillPattern: "url(#topo-hatch-security)",
-    badge: "IDS / SIEM",
+    bg: "rgba(26, 16, 9, 0.94)",
+    iconBg: "rgba(251, 146, 60, 0.15)",
   },
   proxy: {
     stroke: "#5ce1e6",
-    glow: "rgba(92, 225, 230, 0.55)",
-    fillPattern: "url(#topo-hatch-proxy)",
-    badge: "REVERSE PROXY",
+    bg: "rgba(12, 34, 52, 0.96)",
+    iconBg: "rgba(92, 225, 230, 0.18)",
   },
   client: {
     stroke: "#34d399",
-    glow: "rgba(52, 211, 153, 0.45)",
-    fillPattern: "url(#topo-hatch-client)",
-    badge: "CLIENT PORTAL",
+    bg: "rgba(10, 22, 18, 0.94)",
+    iconBg: "rgba(52, 211, 153, 0.13)",
   },
 };
 
-function getCategoryIcon(category) {
-  switch (category) {
-    case "database-main":
-    case "database-replica":
-      return <Database size={16} weight="duotone" />;
+function mapApiCodeToNodeId(app) {
+  const code = (app.kode_aplikasi || "").toUpperCase();
+  const url = (app.url || "").toLowerCase();
+  if (code === "ICLABS-PRAKTIKUM" || url.includes("/praktikum")) return "client-praktikum";
+  if (code === "MA" || url.includes("monitoring-asisten")) return "client-monitoring";
+  if (code === "INVENTARIS" || url.includes("/inventaris")) return "client-inventaris";
+  if (code === "PENDAFTARAN_ASISTEN" || url.includes("/registrasi")) return "client-registrasi";
+  if (code === "PEMINJAMAN_LAB" || url.includes("peminjaman-ruangan")) return "client-peminjaman";
+  if (
+    code === "ADMINISTRASI_PRAKTIKUM" ||
+    code === "MP" ||
+    code === "SERTIFICATION_CENTER" ||
+    url.includes("sipemla") ||
+    url.includes("monitoring-praktikum") ||
+    url.includes("certification")
+  ) {
+    return "client-legacy";
+  }
+  return "client-sumber-daya";
+}
+
+function ContainerIcon({ type, color, cx, cy }) {
+  switch (type) {
+    case "database":
+      return (
+        <g transform={`translate(${cx - 9}, ${cy - 9})`} stroke={color} strokeWidth="1.6" fill="none">
+          <ellipse cx="9" cy="4" rx="7" ry="2.6" />
+          <path d="M 2 4 L 2 14 C 2 15.6 5.1 16.6 9 16.6 C 12.9 16.6 16 15.6 16 14 L 16 4" />
+          <path d="M 2 9 C 2 10.6 5.1 11.6 9 11.6 C 12.9 11.6 16 10.6 16 9" />
+        </g>
+      );
+    case "container":
+      return (
+        <g transform={`translate(${cx - 9}, ${cy - 8})`} fill="none" stroke={color} strokeWidth="1.45">
+          <rect x="2" y="2" width="6" height="5" rx="1" />
+          <rect x="10" y="2" width="6" height="5" rx="1" />
+          <rect x="2" y="9" width="6" height="5" rx="1" />
+          <rect x="10" y="9" width="6" height="5" rx="1" />
+        </g>
+      );
     case "storage":
-      return <HardDrives size={16} weight="duotone" />;
-    case "security":
-      return <ShieldCheck size={16} weight="duotone" />;
+      return (
+        <g transform={`translate(${cx - 9}, ${cy - 9})`} fill="none" stroke={color} strokeWidth="1.5">
+          <path d="M 3 5 L 9 2 L 15 5 L 15 13 L 9 16 L 3 13 Z" />
+          <path d="M 3 5 L 9 8 L 15 5" />
+          <line x1="9" y1="8" x2="9" y2="16" />
+        </g>
+      );
+    case "shield":
+      return (
+        <g transform={`translate(${cx - 9}, ${cy - 9})`} fill="none" stroke={color} strokeWidth="1.6">
+          <path d="M 9 2 L 15.5 4.5 V 9.5 C 15.5 13.5 12.5 16 9 17 C 5.5 16 2.5 13.5 2.5 9.5 V 4.5 Z" />
+          <path d="M 6.5 9.5 L 8.5 11.5 L 12 7.5" strokeLinecap="round" strokeLinejoin="round" />
+        </g>
+      );
     case "proxy":
-      return <ArrowsLeftRight size={16} weight="duotone" />;
-    case "api":
-      return <Cpu size={16} weight="duotone" />;
+      return (
+        <g transform={`translate(${cx - 10}, ${cy - 10})`} fill="none" stroke={color} strokeWidth="1.6">
+          <polygon points="10,1.5 18.5,10 10,18.5 1.5,10" />
+          <circle cx="10" cy="10" r="2.6" fill={color} />
+        </g>
+      );
     default:
-      return <Stack size={16} weight="duotone" />;
+      return (
+        <g transform={`translate(${cx - 8}, ${cy - 8})`} fill="none" stroke={color} strokeWidth="1.5">
+          <rect x="1.5" y="2.5" width="13" height="11" rx="2" />
+          <line x1="1.5" y1="6" x2="14.5" y2="6" />
+        </g>
+      );
   }
 }
 
@@ -90,6 +136,37 @@ export default function ArchitectureGraph({ activeSystem, onSelectSystem }) {
   const [activeScenarioId, setActiveScenarioId] = useState("all");
   const [isAnimating, setIsAnimating] = useState(true);
 
+  // Katalog Aplikasi dari API https://iclabs.fikom.umi.ac.id/api/v1/sumber-daya/aplikasi
+  const [liveApps, setLiveApps] = useState(apiApplicationsCatalog);
+  const [modalNodeId, setModalNodeId] = useState(null);
+  const [activeAppIndex, setActiveAppIndex] = useState(0);
+  const [iframeKey, setIframeKey] = useState(0);
+  const [iframeLoaded, setIframeLoaded] = useState(false);
+
+  // Sinkronisasi API live secara silent (aman jika same-origin di iclabs.fikom.umi.ac.id/dev)
+  useEffect(() => {
+    let cancelled = false;
+    fetch(SUMBER_DAYA_APPS_API, { mode: "cors" })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((json) => {
+        if (!cancelled && json && Array.isArray(json.data) && json.data.length > 0) {
+          setLiveApps(
+            json.data.map((app) => ({
+              ...app,
+              nodeId: mapApiCodeToNodeId(app),
+            }))
+          );
+        }
+      })
+      .catch(() => {
+        // Fallback otomatis memakai apiApplicationsCatalog
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Sinkronisasi ketika tab sistem di Hero berubah
   useEffect(() => {
     if (!activeSystem) return;
     setSelectedNodeId((prevId) => {
@@ -108,19 +185,34 @@ export default function ArchitectureGraph({ activeSystem, onSelectSystem }) {
     });
   }, [activeSystem]);
 
-  const syncedNodeId = selectedNodeId;
+  // Tutup modal dengan tombol Escape & kunci scroll saat modal terbuka
+  useEffect(() => {
+    if (!modalNodeId) return undefined;
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setModalNodeId(null);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [modalNodeId]);
 
-  const effectiveNodeId = hoveredNodeId || syncedNodeId;
+  const getAppsForNode = useMemo(() => {
+    return (nodeId) => {
+      const fromApi = liveApps.filter((app) => app.nodeId === nodeId);
+      const extras = nodePortalExtras[nodeId] || [];
+      const merged = [...fromApi, ...extras];
+      const seen = new Set();
+      return merged.filter((item) => {
+        if (seen.has(item.url)) return false;
+        seen.add(item.url);
+        return true;
+      });
+    };
+  }, [liveApps]);
 
-  const activeScenario =
-    architectureScenarios.find((s) => s.id === activeScenarioId) ||
-    architectureScenarios[0];
+  const effectiveNodeId = hoveredNodeId || selectedNodeId;
 
-  const inspectedNode =
-    architectureGraphNodes.find((n) => n.id === syncedNodeId) ||
-    architectureGraphNodes[0];
-
-  // Kumpulan edge & node yang aktif sesuai skenario & node yang sedang difokuskan
   const { connectedEdgeIds, connectedNodeIds } = useMemo(() => {
     const edgeSet = new Set();
     const nodeSet = new Set();
@@ -139,20 +231,16 @@ export default function ArchitectureGraph({ activeSystem, onSelectSystem }) {
     return { connectedEdgeIds: edgeSet, connectedNodeIds: nodeSet };
   }, [effectiveNodeId]);
 
-  const incomingEdges = useMemo(
-    () => architectureGraphEdges.filter((e) => e.to === inspectedNode.id),
-    [inspectedNode.id]
-  );
-
-  const outgoingEdges = useMemo(
-    () => architectureGraphEdges.filter((e) => e.from === inspectedNode.id),
-    [inspectedNode.id]
-  );
-
   const handleNodeClick = (node) => {
     setSelectedNodeId(node.id);
     if (onSelectSystem && node.systemIds && node.systemIds.length > 0) {
       onSelectSystem(node.systemIds[0]);
+    }
+    if (node.category === "client") {
+      setModalNodeId(node.id);
+      setActiveAppIndex(0);
+      setIframeLoaded(false);
+      setIframeKey((k) => k + 1);
     }
   };
 
@@ -169,12 +257,25 @@ export default function ArchitectureGraph({ activeSystem, onSelectSystem }) {
     }
   };
 
+  const hoveredNode = hoveredNodeId
+    ? architectureGraphNodes.find((n) => n.id === hoveredNodeId)
+    : null;
+  const hoveredApps =
+    hoveredNode && hoveredNode.category === "client"
+      ? getAppsForNode(hoveredNode.id)
+      : [];
+
+  const modalNode = modalNodeId
+    ? architectureGraphNodes.find((n) => n.id === modalNodeId)
+    : null;
+  const modalApps = modalNode ? getAppsForNode(modalNode.id) : [];
+  const activeModalApp = modalApps[activeAppIndex] || modalApps[0] || null;
+
   const uniqueColors = ["#34d399", "#5ce1e6", "#fb923c", "#fb7185", "#f43f5e", "#38bdf8", "#f87171"];
-  const inspectedTheme = CATEGORY_COLORS[inspectedNode.category] || CATEGORY_COLORS.api;
 
   return (
     <div className="arch-topology-wrapper">
-      {/* Toolbar Simulasi Flow & Status */}
+      {/* Toolbar Simulasi Flow */}
       <div className="arch-toolbar">
         <div className="arch-scenario-tabs" role="tablist" aria-label="Simulasi Aliran Data Arsitektur">
           {architectureScenarios.map((scenario) => {
@@ -208,604 +309,582 @@ export default function ArchitectureGraph({ activeSystem, onSelectSystem }) {
         </div>
       </div>
 
-      {/* Banner Penjelasan Skenario Aktif */}
-      <div className="arch-scenario-banner" aria-live="polite">
-        <div className="scenario-banner-left">
-          <span className="scenario-badge">{activeScenario.badge}</span>
-          <p className="scenario-desc">{activeScenario.description}</p>
-        </div>
-        <div className="scenario-banner-right">
-          <Pulse size={15} className="text-accent" />
-          <span>{activeScenario.packetHint}</span>
-        </div>
-      </div>
+      {/* FULL-WIDTH CONTAINERIZED ARCHITECTURE CANVAS */}
+      <div className="arch-canvas-shell">
+        <div className="arch-svg-scroll">
+          <svg
+            viewBox="0 0 1200 760"
+            className="arch-topology-svg"
+            role="img"
+            aria-label="Diagram Topologi Container Ekosistem ICLabs"
+          >
+            <defs>
+              <filter id="topo-packet-glow" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="3.2" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
 
-      {/* Main Split: Graph Blueprint Canvas + Live Node Inspector */}
-      <div className="arch-workspace-grid">
-        {/* KANVAS GRAF TOPOLOGI INTERAKTIF */}
-        <div className="arch-canvas-shell">
-          <div className="arch-canvas-hud-top">
-            <span className="canvas-hud-tag">
-              <Sparkle size={13} weight="fill" className="text-accent" />
-              KLIK NODE UNTUK INSPEKSI ALIRAN
-            </span>
-            <span className="canvas-hud-legend">
-              <span><i className="legend-swatch is-client" /> Klien HTTPS</span>
-              <span><i className="legend-swatch is-proxy" /> Reverse Proxy</span>
-              <span><i className="legend-swatch is-security" /> Wazuh IDS (2-Way)</span>
-              <span><i className="legend-swatch is-api" /> API Cluster</span>
-              <span><i className="legend-swatch is-db" /> Database HA</span>
-              <span><i className="legend-swatch is-storage" /> AIStor S3</span>
-            </span>
-          </div>
+              <filter id="topo-node-glow" x="-25%" y="-25%" width="150%" height="150%">
+                <feGaussianBlur stdDeviation="5" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
 
-          <div className="arch-svg-scroll">
-            <svg
-              viewBox="0 0 1200 735"
-              className="arch-topology-svg"
-              role="img"
-              aria-label="Diagram Topologi Arsitektur Ekosistem ICLabs"
-            >
-              <defs>
-                {/* Glow filter untuk paket data bergerak & node fokus */}
-                <filter id="topo-packet-glow" x="-60%" y="-60%" width="220%" height="220%">
-                  <feGaussianBlur stdDeviation="3.2" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
+              {uniqueColors.map((col) => {
+                const safeId = col.replace("#", "");
+                return (
+                  <marker
+                    key={col}
+                    id={`arrow-${safeId}`}
+                    viewBox="0 0 10 10"
+                    refX="8.2"
+                    refY="5"
+                    markerWidth="6"
+                    markerHeight="6"
+                    orient="auto-start-reverse"
+                  >
+                    <path d="M 0 1.3 L 8.8 5 L 0 8.7 z" fill={col} />
+                  </marker>
+                );
+              })}
+            </defs>
 
-                <filter id="topo-node-glow" x="-25%" y="-25%" width="150%" height="150%">
-                  <feGaussianBlur stdDeviation="6" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-
-                {/* Arrow markers untuk setiap warna jalur */}
-                {uniqueColors.map((col) => {
-                  const safeId = col.replace("#", "");
-                  return (
-                    <marker
-                      key={col}
-                      id={`arrow-${safeId}`}
-                      viewBox="0 0 10 10"
-                      refX="8.5"
-                      refY="5"
-                      markerWidth="6.5"
-                      markerHeight="6.5"
-                      orient="auto-start-reverse"
+            {/* LAYER 0: CLOUD / CONTAINER DEPLOYMENT ZONES */}
+            <g className="topo-zones-layer" aria-hidden="true">
+              {architectureZones.map((zone) => {
+                const tagW = zone.title.length * 6.4 + 22;
+                return (
+                  <g key={zone.id}>
+                    <rect
+                      x={zone.x}
+                      y={zone.y}
+                      width={zone.width}
+                      height={zone.height}
+                      rx="14"
+                      fill="rgba(10, 17, 24, 0.52)"
+                      stroke={zone.color}
+                      strokeWidth="1"
+                      strokeOpacity="0.34"
+                      strokeDasharray="6 5"
+                    />
+                    <rect
+                      x={zone.x + 14}
+                      y={zone.y - 9}
+                      width={tagW}
+                      height="18"
+                      rx="5"
+                      fill="#080d12"
+                      stroke={zone.color}
+                      strokeOpacity="0.4"
+                      strokeWidth="0.9"
+                    />
+                    <text
+                      x={zone.x + 25}
+                      y={zone.y + 3}
+                      fill={zone.color}
+                      fillOpacity="0.95"
+                      fontSize="9.5"
+                      fontWeight="800"
+                      letterSpacing="1"
+                      fontFamily="'JetBrains Mono', monospace"
                     >
-                      <path d="M 0 1.2 L 9 5 L 0 8.8 z" fill={col} />
-                    </marker>
-                  );
-                })}
+                      {zone.title}
+                    </text>
+                  </g>
+                );
+              })}
+            </g>
 
-                {/* Pola Cross-Hatch & Diagonal Hatch bergaya Sketsa Cyberpunk */}
-                <pattern id="topo-hatch-db-rep" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                  <rect width="12" height="12" fill="rgba(24, 14, 18, 0.92)" />
-                  <line x1="0" y1="0" x2="0" y2="12" stroke="rgba(248, 113, 113, 0.25)" strokeWidth="2" />
-                  <line x1="0" y1="0" x2="12" y2="0" stroke="rgba(248, 113, 113, 0.2)" strokeWidth="1.5" />
-                </pattern>
+            {/* LAYER 1: ROUNDED ORTHOGONAL CONNECTORS & ANIMATED DATA PACKETS */}
+            <g className="topo-edges-layer">
+              {architectureGraphEdges.map((edge) => {
+                const inScenario = edge.scenarios.includes(activeScenarioId);
+                const isConnected =
+                  !effectiveNodeId ||
+                  activeScenarioId !== "all" ||
+                  connectedEdgeIds.has(edge.id);
 
-                <pattern id="topo-hatch-db-main" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                  <rect width="12" height="12" fill="rgba(10, 22, 34, 0.92)" />
-                  <line x1="0" y1="0" x2="0" y2="12" stroke="rgba(56, 189, 248, 0.26)" strokeWidth="2" />
-                  <line x1="0" y1="0" x2="12" y2="0" stroke="rgba(56, 189, 248, 0.2)" strokeWidth="1.5" />
-                </pattern>
+                const isHighlighted =
+                  inScenario &&
+                  (connectedEdgeIds.has(edge.id) || activeScenarioId !== "all");
 
-                <pattern id="topo-hatch-storage" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                  <rect width="12" height="12" fill="rgba(26, 14, 20, 0.92)" />
-                  <line x1="0" y1="0" x2="0" y2="12" stroke="rgba(251, 113, 133, 0.25)" strokeWidth="2" />
-                  <line x1="0" y1="0" x2="12" y2="0" stroke="rgba(251, 113, 133, 0.18)" strokeWidth="1.5" />
-                </pattern>
+                const opacity = !inScenario
+                  ? 0.1
+                  : hoveredNodeId
+                    ? connectedEdgeIds.has(edge.id)
+                      ? 1
+                      : 0.16
+                    : isConnected
+                      ? 0.92
+                      : 0.25;
 
-                <pattern id="topo-hatch-api" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                  <rect width="10" height="10" fill="rgba(11, 23, 34, 0.94)" />
-                  <line x1="0" y1="0" x2="0" y2="10" stroke="rgba(92, 225, 230, 0.16)" strokeWidth="2" />
-                </pattern>
+                const markerId = `url(#arrow-${edge.color.replace("#", "")})`;
+                const packetCount = edge.packetCount || 1;
+                const baseDur = parseFloat(edge.dur || "2.4");
 
-                <pattern id="topo-hatch-security" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                  <rect width="10" height="10" fill="rgba(28, 17, 9, 0.94)" />
-                  <line x1="0" y1="0" x2="0" y2="10" stroke="rgba(251, 146, 60, 0.2)" strokeWidth="2" />
-                </pattern>
-
-                <pattern id="topo-hatch-client" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                  <rect width="10" height="10" fill="rgba(9, 24, 19, 0.94)" />
-                  <line x1="0" y1="0" x2="0" y2="10" stroke="rgba(52, 211, 153, 0.17)" strokeWidth="2" />
-                </pattern>
-
-                <pattern id="topo-hatch-proxy" width="16" height="16" patternUnits="userSpaceOnUse">
-                  <rect width="16" height="16" fill="rgba(15, 52, 82, 0.94)" />
-                  <path d="M 16 0 L 0 0 0 16" fill="none" stroke="rgba(92, 225, 230, 0.16)" strokeWidth="1" />
-                </pattern>
-              </defs>
-
-              {/* LAYER 1: CONNECTOR EDGES & ANIMATED DATA PACKETS */}
-              <g className="topo-edges-layer">
-                {architectureGraphEdges.map((edge) => {
-                  const inScenario = edge.scenarios.includes(activeScenarioId);
-                  const isConnectedToSelected =
-                    !effectiveNodeId ||
-                    activeScenarioId !== "all" ||
-                    connectedEdgeIds.has(edge.id);
-
-                  const isHighlighted =
-                    inScenario &&
-                    (connectedEdgeIds.has(edge.id) || activeScenarioId !== "all");
-
-                  const opacity = !inScenario
-                    ? 0.1
-                    : hoveredNodeId
-                      ? connectedEdgeIds.has(edge.id)
-                        ? 1
-                        : 0.18
-                      : isConnectedToSelected
-                        ? 0.92
-                        : 0.28;
-
-                  const markerId = `url(#arrow-${edge.color.replace("#", "")})`;
-                  const packetCount = edge.packetCount || 1;
-                  const baseDur = parseFloat(edge.dur || "2.4");
-
-                  return (
-                    <g
-                      key={edge.id}
-                      className={`topo-edge-group ${isHighlighted ? "is-highlighted" : ""}`}
-                      style={{ opacity }}
-                    >
-                      {/* Soft ambient under-glow path */}
-                      {isHighlighted && (
-                        <path
-                          d={edge.d}
-                          fill="none"
-                          stroke={edge.color}
-                          strokeWidth="5"
-                          strokeOpacity="0.16"
-                          strokeLinecap="round"
-                        />
-                      )}
-
-                      {/* Base structural connector path */}
+                return (
+                  <g
+                    key={edge.id}
+                    className={`topo-edge-group ${isHighlighted ? "is-highlighted" : ""}`}
+                    style={{ opacity }}
+                  >
+                    {isHighlighted && (
                       <path
                         d={edge.d}
                         fill="none"
                         stroke={edge.color}
-                        strokeWidth={isHighlighted ? "2.1" : "1.5"}
-                        strokeDasharray={edge.dashed ? "6 5" : undefined}
+                        strokeWidth="5"
+                        strokeOpacity="0.14"
                         strokeLinecap="round"
-                        markerEnd={markerId}
                       />
+                    )}
 
-                      {/* Animated flowing stream overlay */}
-                      {isAnimating && inScenario && (
-                        <path
-                          d={edge.d}
-                          fill="none"
-                          stroke={edge.color}
-                          strokeWidth="2.2"
-                          strokeDasharray="4 14"
-                          strokeLinecap="round"
-                          className="topo-stream-dash"
-                          style={{ opacity: isHighlighted ? 0.85 : 0.45 }}
-                        />
-                      )}
+                    <path
+                      d={edge.d}
+                      fill="none"
+                      stroke={edge.color}
+                      strokeWidth={isHighlighted ? "2" : "1.4"}
+                      strokeDasharray={edge.dashed ? "6 5" : undefined}
+                      strokeLinecap="round"
+                      markerEnd={markerId}
+                    />
 
-                      {/* Moving glowing data packets along path */}
-                      {isAnimating &&
-                        inScenario &&
-                        Array.from({ length: packetCount }).map((_, idx) => {
-                          const delaySec = ((baseDur / packetCount) * idx).toFixed(2);
-                          return (
-                            <g key={`${edge.id}-pkt-${idx}`} filter="url(#topo-packet-glow)">
-                              <circle r={isHighlighted ? 4.4 : 3.4} fill={edge.color}>
-                                <animateMotion
-                                  path={edge.d}
-                                  dur={`${baseDur}s`}
-                                  begin={`${delaySec}s`}
-                                  repeatCount="indefinite"
-                                />
-                              </circle>
-                              <circle r={isHighlighted ? 1.8 : 1.3} fill="#ffffff">
-                                <animateMotion
-                                  path={edge.d}
-                                  dur={`${baseDur}s`}
-                                  begin={`${delaySec}s`}
-                                  repeatCount="indefinite"
-                                />
-                              </circle>
-                            </g>
-                          );
-                        })}
+                    {isAnimating && inScenario && (
+                      <path
+                        d={edge.d}
+                        fill="none"
+                        stroke={edge.color}
+                        strokeWidth="2.1"
+                        strokeDasharray="4 14"
+                        strokeLinecap="round"
+                        className="topo-stream-dash"
+                        style={{ opacity: isHighlighted ? 0.85 : 0.4 }}
+                      />
+                    )}
 
-                      {/* Label Pill for Key Bidirectional & Special Edges */}
-                      {edge.labelPos && (
-                        <g
-                          transform={`translate(${edge.labelPos.x}, ${edge.labelPos.y})`}
-                          className="topo-edge-label"
-                        >
-                          {(() => {
-                            const boxW = Math.max(108, edge.label.length * 6.8 + 20);
-                            return (
-                              <rect
-                                x={-boxW / 2}
-                                y="-11"
-                                width={boxW}
-                                height="22"
-                                rx="5"
-                                fill="rgba(6, 10, 13, 0.92)"
-                                stroke={edge.color}
-                                strokeWidth="0.9"
-                                strokeOpacity="0.68"
+                    {isAnimating &&
+                      inScenario &&
+                      Array.from({ length: packetCount }).map((_, idx) => {
+                        const delaySec = ((baseDur / packetCount) * idx).toFixed(2);
+                        return (
+                          <g key={`${edge.id}-pkt-${idx}`} filter="url(#topo-packet-glow)">
+                            <circle r={isHighlighted ? 4.2 : 3.2} fill={edge.color}>
+                              <animateMotion
+                                path={edge.d}
+                                dur={`${baseDur}s`}
+                                begin={`${delaySec}s`}
+                                repeatCount="indefinite"
                               />
-                            );
-                          })()}
-                          <text
-                            textAnchor="middle"
-                            dominantBaseline="central"
-                            fill={edge.color}
-                            fontSize="9.5"
-                            fontWeight="700"
-                            fontFamily="'JetBrains Mono', monospace"
-                          >
-                            {edge.label}
-                          </text>
-                        </g>
-                      )}
-                    </g>
-                  );
-                })}
-              </g>
+                            </circle>
+                            <circle r={isHighlighted ? 1.7 : 1.2} fill="#ffffff">
+                              <animateMotion
+                                path={edge.d}
+                                dur={`${baseDur}s`}
+                                begin={`${delaySec}s`}
+                                repeatCount="indefinite"
+                              />
+                            </circle>
+                          </g>
+                        );
+                      })}
 
-              {/* LAYER 2: NODES */}
-              <g className="topo-nodes-layer">
-                {architectureGraphNodes.map((node) => {
-                  const theme = CATEGORY_COLORS[node.category] || CATEGORY_COLORS.api;
-                  const isSelected = node.id === syncedNodeId;
-                  const isHovered = node.id === hoveredNodeId;
-                  const isRelated = connectedNodeIds.has(node.id);
-                  const isDimmed =
-                    hoveredNodeId && !isRelated ? true : false;
-
-                  return (
-                    <g
-                      key={node.id}
-                      role="button"
-                      tabIndex={0}
-                      aria-label={`${node.label} — ${node.sublabel}`}
-                      aria-pressed={isSelected}
-                      className={`topo-node-group ${isSelected ? "is-selected" : ""} ${isHovered ? "is-hovered" : ""}`}
-                      style={{
-                        opacity: isDimmed ? 0.32 : 1,
-                        cursor: "pointer",
-                      }}
-                      onClick={() => handleNodeClick(node)}
-                      onMouseEnter={() => setHoveredNodeId(node.id)}
-                      onMouseLeave={() => setHoveredNodeId(null)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          handleNodeClick(node);
-                        }
-                      }}
-                    >
-                      {/* CIRCLE NODES (Databases & MinIO Storage) */}
-                      {node.shape === "circle" && (
-                        <>
-                          {isSelected && (
-                            <circle
-                              cx={node.x}
-                              cy={node.y}
-                              r={node.r + 7}
-                              fill="none"
-                              stroke={theme.stroke}
-                              strokeWidth="1.5"
-                              strokeDasharray="5 5"
-                              className="topo-selected-ring"
-                            />
-                          )}
-                          <circle
-                            cx={node.x}
-                            cy={node.y}
-                            r={node.r}
-                            fill={theme.fillPattern}
-                            stroke={isSelected || isHovered ? "#ffffff" : theme.stroke}
-                            strokeWidth={isSelected ? "2.6" : "2"}
-                            filter={isSelected || isHovered ? "url(#topo-node-glow)" : undefined}
-                          />
-                          <text
-                            x={node.x}
-                            y={node.y - 6}
-                            textAnchor="middle"
-                            fill="#edf3f6"
-                            fontSize="12.5"
-                            fontWeight="800"
-                            fontFamily="'JetBrains Mono', monospace"
-                          >
-                            {node.label}
-                          </text>
-                          <text
-                            x={node.x}
-                            y={node.y + 13}
-                            textAnchor="middle"
-                            fill={theme.stroke}
-                            fontSize="10"
-                            fontWeight="600"
-                          >
-                            {node.sublabel}
-                          </text>
-                        </>
-                      )}
-
-                      {/* DIAMOND NODE (Caddy Reverse Proxy) */}
-                      {node.shape === "diamond" && (
-                        <>
-                          {isSelected && (
-                            <polygon
-                              points={`${node.x},${node.y - node.height / 2 - 8} ${node.x + node.width / 2 + 10},${node.y} ${node.x},${node.y + node.height / 2 + 8} ${node.x - node.width / 2 - 10},${node.y}`}
-                              fill="none"
-                              stroke={theme.stroke}
-                              strokeWidth="1.6"
-                              strokeDasharray="6 5"
-                              className="topo-selected-ring"
-                            />
-                          )}
-                          <polygon
-                            points={`${node.x},${node.y - node.height / 2} ${node.x + node.width / 2},${node.y} ${node.x},${node.y + node.height / 2} ${node.x - node.width / 2},${node.y}`}
-                            fill={theme.fillPattern}
-                            stroke={isSelected || isHovered ? "#ffffff" : theme.stroke}
-                            strokeWidth={isSelected ? "2.8" : "2.2"}
-                            filter="url(#topo-node-glow)"
-                          />
-                          <text
-                            x={node.x}
-                            y={node.y - 7}
-                            textAnchor="middle"
-                            fill="#ffffff"
-                            fontSize="15"
-                            fontWeight="800"
-                            letterSpacing="0.5"
-                          >
-                            {node.label}
-                          </text>
-                          <text
-                            x={node.x}
-                            y={node.y + 12}
-                            textAnchor="middle"
-                            fill="#5ce1e6"
-                            fontSize="11"
-                            fontWeight="700"
-                            fontFamily="'JetBrains Mono', monospace"
-                          >
-                            {node.sublabel}
-                          </text>
-                        </>
-                      )}
-
-                      {/* RECTANGLE NODES (API Cluster, Wazuh IDS, Client Apps) */}
-                      {node.shape === "rect" && (
-                        <>
-                          {isSelected && (
+                    {edge.labelPos && (
+                      <g
+                        transform={`translate(${edge.labelPos.x}, ${edge.labelPos.y})`}
+                        className="topo-edge-label"
+                      >
+                        {(() => {
+                          const boxW = Math.max(44, edge.label.length * 6.8 + 18);
+                          return (
                             <rect
-                              x={node.x - node.width / 2 - 5}
-                              y={node.y - node.height / 2 - 5}
-                              width={node.width + 10}
-                              height={node.height + 10}
-                              rx="10"
-                              fill="none"
-                              stroke={theme.stroke}
-                              strokeWidth="1.5"
-                              strokeDasharray="5 4"
+                              x={-boxW / 2}
+                              y="-10"
+                              width={boxW}
+                              height="20"
+                              rx="5"
+                              fill="rgba(6, 10, 13, 0.94)"
+                              stroke={edge.color}
+                              strokeWidth="0.9"
+                              strokeOpacity="0.65"
                             />
-                          )}
-                          <rect
-                            x={node.x - node.width / 2}
-                            y={node.y - node.height / 2}
-                            width={node.width}
-                            height={node.height}
-                            rx="7"
-                            fill={theme.fillPattern}
-                            stroke={isSelected || isHovered ? "#ffffff" : theme.stroke}
-                            strokeWidth={isSelected ? "2.5" : "1.8"}
-                            filter={isSelected || isHovered ? "url(#topo-node-glow)" : undefined}
-                          />
+                          );
+                        })()}
+                        <text
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          fill={edge.color}
+                          fontSize="9.2"
+                          fontWeight="700"
+                          fontFamily="'JetBrains Mono', monospace"
+                        >
+                          {edge.label}
+                        </text>
+                      </g>
+                    )}
+                  </g>
+                );
+              })}
+            </g>
 
-                          {/* Status dot for client apps with live URLs */}
-                          {node.url && (
-                            <circle
-                              cx={node.x + node.width / 2 - 11}
-                              cy={node.y - node.height / 2 + 11}
-                              r="3.2"
-                              fill="#34d399"
-                            />
-                          )}
+            {/* LAYER 2: GLASSMORPHIC CONTAINER NODES */}
+            <g className="topo-nodes-layer">
+              {architectureGraphNodes.map((node) => {
+                const theme = CATEGORY_COLORS[node.category] || CATEGORY_COLORS.api;
+                const isSelected = node.id === selectedNodeId;
+                const isHovered = node.id === hoveredNodeId;
+                const isRelated = connectedNodeIds.has(node.id);
+                const isDimmed = hoveredNodeId && !isRelated;
 
-                          <text
-                            x={node.x}
-                            y={node.y - 5}
-                            textAnchor="middle"
-                            fill={node.category === "security" ? "#fb923c" : "#edf3f6"}
-                            fontSize={
-                              node.category === "client"
-                                ? node.label.length > 17
-                                  ? "10"
-                                  : "11"
-                                : "13.5"
-                            }
-                            fontWeight="800"
-                            fontFamily="'JetBrains Mono', monospace"
-                          >
-                            {node.label}
-                          </text>
-                          <text
-                            x={node.x}
-                            y={node.y + 14}
-                            textAnchor="middle"
-                            fill={node.category === "client" ? "#8ea1ae" : theme.stroke}
-                            fontSize={node.category === "client" ? "9.5" : "10.5"}
-                            fontWeight="600"
-                          >
-                            {node.sublabel}
-                          </text>
-                        </>
-                      )}
-                    </g>
-                  );
-                })}
-              </g>
-            </svg>
-          </div>
+                const left = node.x - node.width / 2;
+                const top = node.y - node.height / 2;
+                const isCompact = node.category === "client";
+                const iconBoxX = left + (isCompact ? 12 : 16);
+                const iconCenterX = iconBoxX + (isCompact ? 13 : 17);
+                const textX = iconBoxX + (isCompact ? 34 : 44);
+
+                return (
+                  <g
+                    key={node.id}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={
+                      isCompact
+                        ? `Preview aplikasi ${node.label}`
+                        : `${node.label} — ${node.sublabel}`
+                    }
+                    aria-pressed={isSelected}
+                    className={`topo-node-group ${isSelected ? "is-selected" : ""} ${isHovered ? "is-hovered" : ""}`}
+                    style={{
+                      opacity: isDimmed ? 0.3 : 1,
+                      cursor: "pointer",
+                    }}
+                    onClick={() => handleNodeClick(node)}
+                    onMouseEnter={() => setHoveredNodeId(node.id)}
+                    onMouseLeave={() => setHoveredNodeId(null)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        handleNodeClick(node);
+                      }
+                    }}
+                  >
+                    {isSelected && (
+                      <rect
+                        x={left - 4}
+                        y={top - 4}
+                        width={node.width + 8}
+                        height={node.height + 8}
+                        rx="12"
+                        fill="none"
+                        stroke={theme.stroke}
+                        strokeWidth="1.4"
+                        strokeDasharray="5 4"
+                      />
+                    )}
+
+                    <rect
+                      x={left}
+                      y={top}
+                      width={node.width}
+                      height={node.height}
+                      rx="9"
+                      fill={theme.bg}
+                      stroke={isSelected || isHovered ? "#ffffff" : theme.stroke}
+                      strokeOpacity={isSelected || isHovered ? 1 : 0.55}
+                      strokeWidth={isSelected ? "2" : "1.4"}
+                      filter={isSelected || isHovered ? "url(#topo-node-glow)" : undefined}
+                    />
+
+                    <rect
+                      x={left + 12}
+                      y={top}
+                      width={node.width - 24}
+                      height="3"
+                      rx="1.5"
+                      fill={theme.stroke}
+                      opacity="0.9"
+                    />
+
+                    {isCompact ? (
+                      <>
+                        <g transform={`translate(${left + 11}, ${top + 9})`} fill="none" stroke={theme.stroke} strokeWidth="1.4" opacity="0.85">
+                          <rect x="1" y="2" width="11" height="9" rx="1.8" />
+                          <line x1="1" y1="5" x2="12" y2="5" />
+                        </g>
+                        <text
+                          x={left + 28}
+                          y={top + 17}
+                          fill={theme.stroke}
+                          fontSize="7.8"
+                          fontWeight="800"
+                          letterSpacing="0.8"
+                          fontFamily="'JetBrains Mono', monospace"
+                          opacity="0.85"
+                        >
+                          PREVIEW
+                        </text>
+                        <text
+                          x={node.x}
+                          y={node.y + 4}
+                          textAnchor="middle"
+                          fill="#f1f5f9"
+                          fontSize={node.label.length > 17 ? "9.5" : "10.5"}
+                          fontWeight="800"
+                          fontFamily="'JetBrains Mono', monospace"
+                        >
+                          {node.label}
+                        </text>
+                        <text
+                          x={node.x}
+                          y={node.y + 20}
+                          textAnchor="middle"
+                          fill="#8ea1ae"
+                          fontSize="8.8"
+                          fontWeight="600"
+                        >
+                          {node.sublabel}
+                        </text>
+                      </>
+                    ) : (
+                      <>
+                        <rect
+                          x={iconBoxX}
+                          y={node.y - 17}
+                          width="34"
+                          height="34"
+                          rx="7"
+                          fill={theme.iconBg}
+                          stroke={theme.stroke}
+                          strokeOpacity="0.4"
+                          strokeWidth="1"
+                        />
+                        <ContainerIcon
+                          type={node.icon}
+                          color={theme.stroke}
+                          cx={iconCenterX}
+                          cy={node.y}
+                        />
+                        <text
+                          x={textX}
+                          y={top + 21}
+                          fill={theme.stroke}
+                          fontSize="8.5"
+                          fontWeight="800"
+                          letterSpacing="0.8"
+                          fontFamily="'JetBrains Mono', monospace"
+                        >
+                          {node.tag}
+                        </text>
+                        <text
+                          x={textX}
+                          y={node.y + 4}
+                          fill={node.category === "security" ? "#fdba74" : "#f1f5f9"}
+                          fontSize={node.label.length > 16 ? "11.5" : "13"}
+                          fontWeight="800"
+                          fontFamily="'JetBrains Mono', monospace"
+                        >
+                          {node.label}
+                        </text>
+                        <text
+                          x={textX}
+                          y={node.y + 21}
+                          fill="#94a3b8"
+                          fontSize="10"
+                          fontWeight="600"
+                        >
+                          {node.sublabel}
+                        </text>
+                      </>
+                    )}
+
+                    <circle
+                      cx={left + node.width - 13}
+                      cy={top + 13}
+                      r="3.2"
+                      fill={isCompact ? "#34d399" : theme.stroke}
+                      opacity={isCompact ? "1" : "0.75"}
+                    />
+                  </g>
+                );
+              })}
+            </g>
+          </svg>
         </div>
 
-        {/* LIVE NODE INSPECTOR DRAWER */}
-        <aside className="arch-inspector-panel" aria-live="polite">
-          <div className="inspector-header">
-            <div className="inspector-badge-row">
-              <span
-                className="inspector-cat-badge"
-                style={{
-                  color: inspectedTheme.stroke,
-                  borderColor: inspectedTheme.stroke,
-                  background: "rgba(6, 10, 13, 0.7)",
-                }}
-              >
-                {getCategoryIcon(inspectedNode.category)}
-                <span>{inspectedTheme.badge}</span>
+        {/* FLOATING HOVER QUICK-PREVIEW POPOVER (Hanya muncul saat hover portal aplikasi) */}
+        {hoveredNode && hoveredApps.length > 0 && (
+          <div
+            className="arch-hover-popover"
+            style={{
+              left: `${Math.min(Math.max((hoveredNode.x / 1200) * 100, 14), 86)}%`,
+            }}
+            role="status"
+            aria-live="polite"
+          >
+            <div className="hover-popover-top">
+              <span className="hover-popover-code">
+                {hoveredApps[0].kode_aplikasi}
               </span>
-              <span className="inspector-layer-tag">{inspectedNode.layer}</span>
+              <span className="hover-popover-hint">Klik untuk Preview</span>
             </div>
-
-            <h3 className="inspector-title">{inspectedNode.label}</h3>
-            <p className="inspector-protocol">{inspectedNode.protocol}</p>
-            <p className="inspector-summary">{inspectedNode.summary}</p>
-          </div>
-
-          {/* Spesifikasi Node */}
-          {inspectedNode.specs && inspectedNode.specs.length > 0 && (
-            <div className="inspector-block">
-              <span className="inspector-block-label">Spesifikasi & Peran</span>
-              <ul className="inspector-spec-list">
-                {inspectedNode.specs.map((spec) => (
-                  <li key={spec}>
-                    <Check size={14} weight="bold" className="text-accent shrink-0" />
-                    <span>{spec}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Live Endpoints under iclabs.fikom.umi.ac.id */}
-          {inspectedNode.endpoints && inspectedNode.endpoints.length > 0 && (
-            <div className="inspector-block">
-              <span className="inspector-block-label">Aplikasi & Endpoint Live</span>
-              <div className="inspector-endpoints-list">
-                {inspectedNode.endpoints.map((ep) => (
-                  <a
-                    key={ep.url}
-                    href={ep.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inspector-endpoint-btn"
-                  >
-                    <div className="endpoint-copy">
-                      <strong>{ep.label}</strong>
-                      <small>{ep.url.replace(/^https?:\/\//, "")}</small>
-                    </div>
-                    <ArrowSquareOut size={15} weight="bold" />
-                  </a>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Alur Koneksi Masuk & Keluar (Traversal) */}
-          <div className="inspector-block">
-            <span className="inspector-block-label">
-              Koneksi Aktif ({incomingEdges.length + outgoingEdges.length})
+            <strong className="hover-popover-title">
+              {hoveredApps[0].nama_aplikasi}
+              {hoveredApps.length > 1 ? ` (+${hoveredApps.length - 1} modul)` : ""}
+            </strong>
+            <p className="hover-popover-desc">{hoveredApps[0].deskripsi}</p>
+            <span className="hover-popover-url">
+              {hoveredApps[0].url.replace(/^https?:\/\//, "")}
             </span>
-            <div className="inspector-connections-grid">
-              {incomingEdges.map((edge) => {
-                const sourceNode = architectureGraphNodes.find((n) => n.id === edge.from);
-                if (!sourceNode) return null;
-                return (
-                  <button
-                    key={edge.id}
-                    type="button"
-                    className="conn-chip is-in"
-                    onClick={() => handleNodeClick(sourceNode)}
-                    title={`Fokus ke ${sourceNode.label}`}
-                  >
-                    <span className="conn-dir">IN</span>
-                    <span className="conn-name">{sourceNode.label}</span>
-                    <span className="conn-proto">{edge.label}</span>
-                  </button>
-                );
-              })}
-              {outgoingEdges.map((edge) => {
-                const targetNode = architectureGraphNodes.find((n) => n.id === edge.to);
-                if (!targetNode) return null;
-                return (
-                  <button
-                    key={edge.id}
-                    type="button"
-                    className="conn-chip is-out"
-                    onClick={() => handleNodeClick(targetNode)}
-                    title={`Fokus ke ${targetNode.label}`}
-                  >
-                    <span className="conn-dir">OUT</span>
-                    <span className="conn-name">{targetNode.label}</span>
-                    <span className="conn-proto">{edge.label}</span>
-                  </button>
-                );
-              })}
-            </div>
           </div>
-        </aside>
+        )}
       </div>
 
-      {/* BAR RINGKASAN SISTEM TERPILIH DARI HERO TAB */}
-      {activeSystem && (
-        <div className="active-system-strip">
-          <div className="active-system-strip-main">
-            <div className="active-system-meta">
-              <span className="project-category-badge">{activeSystem.category}</span>
-              <span className="active-system-number">SISTEM #{activeSystem.number}</span>
-            </div>
-            <h3 className="active-system-heading">
-              {activeSystem.label} — {activeSystem.title.replace("\n", " ")}
-            </h3>
-            <p className="active-system-desc">{activeSystem.description}</p>
-            {activeSystem.note && (
-              <p className="active-system-note">
-                <strong>Catatan Integrasi:</strong> {activeSystem.note}
-              </p>
-            )}
-          </div>
+      {/* MODAL PREVIEW APLIKASI (Sumber API: v1/sumber-daya/aplikasi) */}
+      {modalNode && activeModalApp && (
+        <div
+          className="app-preview-modal-backdrop"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="app-preview-modal-title"
+          onClick={() => setModalNodeId(null)}
+        >
+          <div
+            className="app-preview-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header Modal */}
+            <div className="preview-modal-header">
+              <div className="preview-modal-title-group">
+                <div className="preview-modal-badges">
+                  <span className="preview-code-pill">
+                    {activeModalApp.kode_aplikasi}
+                  </span>
+                  <span className="preview-status-pill">
+                    ● AKTIF · {modalNode.label}
+                  </span>
+                </div>
+                <h3 id="app-preview-modal-title" className="preview-modal-title">
+                  {activeModalApp.nama_aplikasi}
+                </h3>
+                <p className="preview-modal-desc">{activeModalApp.deskripsi}</p>
+              </div>
 
-          <div className="active-system-strip-features">
-            <span className="inspector-block-label">Fitur & Alur Modul</span>
-            <ul className="active-system-feat-list">
-              {activeSystem.features.map((feat) => (
-                <li key={feat}>
-                  <Check size={14} weight="bold" className="text-accent shrink-0" />
-                  <span>{feat}</span>
-                </li>
-              ))}
-            </ul>
-            {activeSystem.url && (
-              <a
-                href={activeSystem.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="active-system-cta"
+              <button
+                type="button"
+                className="preview-modal-close"
+                onClick={() => setModalNodeId(null)}
+                aria-label="Tutup preview aplikasi"
               >
-                <span>Kunjungi {activeSystem.url.replace(/^https?:\/\//, "")}</span>
-                <ArrowSquareOut size={15} weight="bold" />
-              </a>
+                <X size={18} weight="bold" />
+              </button>
+            </div>
+
+            {/* Multi-app tabs bila 1 node memiliki >1 aplikasi */}
+            {modalApps.length > 1 && (
+              <div className="preview-modal-tabs" role="tablist">
+                {modalApps.map((app, idx) => (
+                  <button
+                    key={app.url}
+                    type="button"
+                    role="tab"
+                    aria-selected={idx === activeAppIndex}
+                    className={`preview-tab-btn ${idx === activeAppIndex ? "is-active" : ""}`}
+                    onClick={() => {
+                      setActiveAppIndex(idx);
+                      setIframeLoaded(false);
+                      setIframeKey((k) => k + 1);
+                    }}
+                  >
+                    <span>{app.nama_aplikasi}</span>
+                  </button>
+                ))}
+              </div>
             )}
+
+            {/* Simulated Browser Chrome + Live Iframe Preview */}
+            <div className="preview-browser-shell">
+              <div className="preview-browser-bar">
+                <div className="browser-dots" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className="browser-url-pill">
+                  <LockSimple size={12} weight="bold" className="text-accent" />
+                  <span>{activeModalApp.url}</span>
+                </div>
+                <div className="browser-actions">
+                  <button
+                    type="button"
+                    className="browser-action-btn"
+                    onClick={() => {
+                      setIframeLoaded(false);
+                      setIframeKey((k) => k + 1);
+                    }}
+                    title="Muat ulang preview"
+                  >
+                    <ArrowsClockwise size={14} weight="bold" />
+                  </button>
+                  <a
+                    href={activeModalApp.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="browser-launch-btn"
+                  >
+                    <span>Buka Portal</span>
+                    <ArrowSquareOut size={14} weight="bold" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="preview-iframe-stage">
+                {!iframeLoaded && (
+                  <div className="preview-fallback-overlay">
+                    <Globe size={34} weight="duotone" className="text-accent" />
+                    <strong>{activeModalApp.nama_aplikasi}</strong>
+                    <p>
+                      Menghubungkan ke <code>{activeModalApp.url}</code>...
+                    </p>
+                    <a
+                      href={activeModalApp.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="fallback-open-btn"
+                    >
+                      <span>Buka Langsung di Tab Baru</span>
+                      <ArrowSquareOut size={15} weight="bold" />
+                    </a>
+                  </div>
+                )}
+                <iframe
+                  key={`${activeModalApp.url}-${iframeKey}`}
+                  src={activeModalApp.url}
+                  title={`Preview ${activeModalApp.nama_aplikasi}`}
+                  className={`preview-iframe ${iframeLoaded ? "is-loaded" : ""}`}
+                  loading="lazy"
+                  onLoad={() => setIframeLoaded(true)}
+                />
+              </div>
+            </div>
+
+            <div className="preview-modal-footer">
+              <span className="preview-api-ref">
+                Referensi API:{" "}
+                <a
+                  href={SUMBER_DAYA_APPS_API}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  iclabs.fikom.umi.ac.id/api/v1/sumber-daya/aplikasi ↗
+                </a>
+              </span>
+              <span className="preview-kbd-hint">Tekan ESC untuk menutup</span>
+            </div>
           </div>
         </div>
       )}
