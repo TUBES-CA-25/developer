@@ -1,7 +1,29 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import {
+  ChartBar,
+  EnvelopeSimple,
+  GitBranch,
+  GitCommit,
+  GithubLogo,
+  GitPullRequest,
+  Globe,
+  Medal,
+  Sparkle,
+  Trophy,
+  UserCheck,
+  UsersThree,
+} from "@phosphor-icons/react";
 import { teamConfig, systemsConfig, labConfig } from "../lib/config";
+import {
+  targetRepositories,
+  ecosystemStats,
+  memberContributions,
+  getMemberContribution,
+  getTopCommitters,
+  getTopPRContributors,
+} from "../lib/contributors";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const getAssetUrl = (path) => {
@@ -138,6 +160,8 @@ function HeroSkeleton({ progress, loadedCount, totalCount, isFadingOut }) {
           </div>
           <div className="skeleton-nav">
             <div className="hologram-shimmer skeleton-nav-pill" />
+            <div className="hologram-shimmer skeleton-nav-pill" />
+            <div className="hologram-shimmer skeleton-nav-pill" />
           </div>
         </header>
 
@@ -161,6 +185,7 @@ function HeroSkeleton({ progress, loadedCount, totalCount, isFadingOut }) {
               const layout = getMockupRosterLayout(member.id);
               const isLead = layout.isLead;
               const isLocked = index < loadedCount;
+              const contrib = getMemberContribution(member.id);
 
               return (
                 <div
@@ -191,7 +216,11 @@ function HeroSkeleton({ progress, loadedCount, totalCount, isFadingOut }) {
 
                     <div className="pod-slot-tag">
                       <span className="pod-code">
-                        {isLead ? "LEAD" : `DEV-${String(index + 1).padStart(2, "0")}`}
+                        {isLead
+                          ? "LEAD"
+                          : contrib.rank <= 10
+                            ? `TOP-${contrib.rank}`
+                            : `BADGE-${contrib.rank}`}
                       </span>
                       <span className="pod-name">
                         {(member.nickname || member.name).toUpperCase()}
@@ -264,6 +293,10 @@ export default function Portfolio() {
   const [hasMemberSelection, setHasMemberSelection] = useState(false);
   const [profilePhase, setProfilePhase] = useState("closed");
   const [profileOrigin, setProfileOrigin] = useState({ x: 0, y: 0 });
+  const [contributorTab, setContributorTab] = useState("leaderboard");
+  const [leaderboardMetric, setLeaderboardMetric] = useState("commits");
+  const [rosterFilter, setRosterFilter] = useState("all");
+
   const stageScrollRef = useRef(null);
   const stageRef = useRef(null);
   const profileCloseButtonRef = useRef(null);
@@ -275,6 +308,7 @@ export default function Portfolio() {
   const selectedIndex = teamConfig.findIndex(
     (m) => m.id === selectedMember.id
   );
+  const selectedContrib = getMemberContribution(selectedMember.id);
 
   // Preload all 22 character figures + branding images before revealing
   useEffect(() => {
@@ -441,6 +475,10 @@ export default function Portfolio() {
         id="top"
         className={`site-canvas main-content-transition ${isReady ? "is-revealed" : "is-concealed"}`}
       >
+        <a href="#project-detail" className="skip-link">
+          Lewati ke detail sistem
+        </a>
+
         {/* ====================================================================
           FULL-SCREEN ESPORTS ROSTER HERO (layouts.png reference)
           ==================================================================== */}
@@ -461,12 +499,20 @@ export default function Portfolio() {
               </div>
             </a>
 
-            <div className="header-meta-badge">
-              <span className="live-dot" aria-hidden="true" />
-              <span className="meta-text">
-                {labConfig.totalMembers} Personnel Official Roster · {labConfig.faculty}
-              </span>
-            </div>
+            <nav className="header-nav" aria-label="Navigasi Utama">
+              <a href="#project-detail" className="nav-link">
+                Sistem
+              </a>
+              <a href="#contributors" className="nav-link">
+                Kontributor & Commit
+              </a>
+              <a href="#team" className="nav-link">
+                Roster
+              </a>
+              <a href="#about" className="nav-link nav-link-cta">
+                Tentang Lab
+              </a>
+            </nav>
           </header>
 
           {/* ──────────────────────────────────────────────────────────────────
@@ -573,8 +619,8 @@ export default function Portfolio() {
               </div>
 
               {/* ────────────────────────────────────────────────────────────
-                SIMPLIFIED DEVELOPER PROFILE MODAL:
-                Displays ONLY Developer Image, Name, and Developer Status
+                DEVELOPER PROFILE CARD WITH RANK & COMMIT METRICS
+                (Teknologi telah dihilangkan sesuai permintaan)
                 ──────────────────────────────────────────────────────────── */}
               {isProfileVisible && (
                 <div
@@ -583,7 +629,7 @@ export default function Portfolio() {
                   onClick={closeMemberProfile}
                 >
                   <article
-                    className="stage-profile-card stage-profile-card-minimal"
+                    className="stage-profile-card"
                     role="dialog"
                     aria-modal="true"
                     aria-labelledby="stage-profile-name"
@@ -611,10 +657,52 @@ export default function Portfolio() {
                           className="stage-profile-photo"
                         />
                       </div>
+
+                      {/* Rank & Formation Badges */}
+                      <div className="stage-profile-photo-badges">
+                        <div className="stage-profile-tier-badge">
+                          {selectedContrib.rank === 1 ? (
+                            <span className="tier-tag tier-gold">
+                              <Trophy size={13} weight="fill" /> RANK #1 CORE LEAD
+                            </span>
+                          ) : selectedContrib.rank <= 3 ? (
+                            <span className="tier-tag tier-gold">
+                              <Medal size={13} weight="fill" /> TOP #{selectedContrib.rank} CONTRIBUTOR
+                            </span>
+                          ) : selectedContrib.rank <= 10 ? (
+                            <span className="tier-tag tier-cyan">
+                              <Sparkle size={13} weight="fill" /> TOP #{selectedContrib.rank} CONTRIBUTOR
+                            </span>
+                          ) : (
+                            <span className="tier-tag tier-muted">
+                              <UserCheck size={13} weight="fill" /> CONTRIBUTOR #{selectedContrib.rank}
+                            </span>
+                          )}
+                        </div>
+                        <div className="stage-profile-formation-tag">
+                          <span>
+                            {selectedMember.row === 1
+                              ? selectedMember.isLead
+                                ? "Row 1 (Depan) · Captain Lead"
+                                : `Row 1 (Depan) · Posisi #${selectedMember.rowPosition}`
+                              : selectedMember.row === 2
+                                ? `Row 2 (Tengah) · Posisi #${selectedMember.rowPosition}`
+                                : `Row 3 (Belakang) · Posisi #${selectedMember.rowPosition}`}
+                          </span>
+                        </div>
+                        <div className="stage-profile-callsign-tag">
+                          <span>CALLSIGN: {(selectedMember.nickname || selectedMember.name).toUpperCase()}</span>
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="stage-profile-content stage-profile-content-minimal">
+                    <div className="stage-profile-content">
                       <div className="stage-profile-header-meta">
+                        <span className="stage-profile-index">
+                          {selectedContrib.rank <= 10
+                            ? `CONTRIBUTOR TOP ${selectedContrib.rank}`
+                            : `CONTRIBUTOR BADGE #${selectedContrib.rank}`}
+                        </span>
                         <span className={`stage-profile-lead-badge ${selectedMember.isLead ? "is-lead" : ""}`}>
                           {selectedMember.isLead ? "👑 Lead & System Architect" : "Contributor Developer"}
                         </span>
@@ -625,9 +713,158 @@ export default function Portfolio() {
                       </h2>
                       <p className="stage-profile-role">{selectedMember.role}</p>
 
+                      {/* Rekap Kontribusi Git & Peringkat Komit */}
+                      <div className="stage-profile-git-block">
+                        <div className="stage-profile-git-top">
+                          <div className="stage-git-title-group">
+                            <span className="meta-label">Aktivitas Git (8 Repositori Inti):</span>
+                            {selectedContrib.topRepo && (
+                              <span className="stage-top-repo-pill" title="Repositori kontribusi terbanyak">
+                                Top: <strong>{selectedContrib.topRepo}</strong>
+                              </span>
+                            )}
+                          </div>
+                          {selectedContrib.username && (
+                            <a
+                              href={`https://github.com/${selectedContrib.username}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="git-user-badge"
+                            >
+                              <GithubLogo size={13} weight="fill" />
+                              <span>@{selectedContrib.username}</span>
+                            </a>
+                          )}
+                        </div>
+
+                        <div className="stage-profile-git-metrics">
+                          <div className="git-metric-box">
+                            <div className="git-metric-header">
+                              <GitCommit size={15} className="metric-icon" />
+                              <span className="metric-val">{selectedContrib.commits}</span>
+                            </div>
+                            <span className="metric-lbl">Commits</span>
+                          </div>
+                          <div className="git-metric-box">
+                            <div className="git-metric-header">
+                              <GitPullRequest size={15} className="metric-icon" />
+                              <span className="metric-val">{selectedContrib.prs}</span>
+                            </div>
+                            <span className="metric-lbl">Pull Requests</span>
+                          </div>
+                          <div className="git-metric-box">
+                            <div className="git-metric-header">
+                              <GitBranch size={15} className="metric-icon" />
+                              <span className="metric-val">{selectedContrib.repoCount} / 8</span>
+                            </div>
+                            <span className="metric-lbl">Repositori</span>
+                          </div>
+                          <div className="git-metric-box">
+                            <div className="git-metric-header">
+                              <Trophy size={15} className="metric-icon metric-icon-gold" />
+                              <span className="metric-val">#{selectedContrib.rank}</span>
+                            </div>
+                            <span className="metric-lbl">Rank Global</span>
+                          </div>
+                        </div>
+
+                        {selectedContrib.breakdown && selectedContrib.breakdown.length > 0 ? (
+                          <div className="stage-profile-repo-list">
+                            {selectedContrib.breakdown.map((item) => (
+                              <span
+                                key={item.repo}
+                                className="stage-repo-chip"
+                                title={`${item.repo} (Branch: ${item.branch})`}
+                              >
+                                <span className="repo-chip-name">{item.shortName}</span>
+                                <span className="repo-chip-count">{item.commits}c</span>
+                              </span>
+                            ))}
+                          </div>
+                        ) : (
+                          <p className="stage-no-commit-notice">
+                            Aktif berkolaborasi dalam tinjauan pull request dan integrasi sistem laboratorium.
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Socials & Website Portfolio */}
+                      {selectedMember.socials &&
+                        Object.values(selectedMember.socials).some((val) => Boolean(val)) && (
+                          <div className="stage-profile-socials-wrap">
+                            <span className="meta-label">Tautan & Portofolio:</span>
+                            <div className="stage-profile-social-buttons">
+                              {selectedMember.socials.website && (
+                                <a
+                                  href={selectedMember.socials.website}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="social-btn social-btn-website"
+                                  aria-label={`Website & Portfolio ${selectedMember.name}`}
+                                >
+                                  <Globe size={16} weight="bold" />
+                                  <span>Website / Portofolio</span>
+                                </a>
+                              )}
+                              {selectedMember.socials.github && (
+                                <a
+                                  href={selectedMember.socials.github}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="social-btn"
+                                  aria-label="GitHub"
+                                >
+                                  <GithubLogo size={15} weight="fill" />
+                                  <span>GitHub</span>
+                                </a>
+                              )}
+                              {selectedMember.socials.linkedin && (
+                                <a
+                                  href={selectedMember.socials.linkedin}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="social-btn"
+                                  aria-label="LinkedIn"
+                                >
+                                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                                  </svg>
+                                  <span>LinkedIn</span>
+                                </a>
+                              )}
+                              {selectedMember.socials.instagram && (
+                                <a
+                                  href={selectedMember.socials.instagram}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="social-btn"
+                                  aria-label="Instagram"
+                                >
+                                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                                  </svg>
+                                  <span>Instagram</span>
+                                </a>
+                              )}
+                              {selectedMember.email && (
+                                <a
+                                  href={`mailto:${selectedMember.email}`}
+                                  className="social-btn social-btn-email"
+                                  aria-label={`Kirim email ke ${selectedMember.name}`}
+                                >
+                                  <EnvelopeSimple size={16} weight="bold" />
+                                  <span>Kirim Email</span>
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        )}
+
                       <div className="stage-profile-footer-clean">
                         <span className="stage-profile-footer-brand">
-                          ICLabs Developer Collective · FIKOM UMI Makassar
+                          ICLabs Developer Collective · FIKOM UMI Makassar · Season 2026
                         </span>
                       </div>
                     </div>
@@ -645,7 +882,6 @@ export default function Portfolio() {
             BOTTOM TITLE & TICKER (Teks "Developer By Iclabs" di Bawah Bingkai)
             ────────────────────────────────────────────────────────────────── */}
           <div className="esports-bottom-section">
-            {/* Main Title below stage matching layouts.png */}
             <div className="esports-main-title-wrap">
               <h1 className="esports-display-title">
                 DEVELOPER <span className="text-accent">BY ICLABS</span>
@@ -655,17 +891,27 @@ export default function Portfolio() {
               </p>
             </div>
 
-            {/* Bottom HUD Bar & Roster Name Ticker */}
+            {/* Bottom HUD Bar with Commit & Rank Indicators */}
             <div className="esports-bottom-bar">
-              {/* Active Player HUD */}
               <div className="hud-player-focus" aria-live="polite">
                 <span className="hud-focus-pill">
                   [{selectedIndex + 1}/{teamConfig.length}]
                 </span>
                 <strong className="hud-name">{selectedMember.name}</strong>
-                <span className="hud-role">
-                  · {selectedMember.isLead ? "Lead & System Architect" : "Contributor Developer"}
-                </span>
+                <span className="hud-role">· {selectedMember.role}</span>
+                {selectedContrib.commits > 0 && (
+                  <span
+                    className="hud-contrib-pill"
+                    title={`${selectedContrib.commits} commits pada branch default di 7 repositori inti`}
+                  >
+                    ⚡ {selectedContrib.commits} Commits · {selectedContrib.repoCount} Repo
+                  </span>
+                )}
+                {selectedContrib.commits === 0 && selectedContrib.prs > 0 && (
+                  <span className="hud-contrib-pill">
+                    🌿 {selectedContrib.prs} PR
+                  </span>
+                )}
               </div>
 
               {/* Horizontal Roster Name Ticker */}
@@ -691,7 +937,6 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              {/* Quick Action */}
               <div className="hud-actions">
                 {activeSystem.url && (
                   <a
@@ -704,13 +949,814 @@ export default function Portfolio() {
                     Buka Sistem ↗
                   </a>
                 )}
+                <a href="#contributors" className="hud-detail-cta">
+                  Leaderboard Kontributor ↓
+                </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Minimal Clean Footer */}
+        {/* ====================================================================
+          SECTION 2: PROJECT DETAIL (Integrated Systems Overview)
+          (Teknologi Terintegrasi / Tech Badges dihilangkan sesuai permintaan)
+          ==================================================================== */}
+        <section
+          className="project-detail-section"
+          id="project-detail"
+          aria-labelledby="project-title"
+        >
+          <div className="detail-grid">
+            <div className="detail-content">
+              <div className="detail-header-block">
+                <span className="section-pill-tag">DETAIL ARSITEKTUR SISTEM</span>
+                <h2 id="project-title" className="project-heading">
+                  {activeSystem.title.split("\n").map((line, i) => (
+                    <span key={line} className={i > 0 ? "heading-secondary" : ""}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
+                </h2>
+                <div className="project-category-meta-row">
+                  <span className="project-category-badge">{activeSystem.category}</span>
+                  {activeSystem.url ? (
+                    <a
+                      href={activeSystem.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="system-external-link"
+                    >
+                      Kunjungi Portal: {activeSystem.url.replace(/^https?:\/\//, "")} ↗
+                    </a>
+                  ) : (
+                    <span className="system-internal-badge">Modul Internal API</span>
+                  )}
+                </div>
+                <p className="project-description">{activeSystem.description}</p>
+              </div>
+
+              <div className="features-block">
+                <h3 className="block-title">Fitur & Arsitektur Utama</h3>
+                <ul className="features-list">
+                  {activeSystem.features.map((feat) => (
+                    <li key={feat} className="feature-item">
+                      <svg
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feature-icon"
+                        aria-hidden="true"
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {activeSystem.note && (
+                <div className="project-note-box">
+                  <span className="note-label">Catatan Integrasi:</span>
+                  <p className="note-text">{activeSystem.note}</p>
+                </div>
+              )}
+            </div>
+
+            <div className="detail-visual-column">
+              <figure className="detail-figure">
+                <img
+                  src={getAssetUrl("/images/gedung-fikom-malam.webp")}
+                  alt="Gedung Fakultas Ilmu Komputer pada malam hari"
+                  loading="lazy"
+                  className="figure-image"
+                />
+                <figcaption className="figure-caption">
+                  <span className="caption-sub">Pusat operasional laboratorium</span>
+                  <strong className="caption-main">ICLabs Fikom</strong>
+                  <span className="caption-desc">
+                    {labConfig.faculty} · Ekosistem praktikum, riset, dan rekrutmen terpadu.
+                  </span>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        {/* ====================================================================
+          SECTION 3: VERIFIED DEVELOPER CONTRIBUTORS & ECOSYSTEM PULSE
+          (Peringkat Commits, Pull Requests & Matriks Distribusi)
+          ==================================================================== */}
+        <section
+          id="contributors"
+          className="contributors-section"
+          aria-labelledby="contributors-heading"
+        >
+          <div className="section-header">
+            <div>
+              <span className="section-pill-tag">AKTIVITAS & KONTRIBUSI DEVELOPER</span>
+              <h2 id="contributors-heading" className="section-title">
+                Built by code<span className="text-accent">.</span>
+              </h2>
+              <p className="section-subtitle">
+                Transparansi kontribusi 20 kontributor aktif pada default branch dan pull request lintas 8 repositori terpadu.
+              </p>
+            </div>
+            <div className="contributors-badge-wrap">
+              <span className="team-total-badge">
+                2.265 COMMITS · 247 PR · 7 REPOSITORI
+              </span>
+            </div>
+          </div>
+
+          {/* 4 Ecosystem Metric Highlight Cards */}
+          <div className="ecosystem-stats-grid">
+            <div className="stat-card">
+              <div className="stat-card-top">
+                <span className="stat-kicker">TOTAL COMMITS</span>
+                <GitCommit size={20} className="stat-icon" />
+              </div>
+              <strong className="stat-number">2.265</strong>
+              <span className="stat-detail">Branch default terverifikasi di 7 repositori inti</span>
+            </div>
+
+            <div className="stat-card">
+              <div className="stat-card-top">
+                <span className="stat-kicker">PULL REQUESTS</span>
+                <GitPullRequest size={20} className="stat-icon text-accent2" />
+              </div>
+              <strong className="stat-number">247</strong>
+              <span className="stat-detail">Kolaborasi branch, code review & merge sistem</span>
+            </div>
+
+            <div className="stat-card">
+              <div className="stat-card-top">
+                <span className="stat-kicker">REPOSITORI TERPADU</span>
+                <GitBranch size={20} className="stat-icon" />
+              </div>
+              <strong className="stat-number">7</strong>
+              <span className="stat-detail">Backend, Praktikum, Inventaris, Reservasi, dll.</span>
+            </div>
+
+            <div className="stat-card">
+              <div className="stat-card-top">
+                <span className="stat-kicker">KONTRIBUTOR TERLIBAT</span>
+                <UsersThree size={20} className="stat-icon" />
+              </div>
+              <strong className="stat-number">20 / 22</strong>
+              <span className="stat-detail">Developer & asisten kontributor aktif</span>
+            </div>
+          </div>
+
+          {/* Tab Navigation for Contributors Section */}
+          <div className="contributors-nav-tabs" role="tablist" aria-label="Menu Tampilan Kontribusi">
+            <button
+              type="button"
+              className={`contrib-tab ${contributorTab === "leaderboard" ? "is-active" : ""}`}
+              onClick={() => setContributorTab("leaderboard")}
+            >
+              <Trophy size={16} />
+              <span>Papan Peringkat (Leaderboard)</span>
+            </button>
+            <button
+              type="button"
+              className={`contrib-tab ${contributorTab === "matrix" ? "is-active" : ""}`}
+              onClick={() => setContributorTab("matrix")}
+            >
+              <ChartBar size={16} />
+              <span>Matriks Distribusi (Heatmap)</span>
+            </button>
+            <button
+              type="button"
+              className={`contrib-tab ${contributorTab === "repos" ? "is-active" : ""}`}
+              onClick={() => setContributorTab("repos")}
+            >
+              <GitBranch size={16} />
+              <span>7 Repositori Inti</span>
+            </button>
+          </div>
+
+          {/* TAB 1: LEADERBOARD */}
+          {contributorTab === "leaderboard" && (
+            <div className="contrib-panel leaderboard-panel">
+              <div className="leaderboard-toolbar">
+                <div className="toolbar-info">
+                  <span className="toolbar-title">
+                    {leaderboardMetric === "commits"
+                      ? "Peringkat Commit Branch Default"
+                      : "Peringkat Aktivitas Pull Request"}
+                  </span>
+                  <span className="toolbar-desc">
+                    {leaderboardMetric === "commits"
+                      ? "Kontribusi kode langsung yang telah masuk ke branch default repositori."
+                      : "Aktivitas pull request untuk integrasi fitur, refactor, dan review kode."}
+                  </span>
+                </div>
+                <div className="metric-toggle-group">
+                  <button
+                    type="button"
+                    className={`metric-toggle-btn ${leaderboardMetric === "commits" ? "is-active" : ""}`}
+                    onClick={() => setLeaderboardMetric("commits")}
+                  >
+                    <GitCommit size={14} />
+                    <span>Commits (2.265)</span>
+                  </button>
+                  <button
+                    type="button"
+                    className={`metric-toggle-btn ${leaderboardMetric === "prs" ? "is-active" : ""}`}
+                    onClick={() => setLeaderboardMetric("prs")}
+                  >
+                    <GitPullRequest size={14} />
+                    <span>Pull Requests (247)</span>
+                  </button>
+                </div>
+              </div>
+
+              <div className="leaderboard-list">
+                {(leaderboardMetric === "commits" ? getTopCommitters() : getTopPRContributors()).map(
+                  (c, idx) => {
+                    const member = teamConfig.find((m) => m.id === c.memberId) || {
+                      name: c.username,
+                      role: "Kontributor",
+                      image: "/images/iclabs-logo.png",
+                    };
+                    const maxVal = leaderboardMetric === "commits" ? 602 : 126;
+                    const curVal = leaderboardMetric === "commits" ? c.commits : c.prs;
+                    const percent = Math.max((curVal / maxVal) * 100, 3);
+                    const isTopThree = idx < 3;
+
+                    return (
+                      <div
+                        key={c.memberId}
+                        className={`leaderboard-row ${c.memberId === selectedMember.id ? "is-selected" : ""}`}
+                        onClick={() => setSelectedMemberId(c.memberId)}
+                      >
+                        <div className={`leaderboard-rank ${isTopThree ? `is-top-${idx + 1}` : ""}`}>
+                          {idx === 0 ? "🥇" : idx === 1 ? "🥈" : idx === 2 ? "🥉" : `#${idx + 1}`}
+                        </div>
+
+                        <div className="leaderboard-user-info">
+                          <div className="leaderboard-avatar-wrap">
+                            <img
+                              src={encodeURI(getAssetUrl(member.image))}
+                              alt=""
+                              className="leaderboard-avatar"
+                            />
+                          </div>
+                          <div className="leaderboard-names">
+                            <strong className="leaderboard-name">{member.name}</strong>
+                            <span className="leaderboard-sub">
+                              @{c.username} · {member.role}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="leaderboard-bar-container">
+                          <div className="leaderboard-track">
+                            <div
+                              className={`leaderboard-bar-fill ${leaderboardMetric === "prs" ? "is-pr-bar" : ""}`}
+                              style={{ width: `${percent}%` }}
+                            />
+                          </div>
+                          {c.breakdown && c.breakdown.length > 0 && (
+                            <div className="leaderboard-repo-tags">
+                              {c.breakdown.slice(0, 3).map((b) => (
+                                <span key={b.repo} className="micro-repo-tag">
+                                  {b.shortName}: {b.commits}c
+                                </span>
+                              ))}
+                              {c.breakdown.length > 3 && (
+                                <span className="micro-repo-tag is-more">
+                                  +{c.breakdown.length - 3} repo
+                                </span>
+                              )}
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="leaderboard-score-column">
+                          <strong className="score-number">{curVal.toLocaleString()}</strong>
+                          <span className="score-label">
+                            {leaderboardMetric === "commits" ? "Commits" : "PRs"}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  }
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* TAB 2: HEATMAP MATRIX */}
+          {contributorTab === "matrix" && (
+            <div className="contrib-panel matrix-panel">
+              <div className="matrix-header-info">
+                <span className="matrix-note">
+                  Intensitas warna cyan merepresentasikan volume commit pada branch default tiap repositori
+                  (skala logaritmik).
+                </span>
+                <div className="matrix-legend">
+                  <span className="legend-label">Skala Commit:</span>
+                  <div className="legend-gradient-steps">
+                    <span className="step-box step-0">0</span>
+                    <span className="step-box step-1">1 - 10</span>
+                    <span className="step-box step-2">11 - 50</span>
+                    <span className="step-box step-3">51 - 200</span>
+                    <span className="step-box step-4">200+</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="matrix-table-wrapper">
+                <table className="matrix-table">
+                  <thead>
+                    <tr>
+                      <th className="th-member">Contributor Developer</th>
+                      {targetRepositories.map((repo) => (
+                        <th key={repo.id} className="th-repo" title={`${repo.repoName} (Branch: ${repo.defaultBranch})`}>
+                          <span className="th-repo-name">{repo.shortName}</span>
+                          <span className="th-repo-branch">{repo.defaultBranch}</span>
+                        </th>
+                      ))}
+                      <th className="th-total">Total Commit</th>
+                      <th className="th-total">Total PR</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {teamConfig
+                      .map((member) => ({
+                        member,
+                        contrib: getMemberContribution(member.id),
+                      }))
+                      .sort((a, b) => b.contrib.commits - a.contrib.commits || b.contrib.prs - a.contrib.prs)
+                      .map(({ member, contrib }) => {
+                        const repoMap = {};
+                        contrib.breakdown.forEach((b) => {
+                          repoMap[b.repo] = b.commits;
+                        });
+
+                        return (
+                          <tr
+                            key={member.id}
+                            className={`matrix-row ${member.id === selectedMember.id ? "is-selected" : ""}`}
+                            onClick={() => setSelectedMemberId(member.id)}
+                          >
+                            <td className="td-member">
+                              <div className="matrix-member-cell">
+                                <div className="matrix-member-thumb-wrap">
+                                  <img
+                                    src={encodeURI(getAssetUrl(member.image))}
+                                    alt=""
+                                    className="matrix-member-thumb"
+                                  />
+                                </div>
+                                <div className="matrix-member-copy">
+                                  <strong>{member.name}</strong>
+                                  <small>@{contrib.username || member.nickname}</small>
+                                </div>
+                              </div>
+                            </td>
+
+                            {targetRepositories.map((repo) => {
+                              const count = repoMap[repo.repoName] || 0;
+                              let cellClass = "cell-zero";
+                              if (count > 200) cellClass = "cell-tier-4";
+                              else if (count > 50) cellClass = "cell-tier-3";
+                              else if (count > 10) cellClass = "cell-tier-2";
+                              else if (count > 0) cellClass = "cell-tier-1";
+
+                              return (
+                                <td key={repo.id} className={`td-heat ${cellClass}`}>
+                                  <span className="cell-value">{count > 0 ? count : "·"}</span>
+                                </td>
+                              );
+                            })}
+
+                            <td className="td-total">
+                              <strong>{contrib.commits > 0 ? contrib.commits : 0}</strong>
+                            </td>
+                            <td className="td-total is-pr-col">
+                              <span>{contrib.prs > 0 ? contrib.prs : 0}</span>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                  </tbody>
+                  <tfoot>
+                    <tr className="matrix-footer-row">
+                      <td className="td-member-foot">Total Per Repositori</td>
+                      {targetRepositories.map((repo) => (
+                        <td key={repo.id} className="td-repo-foot">
+                          <strong>{repo.totalCommits}</strong>
+                        </td>
+                      ))}
+                      <td className="td-total-foot">
+                        <strong>2.265</strong>
+                      </td>
+                      <td className="td-total-foot is-pr-col">
+                        <strong>247</strong>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 3: 7 REPOSITORIES OVERVIEW */}
+          {contributorTab === "repos" && (
+            <div className="contrib-panel repos-panel">
+              <div className="repos-grid">
+                {targetRepositories.map((repo) => {
+                  const contributorsInRepo = teamConfig
+                    .map((m) => {
+                      const c = getMemberContribution(m.id);
+                      const b = c.breakdown.find((item) => item.repo === repo.repoName);
+                      return { member: m, commits: b ? b.commits : 0 };
+                    })
+                    .filter((item) => item.commits > 0)
+                    .sort((a, b) => b.commits - a.commits);
+
+                  return (
+                    <article key={repo.id} className="repo-card">
+                      <div className="repo-card-top">
+                        <div>
+                          <span className="repo-badge">{repo.shortName}</span>
+                          <h4 className="repo-title">{repo.displayName}</h4>
+                        </div>
+                        <span className="repo-branch-tag">branch: {repo.defaultBranch}</span>
+                      </div>
+
+                      <p className="repo-description">{repo.description}</p>
+
+                      <div className="repo-stats-row">
+                        <div className="repo-stat-item">
+                          <span className="stat-label">Total Commits:</span>
+                          <strong className="stat-value">{repo.totalCommits}</strong>
+                        </div>
+                        <div className="repo-stat-item">
+                          <span className="stat-label">Kontributor:</span>
+                          <strong className="stat-value">{contributorsInRepo.length} personel</strong>
+                        </div>
+                      </div>
+
+                      <div className="repo-contributors-block">
+                        <span className="contrib-label">Kontributor Utama:</span>
+                        <div className="repo-contributors-avatars">
+                          {contributorsInRepo.map((item) => (
+                            <button
+                              key={item.member.id}
+                              type="button"
+                              className="repo-contrib-avatar-btn"
+                              title={`${item.member.name}: ${item.commits} commit`}
+                              onClick={() => setSelectedMemberId(item.member.id)}
+                            >
+                              <img
+                                src={encodeURI(getAssetUrl(item.member.image))}
+                                alt={item.member.name}
+                                className="contrib-avatar-img"
+                              />
+                              <span className="contrib-pill-count">{item.commits}</span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="repo-card-footer">
+                        <a
+                          href={repo.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="repo-external-link"
+                        >
+                          <GithubLogo size={14} weight="fill" />
+                          <span>Buka Repositori GitHub ↗</span>
+                        </a>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </section>
+
+        {/* ====================================================================
+          SECTION 4: COMPLETE TEAM DIRECTORY (22 Members Profiles)
+          ==================================================================== */}
+        <section id="team" className="team-section" aria-labelledby="team-heading">
+          <div className="section-header">
+            <div>
+              <h2 id="team-heading" className="section-title">
+                Built by us<span className="text-accent">.</span>
+              </h2>
+              <p className="section-subtitle">
+                {labConfig.totalMembers} asisten dan personel di balik pengembangan ekosistem digital laboratorium.
+              </p>
+            </div>
+            <span className="team-total-badge">
+              {labConfig.totalMembers} PERSPEKTIF · 1 TIM
+            </span>
+          </div>
+
+          <div className="team-split-layout">
+            {/* Selected Member Profile Card */}
+            <div className="member-spotlight-card" aria-live="polite">
+              <div className="spotlight-photo-frame">
+                <img
+                  src={encodeURI(getAssetUrl(selectedMember.image))}
+                  alt={`Foto resmi ${selectedMember.name}`}
+                  loading="lazy"
+                  className="spotlight-photo"
+                />
+              </div>
+              <div className="spotlight-details">
+                <div className="spotlight-header-meta">
+                  <span className="spotlight-status">
+                    {selectedMember.isLead ? "Lead & System Architect" : "Contributor Developer"}
+                  </span>
+                  <span className="spotlight-tier-tag">
+                    Baris {selectedMember.row} · Posisi #{selectedMember.rowPosition}
+                  </span>
+                </div>
+                <h3 className="spotlight-name">{selectedMember.name}</h3>
+                <p className="spotlight-role">{selectedMember.role}</p>
+
+                {/* Data Kontribusi Git 7 Repositori */}
+                <div className="spotlight-git-block">
+                  <div className="spotlight-git-top">
+                    <span className="jobs-block-label">Aktivitas Git (7 Repos Inti):</span>
+                    {selectedContrib.username && (
+                      <a
+                        href={`https://github.com/${selectedContrib.username}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="spotlight-git-user-link"
+                      >
+                        <GithubLogo size={13} weight="fill" />
+                        <span>@{selectedContrib.username}</span>
+                      </a>
+                    )}
+                  </div>
+
+                  <div className="spotlight-git-metrics-grid">
+                    <div className="spotlight-git-metric">
+                      <div className="metric-header">
+                        <GitCommit size={14} className="text-accent" />
+                        <span className="metric-number">{selectedContrib.commits}</span>
+                      </div>
+                      <span className="metric-tag">Commits</span>
+                    </div>
+                    <div className="spotlight-git-metric">
+                      <div className="metric-header">
+                        <GitPullRequest size={14} className="text-accent" />
+                        <span className="metric-number">{selectedContrib.prs}</span>
+                      </div>
+                      <span className="metric-tag">Pull Requests</span>
+                    </div>
+                    <div className="spotlight-git-metric">
+                      <div className="metric-header">
+                        <GitBranch size={14} className="text-accent" />
+                        <span className="metric-number">{selectedContrib.repoCount}</span>
+                      </div>
+                      <span className="metric-tag">Repositori</span>
+                    </div>
+                  </div>
+
+                  {selectedContrib.breakdown && selectedContrib.breakdown.length > 0 && (
+                    <div className="spotlight-repo-chips-wrap">
+                      {selectedContrib.breakdown.map((item) => (
+                        <span
+                          key={item.repo}
+                          className="spotlight-repo-chip"
+                          title={`${item.repo} (${item.branch})`}
+                        >
+                          <span className="chip-name">{item.shortName}</span>
+                          <span className="chip-count">{item.commits}c</span>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Data Sosial Media */}
+                {selectedMember.socials &&
+                  Object.values(selectedMember.socials).some((val) => Boolean(val)) && (
+                    <div className="spotlight-socials-block">
+                      <span className="socials-block-label">Sosial Media:</span>
+                      <div className="socials-links-wrap">
+                        {selectedMember.socials.website && (
+                          <a
+                            href={selectedMember.socials.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="social-btn social-btn-website"
+                            aria-label={`Website & Portofolio ${selectedMember.name}`}
+                          >
+                            <Globe size={16} weight="bold" />
+                            <span>Website</span>
+                          </a>
+                        )}
+                        {selectedMember.socials.github && (
+                          <a
+                            href={selectedMember.socials.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="social-btn"
+                            aria-label="GitHub"
+                          >
+                            <GithubLogo size={16} weight="fill" />
+                            <span>GitHub</span>
+                          </a>
+                        )}
+                        {selectedMember.socials.instagram && (
+                          <a
+                            href={selectedMember.socials.instagram}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="social-btn"
+                            aria-label="Instagram"
+                          >
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
+                            <span>Instagram</span>
+                          </a>
+                        )}
+                        {selectedMember.socials.linkedin && (
+                          <a
+                            href={selectedMember.socials.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="social-btn"
+                            aria-label="LinkedIn"
+                          >
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                            <span>LinkedIn</span>
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                <div className="spotlight-affiliation">
+                  <span>{labConfig.fullName}</span>
+                  <span>{labConfig.faculty} · {labConfig.university}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Full Roster Column */}
+            <div className="roster-column">
+              <div className="roster-filter-toolbar">
+                <span className="roster-filter-label">Filter Kontributor:</span>
+                <div className="roster-filter-pills">
+                  <button
+                    type="button"
+                    className={`roster-filter-btn ${rosterFilter === "all" ? "is-active" : ""}`}
+                    onClick={() => setRosterFilter("all")}
+                  >
+                    Semua ({teamConfig.length})
+                  </button>
+                  <button
+                    type="button"
+                    className={`roster-filter-btn ${rosterFilter === "top-commits" ? "is-active" : ""}`}
+                    onClick={() => setRosterFilter("top-commits")}
+                  >
+                    <GitCommit size={13} />
+                    Top Commits
+                  </button>
+                  <button
+                    type="button"
+                    className={`roster-filter-btn ${rosterFilter === "top-prs" ? "is-active" : ""}`}
+                    onClick={() => setRosterFilter("top-prs")}
+                  >
+                    <GitPullRequest size={13} />
+                    Top PR
+                  </button>
+                </div>
+              </div>
+
+              {/* Full Roster Grid */}
+              <div className="roster-grid" role="list" aria-label="Daftar asisten ICLabs">
+                {teamConfig
+                  .filter((member) => {
+                    const contrib = getMemberContribution(member.id);
+                    if (rosterFilter === "top-commits") return contrib.commits > 0;
+                    if (rosterFilter === "top-prs") return contrib.prs > 0;
+                    return true;
+                  })
+                  .sort((a, b) => {
+                    if (rosterFilter === "top-commits") {
+                      return getMemberContribution(b.id).commits - getMemberContribution(a.id).commits;
+                    }
+                    if (rosterFilter === "top-prs") {
+                      return getMemberContribution(b.id).prs - getMemberContribution(a.id).prs;
+                    }
+                    return 0;
+                  })
+                  .map((member) => {
+                    const isCurrent = member.id === selectedMember.id;
+                    const contrib = getMemberContribution(member.id);
+                    return (
+                      <button
+                        key={member.id}
+                        type="button"
+                        className={`roster-card ${isCurrent ? "is-selected" : ""}`}
+                        onClick={() => setSelectedMemberId(member.id)}
+                        aria-pressed={isCurrent}
+                      >
+                        <div className="roster-thumb-wrap">
+                          <img
+                            src={encodeURI(getAssetUrl(member.image))}
+                            alt=""
+                            loading="lazy"
+                            className="roster-thumb"
+                          />
+                        </div>
+                        <div className="roster-card-info">
+                          <div className="roster-card-topline">
+                            <strong className="roster-member-name">{member.name}</strong>
+                            {contrib.commits > 0 ? (
+                              <span className="roster-metric-tag" title={`${contrib.commits} commits di branch default`}>
+                                {contrib.commits}c
+                              </span>
+                            ) : contrib.prs > 0 ? (
+                              <span className="roster-metric-tag is-pr" title={`${contrib.prs} Pull Requests`}>
+                                {contrib.prs} PR
+                              </span>
+                            ) : null}
+                          </div>
+                          <span className="roster-member-role">{member.role}</span>
+                        </div>
+                        <span className="roster-indicator" aria-hidden="true">
+                          {isCurrent ? "●" : "→"}
+                        </span>
+                      </button>
+                    );
+                  })}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ====================================================================
+          SECTION 5: ABOUT LAB
+          ==================================================================== */}
+        <section id="about" className="about-section">
+          <div className="about-card">
+            <div className="about-text-content">
+              <h2 className="about-heading">
+                Satu Ekosistem untuk Seluruh Laboratorium.
+              </h2>
+              <p className="about-description">
+                ICLabs ({labConfig.fullName}) mengintegrasikan seluruh alur operasional
+                laboratorium komputer {labConfig.faculty}—mulai dari pembagian jadwal
+                praktikum, presensi harian, peminjaman ruang, hingga rekrutmen asisten baru.
+              </p>
+            </div>
+            <div className="about-meta-grid">
+              <div className="meta-box">
+                <strong className="meta-number">12</strong>
+                <span className="meta-label">Modul sistem terintegrasi</span>
+              </div>
+              <div className="meta-box">
+                <strong className="meta-number">{labConfig.totalMembers}</strong>
+                <span className="meta-label">Anggota tim pengembang</span>
+              </div>
+              <div className="meta-box">
+                <strong className="meta-number">100%</strong>
+                <span className="meta-label">Kolaborasi mandiri laboratorium</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ====================================================================
+          FOOTER
+          ==================================================================== */}
         <footer className="site-footer">
+          <div className="footer-top">
+            <div className="footer-brand">
+              <strong>{labConfig.name.toUpperCase()} DEVELOPER COLLECTIVE</strong>
+              <p>Laboratorium Komputer Terpadu · {labConfig.faculty}</p>
+            </div>
+            <a href="#top" className="back-top-link">
+              Kembali ke atas ↑
+            </a>
+          </div>
+
           <div className="footer-headline-wrap">
             <p className="footer-headline">
               Developed by <span className="text-accent">Iclabs</span>.
@@ -719,7 +1765,7 @@ export default function Portfolio() {
 
           <div className="footer-bottom">
             <span>{labConfig.fullName}</span>
-            <span>{labConfig.faculty} · {labConfig.university}</span>
+            <span>{labConfig.location}</span>
           </div>
         </footer>
       </main>

@@ -504,14 +504,14 @@ a:focus-visible {
 .stage-profile-card {
   position: relative;
   display: grid;
-  grid-template-columns: 230px minmax(280px, 1fr);
-  width: min(100%, 560px);
-  max-height: min(90vh, 480px);
-  overflow: hidden;
+  grid-template-columns: 260px minmax(340px, 1fr);
+  width: min(100%, 780px);
+  max-height: min(92vh, 720px);
+  overflow-y: auto;
   background: rgba(9, 15, 22, 0.98);
   border: 1px solid var(--border-accent);
-  border-radius: 14px;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.75), 0 0 40px rgba(92, 225, 230, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.75), 0 0 40px rgba(92, 225, 230, 0.16);
   opacity: 0;
   transform: translate3d(var(--profile-origin-x), var(--profile-origin-y), 0) scale(0.4);
   transform-origin: center;
